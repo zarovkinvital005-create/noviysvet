@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог станков — Новый Свет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header light">
+  <div class="wrap header__in">
+    <a href="index.html" class="logo">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19V5l14 14V5"/></svg></span>
+      <span>Новый Свет<small>Промышленное оборудование</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html#about">О компании</a>
+      <a href="catalog.html" class="active">Каталог</a>
+      <a href="index.html#origins">Поставки</a>
+      <a href="index.html#process">Услуги</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <div class="header__cta">
+      <a class="phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+      <a class="btn btn--primary btn--sm" href="index.html#contacts">Оставить заявку</a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Каталог оборудования</span>
+    <h1 style="margin-top:18px">Каталог станков</h1>
+    <div class="page-head__row">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="all">Все <span class="count" data-c="all"></span></button>
+        <button class="tab" data-tab="stock">В наличии <span class="count" data-c="stock"></span></button>
+        <button class="tab" data-tab="order">Под заказ <span class="count" data-c="order"></span></button>
+      </div>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="q" placeholder="Поиск по названию или модели">
+      </label>
+    </div>
+  </div>
+</section>
+
+<div class="wrap catalog">
+  <aside class="filters" id="filters">
+    <div class="filter"><h4>Тип оборудования</h4><div id="f-type"></div></div>
+    <div class="filter"><h4>Страна производства</h4><div id="f-country"></div></div>
+    <button class="filters__reset" id="reset">Сбросить фильтры</button>
+    <div class="filters__help">
+      <b>Нужна помощь с выбором?</b>
+      <p>Инженер подберёт станок под вашу задачу.</p>
+      <a class="btn btn--white btn--sm" href="index.html#contacts">Получить консультацию</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="toolbar">
+      <button class="btn btn--ghost btn--sm filters-toggle" id="ftoggle">Фильтры</button>
+      <span class="toolbar__info" id="info"></span>
+      <select class="sort" id="sort">
+        <option value="default">Сначала в наличии</option>
+        <option value="az">По названию А–Я</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <a href="index.html" class="logo">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19V5l14 14V5"/></svg></span>
+      Новый Свет
+    </a>
+    <nav><a href="index.html#about">О компании</a><a href="catalog.html">Каталог</a><a href="index.html#contacts">Контакты</a></nav>
+    <span>© <span id="year"></span> Новый Свет, Нижний Новгород</span>
+  </div>
+</footer>
+
+<script src="catalog-data.js"></script>
+<script src="main.js"></script>
+<script>
+  const state = { tab: 'all', q: '', type: new Set(), country: new Set(), sort: 'default' };
+  const params = new URLSearchParams(location.search);
+  if (params.get('type')) state.type.add(params.get('type'));
+  if (params.get('status')) state.tab = params.get('status');
+
+  const uniq = key => [...new Set(CATALOG.map(p => p[key]))];
+  const countries = ['Тайвань', 'Китай', 'Европа', 'Корея'];
+
+  function buildFilter(el, key, values) {
+    el.innerHTML = values.map(v => `
+      <label><input type="checkbox" value="${v}" ${state[key].has(v) ? 'checked' : ''}> ${v}
+      <span class="n">${CATALOG.filter(p => p[key] === v).length}</span></label>`).join('');
+    el.addEventListener('change', e => {
+      e.target.checked ? state[key].add(e.target.value) : state[key].delete(e.target.value);
+      render();
+    });
+  }
+  buildFilter(document.getElementById('f-type'), 'type', uniq('type'));
+  buildFilter(document.getElementById('f-country'), 'country', countries);
+
+  document.querySelectorAll('[data-c]').forEach(s => {
+    const c = s.dataset.c;
+    s.textContent = c === 'all' ? CATALOG.length : CATALOG.filter(p => p.status === c).length;
+  });
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(b => b.addEventListener('click', () => { state.tab = b.dataset.tab; render(); }));
+  document.getElementById('q').addEventListener('input', e => { state.q = e.target.value.toLowerCase().trim(); render(); });
+  document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  document.getElementById('reset').addEventListener('click', () => {
+    state.type.clear(); state.country.clear(); state.q = ''; document.getElementById('q').value = '';
+    document.querySelectorAll('.filters input').forEach(i => i.checked = false);
+    render();
+  });
+  document.getElementById('ftoggle').addEventListener('click', () => document.getElementById('filters').classList.toggle('open'));
+
+  function render() {
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === state.tab));
+    let list = CATALOG.filter(p =>
+      (state.tab === 'all' || p.status === state.tab) &&
+      (!state.type.size || state.type.has(p.type)) &&
+      (!state.country.size || state.country.has(p.country)) &&
+      (!state.q || (p.title + ' ' + (p.model || '') + ' ' + p.type).toLowerCase().includes(state.q))
+    );
+    list.sort(state.sort === 'az'
+      ? (a, b) => a.title.localeCompare(b.title, 'ru')
+      : (a, b) => (a.status === 'stock' ? 0 : 1) - (b.status === 'stock' ? 0 : 1));
+    document.getElementById('info').textContent = `Найдено позиций: ${list.length}`;
+    document.getElementById('grid').innerHTML = list.length
+      ? list.map(productCard).join('')
+      : `<div class="empty"><b>Ничего не найдено</b>Измените фильтры или оставьте заявку — привезём под заказ.</div>`;
+  }
+  render();
+</script>
+</body>
+</html>

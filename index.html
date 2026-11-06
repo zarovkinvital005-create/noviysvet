@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новый Свет — промышленное оборудование и станки</title>
+<meta name="description" content="Поставка металлообрабатывающих станков и промышленного оборудования из Тайваня, Китая, Европы и Кореи. Нижний Новгород.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="header">
+  <div class="wrap header__in">
+    <a href="index.html" class="logo">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19V5l14 14V5"/></svg></span>
+      <span>Новый Свет<small>Промышленное оборудование</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#about">О компании</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="#origins">Поставки</a>
+      <a href="#process">Услуги</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header__cta">
+      <a class="phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+      <a class="btn btn--primary btn--sm" href="#contacts">Оставить заявку</a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Слайд 1 — моушн-видео на фоне (наезд → отъезд, по кругу) ===== -->
+<section class="slide1" id="slide1">
+  <div class="slide1__media" aria-hidden="true">
+    <img class="slide1__poster" src="assets/photo-1.jpg" alt="">
+    <video class="slide1__video is-on" src="assets/video-in.mp4" muted playsinline preload="auto"></video>
+    <video class="slide1__video" src="assets/video-out.mp4" muted playsinline preload="auto"></video>
+  </div>
+  <div class="slide1__in">
+    <h1 class="slide1__title">Новый Свет.</h1>
+    <div class="slide1__brand">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19V5l14 14V5"/></svg></span>
+      <span>Промышленное оборудование<small>Нижний Новгород</small></span>
+    </div>
+  </div>
+  <a href="#hero" class="slide1__down" aria-label="Листать вниз">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+  </a>
+</section>
+
+<!-- ===== Слайд 2 ===== -->
+<section class="hero" id="hero">
+  <div class="hero__bg hero__bg--map"><img src="assets/map.jpg" alt="Карта поставок: маршруты из Азии в Россию"></div>
+  <div class="wrap hero__in">
+    <div class="hero__top">
+      <b>От точности — к результату.</b>
+      Поставляем металлообрабатывающие станки и промышленное оборудование из Тайваня, Китая, Европы и Кореи для производств по всей России.
+    </div>
+    <h1>Точность станка.<br>Скорость поставки.</h1>
+    <div class="hero__row">
+      <div class="hero__btns">
+        <a class="btn btn--white" href="catalog.html">Смотреть каталог
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#contacts">Подобрать станок</a>
+      </div>
+      <div class="hero__origins">
+        <span class="chip">Тайвань</span><span class="chip">Китай</span><span class="chip">Европа</span><span class="chip">Корея</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Слайд 3: преимущества — бенто с живыми диаграммами ===== -->
+<section class="bento-sec" id="advantages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Почему «Новый Свет»</span>
+        <h2 class="h2">Выгоднее. Быстрее.<br>Больше выбор.</h2>
+      </div>
+      <p class="lead">Прямые контракты с заводами Тайваня, Китая, Европы и Кореи — без лишних посредников в цепочке.</p>
+    </div>
+    <p class="ph bento-note reveal">цифры на диаграммах — примерные, замените их реальными в файле bento.js.</p>
+
+    <div class="bento" id="bento">
+      <!-- Цены -->
+      <article class="bc bc--blue b-price" aria-label="Цены ниже, чем у конкурентов">
+        <div class="bc__in">
+          <div class="bc__row">
+            <h3 class="bc__ttl">Цены ниже, чем у конкурентов</h3>
+            <div class="bc__legend"><span><i style="background:rgba(255,255,255,.35)"></i>Рынок</span><span><i style="background:#C9D2FF"></i>Новый Свет</span></div>
+          </div>
+          <div class="bc__num">
+            <div class="dotnum" data-dot="price"></div>
+            <div><div class="bc__delta">↓ в среднем</div><div class="bc__muted">к средней цене рынка</div></div>
+          </div>
+          <div class="pbars" data-chart="price"></div>
+        </div>
+      </article>
+
+      <!-- Сроки -->
+      <article class="bc bc--graph b-time" aria-label="Сроки поставки">
+        <div class="bc__in">
+          <div class="bc__row"><h3 class="bc__ttl">Сроки поставки</h3><span class="bchip bchip--glass">Быстрее рынка</span></div>
+          <svg class="gauge" data-chart="gauge" viewBox="-150 -150 300 168" aria-hidden="true"></svg>
+          <div class="glist" data-chart="glist"></div>
+        </div>
+      </article>
+
+      <!-- KPI -->
+      <article class="bc bc--lime b-kpi" aria-label="Производители-партнёры">
+        <div class="bc__in">
+          <div class="bc__row"><span class="bc__cap">Заводы-партнёры</span><span class="bchip">напрямую</span></div>
+          <div class="kpi-big"><svg width="28" height="34" viewBox="0 0 34 40" aria-hidden="true"><path d="M17 37V5M5 17L17 5l12 12" fill="none" stroke="#0b0b0c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-count="partners">0</span></div>
+        </div>
+      </article>
+      <article class="bc bc--glass b-kpi" aria-label="Страны поставок">
+        <div class="bc__in">
+          <div class="bc__row"><span class="bc__cap">Страны поставок</span><span class="bc__muted">4 направления</span></div>
+          <div class="kpi-row"><span class="kpi-num" data-count="countries">0</span>
+            <span class="flags"><b>TW</b><b>CN</b><b>EU</b><b>KR</b></span></div>
+        </div>
+      </article>
+      <article class="bc bc--glass b-kpi" aria-label="Категории оборудования">
+        <div class="bc__in">
+          <div class="bc__row"><span class="bc__cap">Категорий техники</span><span class="bc__muted">из 20</span></div>
+          <span class="kpi-num" data-count="categories">0</span>
+          <svg class="ticks" data-chart="ticks-cat" aria-hidden="true"></svg>
+        </div>
+      </article>
+      <article class="bc bc--glass b-kpi" aria-label="Логистика и таможня">
+        <div class="bc__in">
+          <div class="bc__row"><span class="bc__cap">Логистика и таможня</span><span class="bc__muted">на нас</span></div>
+          <span class="kpi-num kpi-num--txt">под ключ</span>
+          <div class="route" aria-hidden="true"><i></i><span>Завод</span><span>Таможня</span><span>Ваш цех</span></div>
+        </div>
+      </article>
+
+      <!-- Выбор -->
+      <article class="bc bc--copper b-choice" aria-label="Больше выбор оборудования">
+        <div class="bc__in">
+          <div class="bc__row">
+            <div><h3 class="bc__ttl">Больше выбор оборудования</h3><div class="bc__muted" style="margin-top:4px">Моделей в каталоге по категориям</div></div>
+            <div class="bc__legend bc__legend--col"><span><i style="background:#fff"></i>Новый Свет</span><span><i class="dash"></i>Среднее у конкурентов <b class="mono-b" data-avg></b></span></div>
+          </div>
+          <svg class="cols" data-chart="cols" aria-hidden="true"></svg>
+        </div>
+      </article>
+
+      <!-- Наличие -->
+      <article class="bc bc--green b-stock" aria-label="Широкий выбор из наличия">
+        <div class="bc__in">
+          <div class="bc__row"><h3 class="bc__ttl">Широкий выбор из наличия</h3><span class="bc__muted">на складе</span></div>
+          <div class="kpi-row" style="margin-top:12px"><span class="kpi-num" data-count="stock" data-suffix="+">0</span><span><span class="bc__delta">отгрузка</span><span class="bc__muted"> за 1–3 дня</span></span></div>
+          <div class="segbar" data-chart="segbar"></div>
+          <div class="slist" data-chart="slist"></div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="btip" id="btip"></div>
+</section>
+
+<!-- ===== Услуги + перекрёстные ленты ===== -->
+<section class="services" id="process">
+  <div class="ribbon ribbon--a" aria-hidden="true"><div class="ribbon__track" data-dup>
+    <span>Токарные станки</span><span>Фрезерные станки</span><span>Обрабатывающие центры</span><span>Шлифовальные станки</span><span>Листообработка</span><span>Электроэрозия</span>
+  </div></div>
+  <div class="ribbon ribbon--b" aria-hidden="true"><div class="ribbon__track" data-dup>
+    <span>Подбор под задачу</span><span>В наличии и под заказ</span><span>Таможня и логистика</span><span>Пусконаладка</span><span>Сервис</span><span>Доставка по России</span>
+  </div></div>
+
+  <div class="wrap services__in">
+    <div class="services__text">
+      <div class="reveal services__head">
+        <span class="eyebrow">Услуги</span>
+        <h2 class="h2">Наши услуги</h2>
+        <p class="lead" style="margin-top:20px">Берём на себя весь путь станка: от подбора до запуска в вашем цеху.</p>
+      </div>
+      <p class="ph reveal" style="margin-top:24px">уточните сроки поставки, условия гарантии и сервиса.</p>
+    </div>
+    <div>
+      <ol class="svc-list">
+        <li class="reveal"><span>01</span><div><h3>Подбор оборудования</h3><p>Анализируем деталь и задачу, предлагаем оптимальный станок.</p></div></li>
+        <li class="reveal"><span>02</span><div><h3>Поставка из наличия и под заказ</h3><p>Со склада — быстро, под заказ — напрямую с завода.</p></div></li>
+        <li class="reveal"><span>03</span><div><h3>Логистика и таможня</h3><p>Доставка, растаможка и все документы — на нас.</p></div></li>
+        <li class="reveal"><span>04</span><div><h3>Пусконаладка и сервис</h3><p>Монтаж, запуск, обучение персонала и гарантия.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== О компании ===== -->
+<section class="section" id="about">
+  <div class="wrap about about--text">
+    <div class="reveal">
+      <span class="eyebrow">О компании</span>
+      <h2 class="h2">От точности —<br>к результату.</h2>
+    </div>
+    <div class="about__text reveal">
+      <p class="lead">«Новый Свет» поставляет промышленное оборудование и металлообрабатывающие станки от производителей Тайваня, Китая, Европы и Кореи.</p>
+      <p class="ph">история компании, опыт, ключевые клиенты и чем вы отличаетесь от других поставщиков.</p>
+      <div class="stats">
+        <div class="stat"><b>4</b><span>региона поставок</span></div>
+        <div class="stat"><b>—</b><span>лет на рынке</span></div>
+        <div class="stat"><b>—</b><span>поставленных станков</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Шоурум: интерактивный ряд станков ===== -->
+<section class="section section--dark showroom" id="showroom">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Шоурум</span>
+        <h2 class="h2">Выберите станок</h2>
+      </div>
+      <p class="lead">Нажмите на любой станок — он выйдет на передний план с описанием и характеристиками.</p>
+    </div>
+  </div>
+  <div class="scene-scroll reveal">
+    <div class="scene" id="scene">
+      <img class="scene__img" src="assets/showroom.jpg" alt="Ряд промышленных станков в шоуруме" loading="lazy">
+    </div>
+  </div>
+  <p class="scene-hint">Листайте ряд в стороны →</p>
+</section>
+
+<!-- ===== Направления ===== -->
+<section class="section section--chalk" id="directions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Оборудование</span>
+        <h2 class="h2">Что мы поставляем</h2>
+      </div>
+      <p class="lead">Подбираем станок под вашу деталь, объём и бюджет — из наличия или под заказ напрямую с завода.</p>
+    </div>
+    <div class="cats">
+      <a class="cat reveal" href="catalog.html?type=Токарные станки">
+        <span class="cat__num">01</span>
+        <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div><h3>Токарные станки</h3><p>Универсальные и с ЧПУ, токарно-фрезерные центры.</p></div>
+      </a>
+      <a class="cat reveal" href="catalog.html?type=Фрезерные станки">
+        <span class="cat__num">02</span>
+        <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div><h3>Фрезерные станки</h3><p>Консольные, вертикальные, с ЧПУ.</p></div>
+      </a>
+      <a class="cat reveal" href="catalog.html?type=Обрабатывающие центры">
+        <span class="cat__num">03</span>
+        <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div><h3>Обрабатывающие центры</h3><p>Вертикальные, горизонтальные, 5-осевые.</p></div>
+      </a>
+      <a class="cat reveal" href="catalog.html?type=Шлифовальные станки">
+        <span class="cat__num">04</span>
+        <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div><h3>Шлифовальные станки</h3><p>Плоско-, кругло- и бесцентрово-шлифовальные.</p></div>
+      </a>
+      <a class="cat cat--wide reveal" href="catalog.html">
+        <span class="cat__num">05+</span>
+        <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <div><h3>Листообработка, электроэрозия<br>и другое оборудование</h3><p>Весь ассортимент — в каталоге. Не нашли нужное? Привезём под заказ.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Превью каталога ===== -->
+<section class="section" id="catalog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Каталог</span>
+        <h2 class="h2">Станки в наличии<br>и под заказ</h2>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="stock">В наличии</button>
+        <button class="tab" data-tab="order">Под заказ</button>
+      </div>
+    </div>
+    <div class="grid" id="preview-grid"></div>
+    <div class="preview-foot">
+      <a class="btn btn--primary" href="catalog.html">Весь каталог
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Страны ===== -->
+<section class="section section--dark" id="origins">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">География поставок</span>
+        <h2 class="h2">Четыре направления.<br>Один поставщик.</h2>
+      </div>
+      <p class="lead">Работаем напрямую с заводами и берём на себя логистику, таможню и документы.</p>
+    </div>
+    <div class="origins reveal">
+      <div class="origin"><span class="origin__code">TW</span><h3>Тайвань</h3><p>Оптимальный баланс цены и точности.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
+      <div class="origin"><span class="origin__code">CN</span><h3>Китай</h3><p>Широкий выбор и короткие сроки.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
+      <div class="origin"><span class="origin__code">EU</span><h3>Европа</h3><p>Высокоточное оборудование премиум-класса.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
+      <div class="origin"><span class="origin__code">KR</span><h3>Корея</h3><p>Надёжные обрабатывающие центры.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== Фото-баннер ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="band band--solid reveal">
+      <div class="band__in">
+        <h2>Не нашли нужный станок?</h2>
+        <p>Привезём под заказ с завода-производителя. Расскажите о задаче — подберём решение.</p>
+        <a class="btn btn--white" href="#contacts">Обсудить задачу</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Контакты ===== -->
+<section class="section section--dark" id="contacts">
+  <div class="wrap contact">
+    <div class="reveal">
+      <span class="eyebrow">Контакты</span>
+      <h2 class="h2">Свяжитесь<br>с нами</h2>
+      <div class="contact__list">
+        <div><span>Город</span><b>Нижний Новгород</b></div>
+        <div><span>Телефон</span><b>+7 (000) 000-00-00</b></div>
+        <div><span>Почта</span><b>info@example.ru</b></div>
+        <p class="ph">точный адрес, режим работы, мессенджеры, реквизиты.</p>
+      </div>
+    </div>
+    <form class="form reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Заявка отправлена ✓';">
+      <h3>Заявка на подбор</h3>
+      <div class="field"><label for="f-name">Имя</label><input id="f-name" required></div>
+      <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" type="tel" required></div>
+      <div class="field"><label for="f-msg">Какой станок нужен</label><textarea id="f-msg" placeholder="Тип станка, задача, сроки"></textarea></div>
+      <button class="btn btn--primary" type="submit">Отправить заявку</button>
+      <small>Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</small>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <a href="index.html" class="logo">
+      <span class="logo__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19V5l14 14V5"/></svg></span>
+      Новый Свет
+    </a>
+    <nav><a href="#about">О компании</a><a href="catalog.html">Каталог</a><a href="#contacts">Контакты</a></nav>
+    <span>© <span id="year"></span> Новый Свет, Нижний Новгород</span>
+  </div>
+</footer>
+
+<script src="catalog-data.js"></script>
+<script src="main.js"></script>
+<script src="motion.js"></script>
+<script src="showroom.js"></script>
+<script src="bento.js"></script>
+<script>
+  // дублируем ленты для бесшовной прокрутки
+  document.querySelectorAll('[data-dup]').forEach(t => t.innerHTML += t.innerHTML + t.innerHTML + t.innerHTML);
+
+  // превью каталога: 3 позиции на вкладку
+  const grid = document.getElementById('preview-grid');
+  const render = s => grid.innerHTML = CATALOG.filter(p => p.status === s).slice(0, 3).map(productCard).join('');
+  document.querySelectorAll('#catalog .tab').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#catalog .tab').forEach(x => x.classList.toggle('active', x === b));
+    render(b.dataset.tab);
+  }));
+  render('stock');
+</script>
+</body>
+</html>
