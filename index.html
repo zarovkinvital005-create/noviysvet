@@ -35,7 +35,7 @@
 </header>
 
 <!-- ===== Слайд 1 — моушн-видео на фоне (наезд → отъезд, по кругу) ===== -->
-<section class="slide1" id="slide1">
+<section class="slide1" id="slide1" data-motion data-fade="0.12,0.9">
   <div class="slide1__media" aria-hidden="true">
     <img class="slide1__poster" src="assets/photo-1.jpg" alt="">
     <video class="slide1__video is-on" src="assets/video-in.mp4" muted playsinline preload="auto"></video>
@@ -53,26 +53,33 @@
   </a>
 </section>
 
-<!-- ===== Слайд 2 ===== -->
-<section class="hero" id="hero">
-  <div class="hero__bg hero__bg--map"><img src="assets/map.jpg" alt="Карта поставок: маршруты из Азии в Россию"></div>
-  <div class="wrap hero__in">
-    <div class="hero__top">
-      <b>От точности — к результату.</b>
-      Поставляем металлообрабатывающие станки и промышленное оборудование из Тайваня, Китая, Европы и Кореи для производств по всей России.
+<!-- ===== Слайд 2 — моушн: погрузка контейнера и доставка (видео по кругу) ===== -->
+<section class="delivery" id="hero" data-motion data-fade="0.9,0.9" data-hold="900,900">
+  <div class="wrap delivery__head">
+    <div>
+      <span class="eyebrow">Поставка под ключ</span>
+      <h1 class="delivery__title">Точность станка.<br>Скорость поставки.</h1>
     </div>
-    <h1>Точность станка.<br>Скорость поставки.</h1>
-    <div class="hero__row">
+    <div class="delivery__side">
+      <p class="lead">Поставляем металлообрабатывающие станки и промышленное оборудование из Тайваня, Китая, Европы и Кореи — от завода до вашего цеха.</p>
       <div class="hero__btns">
-        <a class="btn btn--white" href="catalog.html">Смотреть каталог
+        <a class="btn btn--primary" href="catalog.html">Смотреть каталог
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn--ghost" href="#contacts">Подобрать станок</a>
       </div>
-      <div class="hero__origins">
-        <span class="chip">Тайвань</span><span class="chip">Китай</span><span class="chip">Европа</span><span class="chip">Корея</span>
-      </div>
     </div>
   </div>
+  <div class="delivery__stage">
+    <img class="delivery__poster" src="assets/delivery-poster.jpg" alt="">
+    <video class="delivery__video is-on" src="assets/video-delivery.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <video class="delivery__video" src="assets/video-delivery.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="dl-steps" aria-label="Этапы поставки">
+      <div class="dl-step" data-from="0" data-to="0.4"><b>01</b><span>Отгрузка с завода</span><i></i></div>
+      <div class="dl-step" data-from="0.4" data-to="0.72"><b>02</b><span>Логистика и таможня</span><i></i></div>
+      <div class="dl-step" data-from="0.72" data-to="1"><b>03</b><span>Доставка в ваш цех</span><i></i></div>
+    </div>
+  </div>
+  <div class="delivery__fade" aria-hidden="true"></div>
 </section>
 
 <!-- ===== Слайд 3: преимущества — бенто с живыми диаграммами ===== -->
@@ -304,6 +311,10 @@
       </div>
       <p class="lead">Работаем напрямую с заводами и берём на себя логистику, таможню и документы.</p>
     </div>
+    <figure class="origins-map reveal">
+      <img src="assets/map.jpg" alt="Карта поставок: маршруты из Азии в Россию" loading="lazy">
+      <figcaption><span class="bchip bchip--glass">Маршруты поставок</span><span>Азия и Европа → Нижний Новгород → ваш цех</span></figcaption>
+    </figure>
     <div class="origins reveal">
       <div class="origin"><span class="origin__code">TW</span><h3>Тайвань</h3><p>Оптимальный баланс цены и точности.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
       <div class="origin"><span class="origin__code">CN</span><h3>Китай</h3><p>Широкий выбор и короткие сроки.</p><p class="ph" style="margin-top:16px">бренды-партнёры</p></div>
@@ -371,6 +382,22 @@
 <script>
   // дублируем ленты для бесшовной прокрутки
   document.querySelectorAll('[data-dup]').forEach(t => t.innerHTML += t.innerHTML + t.innerHTML + t.innerHTML);
+
+  // этапы поставки на слайде 2 — синхронно с видео
+  (function () {
+    const sec = document.getElementById('hero');
+    const steps = [...sec.querySelectorAll('.dl-step')];
+    sec.addEventListener('motion:time', e => {
+      const t = e.detail.t;
+      steps.forEach(s => {
+        const a = +s.dataset.from, b = +s.dataset.to;
+        const on = t >= a && t < b || (t >= 1 && b === 1);
+        s.classList.toggle('on', on);
+        s.classList.toggle('done', t >= b && b !== 1);
+        s.querySelector('i').style.setProperty('--p', Math.max(0, Math.min(1, (t - a) / (b - a))).toFixed(3));
+      });
+    });
+  })();
 
   // превью каталога: 3 позиции на вкладку
   const grid = document.getElementById('preview-grid');

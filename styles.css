@@ -722,3 +722,67 @@ html.sr-lock, html.sr-lock body { overflow: hidden; }
   .b-stock { height: 390px; }
   .b-choice .bc__legend--col { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 12px; }
 }
+
+/* =====================================================================
+   Слайд 2 — моушн «Поставка»: белое небо видео сливается со страницей,
+   тёмная земля перетекает в слайд 3
+   ===================================================================== */
+.delivery { position: relative; background: #fff; color: var(--abyss); overflow: hidden; }
+.delivery__head {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 5vw, 80px); align-items: end;
+  padding-top: clamp(120px, 14vh, 160px); padding-bottom: clamp(8px, 2vw, 24px); position: relative; z-index: 2;
+}
+.delivery__title {
+  font-weight: 400; font-size: clamp(44px, 6.2vw, 96px); line-height: 1.02; letter-spacing: -.035em; margin-top: 18px;
+}
+.delivery__side .lead { margin-bottom: 24px; }
+.delivery .btn--ghost { color: var(--abyss); }
+.delivery__stage {
+  position: relative; z-index: 1; width: 100%; aspect-ratio: 16 / 8.4; background: #fff; margin-top: 0;
+}
+.delivery__poster, .delivery__video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%;
+  filter: brightness(1.035) contrast(1.04); /* «почти белое» небо видео → чисто белое, как страница */
+}
+.delivery__video { opacity: 0; z-index: 1; }
+.delivery.is-playing .delivery__video.is-on { opacity: 1; }
+.delivery__stage::before { /* мягко растворяем верхний край в белом */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12%; z-index: 9;
+  background: linear-gradient(#fff, rgba(255,255,255,0)); pointer-events: none;
+}
+.delivery__fade { height: clamp(60px, 8vw, 120px); background: linear-gradient(#161618, #05070B); }
+
+/* Этапы поставки — на «земле» видео, синхронно с роликом */
+.dl-steps {
+  position: absolute; z-index: 10; left: 50%; bottom: clamp(14px, 2.6vw, 36px); transform: translateX(-50%);
+  width: min(var(--wrap), calc(100% - 2 * var(--gutter))); padding: 0 var(--gutter);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 28px); color: #fff;
+}
+.dl-step { position: relative; display: flex; align-items: center; gap: 12px; padding-top: 16px; opacity: .45; transition: opacity .4s; }
+.dl-step.on, .dl-step.done { opacity: 1; }
+.dl-step b { font: 600 12px "Geist Mono", ui-monospace, monospace; padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); transition: background .3s, color .3s; }
+.dl-step.on b { background: #E8FF1F; color: #0b0b0c; border-color: #E8FF1F; }
+.dl-step span { font-size: clamp(13px, 1.2vw, 16px); font-weight: 600; letter-spacing: -.01em; }
+.dl-step i { position: absolute; left: 0; right: 0; top: 0; height: 2px; border-radius: 2px; background: rgba(255,255,255,.18); overflow: hidden; }
+.dl-step i::after { content: ""; position: absolute; inset: 0; background: #E8FF1F; transform-origin: left; transform: scaleX(var(--p, 0)); }
+.dl-step.done i::after { transform: scaleX(1); background: rgba(255,255,255,.7); }
+
+/* Карта — в «Географии поставок» */
+.origins-map { position: relative; margin: 0 0 16px; border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; }
+.origins-map img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 45%; }
+.origins-map::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,13,18,0) 55%, rgba(10,13,18,.75)); }
+.origins-map figcaption {
+  position: absolute; left: clamp(16px, 3vw, 32px); bottom: clamp(16px, 3vw, 28px); z-index: 1;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 15px; font-weight: 500; color: #fff;
+}
+.origins-map .bchip { font: 600 11px "Geist Mono", ui-monospace, monospace; }
+
+@media (max-width: 860px) {
+  .delivery__head { grid-template-columns: 1fr; padding-top: 110px; }
+  .delivery__stage { aspect-ratio: auto; height: auto; padding-top: 300px; margin-top: 8px; }
+  .delivery__poster, .delivery__video { inset: 0 0 auto 0; height: 300px; object-position: 42% 60%; }
+  .delivery__stage::before { height: 36px; }
+  .dl-steps { position: static; transform: none; width: auto; background: #161618; padding: 14px var(--gutter) 6px; grid-template-columns: 1fr; gap: 10px; }
+  .dl-step { padding-top: 12px; }
+  .origins-map { aspect-ratio: 4 / 3; }
+}
