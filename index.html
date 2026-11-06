@@ -54,7 +54,7 @@
 </section>
 
 <!-- ===== Слайд 2 — моушн: погрузка контейнера и доставка (видео по кругу) ===== -->
-<section class="delivery" id="hero" data-motion data-fade="0.9,0.9" data-hold="900,900">
+<section class="delivery" id="hero" data-trail data-motion data-fade="0.9,0.9" data-hold="900,900">
   <div class="wrap delivery__head">
     <div>
       <span class="eyebrow">Поставка под ключ</span>
@@ -174,7 +174,7 @@
 </section>
 
 <!-- ===== Услуги + перекрёстные ленты ===== -->
-<section class="services" id="process">
+<section class="services" id="process" data-trail>
   <div class="ribbon ribbon--a" aria-hidden="true"><div class="ribbon__track" data-dup>
     <span>Токарные станки</span><span>Фрезерные станки</span><span>Обрабатывающие центры</span><span>Шлифовальные станки</span><span>Листообработка</span><span>Электроэрозия</span>
   </div></div>
@@ -203,7 +203,7 @@
 </section>
 
 <!-- ===== О компании ===== -->
-<section class="section" id="about">
+<section class="section" id="about" data-trail>
   <div class="wrap about about--text">
     <div class="reveal">
       <span class="eyebrow">О компании</span>
@@ -379,6 +379,7 @@
 <script src="motion.js"></script>
 <script src="showroom.js"></script>
 <script src="bento.js"></script>
+<script src="trail.js"></script>
 <script>
   // дублируем ленты для бесшовной прокрутки
   document.querySelectorAll('[data-dup]').forEach(t => t.innerHTML += t.innerHTML + t.innerHTML + t.innerHTML);
