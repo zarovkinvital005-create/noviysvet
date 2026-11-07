@@ -1285,3 +1285,8 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .sp-cta .ihb--plain .ihb__dot { background: var(--cobalt) !important; }
 .sp-cta .ihb--plain .ihb__hover { color: #fff; }
 .sp-cta { flex-wrap: wrap; }
+/* превью каталога на главной: 4 карточки в ряд на компьютере, 2 на планшете, 1 на телефоне */
+#preview-grid { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { #preview-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { #preview-grid { grid-template-columns: 1fr; } }
+.preview-foot { display: flex; justify-content: center; }

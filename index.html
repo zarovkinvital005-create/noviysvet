@@ -366,7 +366,7 @@
     </div>
     <div class="grid" id="preview-grid"></div>
     <div class="preview-foot">
-      <a class="ihb ihb--cobalt ihb--solid" href="catalog.html"><span class="ihb__text">Весь каталог</span><span class="ihb__hover" aria-hidden="true"><span>Весь каталог</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
+      <a class="ihb ihb--cobalt ihb--solid" href="catalog.html?status=stock"><span class="ihb__text">Смотреть все станки в наличии</span><span class="ihb__hover" aria-hidden="true"><span>Смотреть все станки в наличии</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
@@ -465,13 +465,19 @@
       return list.slice().sort((a, b) => (b.hit ? 1 : 0) - (a.hit ? 1 : 0)
         || (isDN(b) ? 1 : 0) - (isDN(a) ? 1 : 0)
         || ((b.eta && b.eta.length) ? 1 : 0) - ((a.eta && a.eta.length) ? 1 : 0)
-        || idx.get(a.id) - idx.get(b.id)).slice(0, 3);
+        || idx.get(a.id) - idx.get(b.id)).slice(0, 4);
     }
-    return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 3);
+    return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 4);
   };
   const grid = document.getElementById('preview-grid');
   const render = s => {
     const list = pick(s);
+    const all = document.querySelector('.preview-foot a');
+    if (all) {
+      const txt = s === 'order' ? 'Смотреть все станки под заказ' : 'Смотреть все станки в наличии';
+      all.href = 'catalog.html?status=' + s;
+      all.querySelectorAll('.ihb__text, .ihb__hover > span').forEach(n => { n.textContent = txt; });
+    }
     grid.innerHTML = list.length ? list.map(productCard).join('')
       : `<div class="empty"><b>Наличие обновляется</b>Какие станки сейчас на складе — уточняйте по телефону <a href="tel:+78312141495">+7 (831) 214-14-95</a>. Всё остальное привезём под заказ.</div>`;
   };
