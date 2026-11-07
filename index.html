@@ -487,8 +487,16 @@
   // Заявка на подбор — форма «Яндекс Формы» (ответы хранятся в России). Если пришли из карточки каталога, модель подставляется в скрытое поле model.
   (function () {
     const YANDEX_FORM = 'https://forms.yandex.ru/u/6aeeb2a52c4f89f8d07e1257';
-    const m = new URLSearchParams(location.search).get('m');
-    const q = new URLSearchParams({ iframe: '1' }); if (m) q.set('model', m);
+    const sp = new URLSearchParams(location.search), m = sp.get('m'), book = sp.get('b') === '1';
+    const q = new URLSearchParams({ iframe: '1' }); if (m) q.set('model', (book ? 'БРОНЬ: ' : '') + m);
+    if (m) {
+      const chip = document.createElement('div'); chip.className = 'ya-chip';
+      chip.innerHTML = book
+        ? '<b>Бронь станка</b><span></span><i>Оставьте контакты — менеджер подтвердит срок поступления и условия и закрепит станок за вами. Это ни к чему не обязывает.</i>'
+        : '<b>Запрос по станку</b><span></span><i>Оставьте контакты — пришлём цену и сроки.</i>';
+      chip.querySelector('span').textContent = m;
+      document.getElementById('ya-frame').before(chip);
+    }
     const fr = document.createElement('iframe');
     fr.src = YANDEX_FORM + '?' + q.toString();
     fr.title = 'Заявка на подбор'; fr.loading = 'lazy'; fr.setAttribute('frameborder', '0');
