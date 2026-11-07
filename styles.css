@@ -909,3 +909,172 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .legal ul { margin: 12px 0 0 22px; }
 .legal li { margin-top: 6px; }
 .legal a { color: var(--cobalt); border-bottom: 1px solid rgba(0,64,193,.3); }
+
+/* ===== Интерактивная кнопка: точка разрастается, текст уезжает и появляется со стрелкой ===== */
+.ihb {
+  --fill: var(--abyss);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; overflow: hidden;
+  min-width: 232px; height: 58px; padding: 0 30px 0 44px; border-radius: 999px;
+  border: 1.5px solid #E3E4E8; background: #fff; color: var(--abyss);
+  font-weight: 700; font-size: 17px; letter-spacing: -.005em; white-space: nowrap; cursor: pointer;
+  transition: border-color .3s, box-shadow .3s;
+}
+.ihb--cobalt { --fill: var(--cobalt); }
+.ihb--dark { --fill: var(--abyss); }
+.ihb__text { display: inline-block; transform: translateX(4px); transition: transform .3s, opacity .3s; }
+.ihb__hover {
+  position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 10px;
+  color: #fff; opacity: 0; transform: translateX(48px); transition: transform .3s, opacity .3s;
+}
+.ihb__hover svg { width: 20px; height: 20px; }
+.ihb__dot {
+  position: absolute; z-index: 1; left: 22px; top: calc(50% - 5px); width: 10px; height: 10px; border-radius: 999px;
+  background: var(--fill); transition: left .3s, top .3s, width .3s, height .3s;
+}
+.ihb:hover, .ihb:focus-visible { border-color: var(--fill); }
+.ihb:hover .ihb__text, .ihb:focus-visible .ihb__text { transform: translateX(48px); opacity: 0; }
+.ihb:hover .ihb__hover, .ihb:focus-visible .ihb__hover { transform: translateX(0); opacity: 1; }
+.ihb:hover .ihb__dot, .ihb:focus-visible .ihb__dot { left: 0; top: 0; width: 100%; height: 100%; }
+.ihb:focus-visible { outline: 2px solid var(--fill); outline-offset: 3px; }
+@media (max-width: 520px) { .hero__btns { width: 100%; } .ihb { flex: 1 1 100%; } }
+
+/* ===== «Сияющая» кнопка (кнопка «Оставить заявку» в шапке): бегущий по кромке блик, точечная искра, свечение при наведении =====
+   Цвета — в фирменной гамме: тёмная заливка, кобальтовый блик. */
+@property --sh-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --sh-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --sh-percent { syntax: "<percentage>"; initial-value: 5%; inherits: false; }
+@property --sh-shine { syntax: "<color>"; initial-value: white; inherits: false; }
+
+.shiny {
+  --sh-base: #0A0D12; --sh-inset: #1a2030; --sh-label: #fff;
+  --sh-accent: #2F6BFF; --sh-accent-soft: #9DB8FF;
+  --sh-anim: sh-angle linear infinite; --sh-dur: 3s; --sh-shadow: 2px;
+  --sh-trans: .8s cubic-bezier(.25, 1, .5, 1);
+  isolation: isolate; position: relative; overflow: hidden; cursor: pointer; outline-offset: 4px;
+  display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 24px;
+  font-size: 15px; line-height: 1.2; font-weight: 600; white-space: nowrap;
+  border: 1px solid transparent; border-radius: 999px; color: var(--sh-label);
+  background:
+    linear-gradient(var(--sh-base), var(--sh-base)) padding-box,
+    conic-gradient(from calc(var(--sh-angle) - var(--sh-offset)), transparent,
+      var(--sh-accent) var(--sh-percent), var(--sh-shine) calc(var(--sh-percent) * 2),
+      var(--sh-accent) calc(var(--sh-percent) * 3), transparent calc(var(--sh-percent) * 4)) border-box;
+  box-shadow: inset 0 0 0 1px var(--sh-inset);
+  transition: var(--sh-trans); transition-property: --sh-offset, --sh-percent, --sh-shine;
+}
+.shiny::before, .shiny::after, .shiny span::before {
+  content: ""; pointer-events: none; position: absolute; inset-inline-start: 50%; inset-block-start: 50%;
+  translate: -50% -50%; z-index: -1;
+}
+.shiny:active { translate: 0 1px; }
+.shiny::before {
+  --size: calc(100% - var(--sh-shadow) * 3); --position: 2px; --space: calc(var(--position) * 2);
+  width: var(--size); height: var(--size);
+  background: radial-gradient(circle at var(--position) var(--position), white calc(var(--position) / 4), transparent 0) padding-box;
+  background-size: var(--space) var(--space); background-repeat: space;
+  mask-image: conic-gradient(from calc(var(--sh-angle) + 45deg), black, transparent 10% 90%, black);
+  border-radius: inherit; opacity: .4;
+}
+.shiny::after {
+  --sh-anim: sh-shimmer linear infinite;
+  width: 100%; aspect-ratio: 1;
+  background: linear-gradient(-50deg, transparent, var(--sh-accent), transparent);
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black); opacity: .6;
+}
+.shiny span { z-index: 1; }
+.shiny span::before {
+  --size: calc(100% + 1rem); width: var(--size); height: var(--size);
+  box-shadow: inset 0 -1ex 2rem 4px var(--sh-accent); opacity: 0;
+  transition: opacity var(--sh-trans); animation: calc(var(--sh-dur) * 1.5) sh-breathe linear infinite;
+}
+.shiny, .shiny::before, .shiny::after {
+  animation: var(--sh-anim) var(--sh-dur), var(--sh-anim) calc(var(--sh-dur) / .4) reverse paused;
+  animation-composition: add;
+}
+.shiny:is(:hover, :focus-visible) { --sh-percent: 20%; --sh-offset: 95deg; --sh-shine: var(--sh-accent-soft); }
+.shiny:is(:hover, :focus-visible), .shiny:is(:hover, :focus-visible)::before, .shiny:is(:hover, :focus-visible)::after { animation-play-state: running; }
+.shiny:is(:hover, :focus-visible) span::before { opacity: 1; }
+@keyframes sh-angle { to { --sh-angle: 360deg; } }
+@keyframes sh-shimmer { to { rotate: 360deg; } }
+@keyframes sh-breathe { from, to { scale: 1; } 50% { scale: 1.2; } }
+@media (prefers-reduced-motion: reduce) {
+  .shiny, .shiny::before, .shiny::after, .shiny span::before { animation: none !important; }
+  .shiny:is(:hover, :focus-visible) span::before { opacity: 0; }
+  .shiny { transition: none; }
+}
+@media (max-width: 860px) { .header__cta .shiny { display: none; } }
+
+/* ===== Единый стиль кнопок: светлый фон — .ihb (точка заливает), тёмный фон — .shiny (бегущий блик) ===== */
+.ihb--sm { min-width: 0; height: 46px; padding: 0 22px 0 38px; font-size: 15px; }
+.ihb--sm .ihb__dot { left: 18px; top: calc(50% - 4px); width: 8px; height: 8px; }
+.ihb--sm:hover .ihb__dot, .ihb--sm:focus-visible .ihb__dot { left: 0; top: 0; width: 100%; height: 100%; }
+.ihb--sm .ihb__hover { gap: 8px; }
+.ihb--sm .ihb__hover svg { width: 18px; height: 18px; }
+.ihb--sm { min-width: 148px; }
+.ihb.filters-toggle { display: none; }
+@media (max-width: 1080px) { .ihb.filters-toggle { display: inline-flex; } }
+.band .ihb { margin-top: 32px; align-self: flex-start; }
+.shiny--lg { height: 56px; padding: 0 36px; font-size: 17px; }
+.shiny--wide { width: 100%; }
+.form .shiny { margin-top: 8px; }
+.form__foot .shiny { margin: 0; flex-shrink: 0; }
+.shiny:disabled { opacity: .7; cursor: default; }
+@media (max-width: 640px) { .form__foot .shiny { width: 100%; } }
+.card .ihb--sm { min-width: 124px; padding-right: 18px; }
+
+/* Яркий вариант: залитая кнопка видна и без наведения; при наведении точка заливает её тёмным */
+.ihb--solid {
+  --fill: var(--abyss); min-width: 264px; height: 62px; font-size: 18px;
+  background: var(--cobalt); border-color: var(--cobalt); color: #fff;
+  box-shadow: 0 16px 34px -14px rgba(0, 64, 193, .75);
+}
+.ihb--solid .ihb__dot { background: #fff; }
+.ihb--solid:hover .ihb__dot, .ihb--solid:focus-visible .ihb__dot { background: var(--abyss); }
+.ihb--solid:hover, .ihb--solid:focus-visible { box-shadow: 0 16px 34px -14px rgba(10, 13, 18, .6); }
+
+/* ===== «О компании»: плитки с цифрами чередуют цвета ===== */
+.stat { transition: transform .3s; }
+.stat:hover { transform: translateY(-4px); }
+.stat:nth-child(1) { background: var(--cobalt); }
+.stat:nth-child(1) b { color: #fff; }
+.stat:nth-child(1) span { color: rgba(255,255,255,.8); }
+.stat:nth-child(2) { background: var(--chalk); }
+.stat:nth-child(3) { background: var(--abyss); }
+.stat:nth-child(3) b { color: #E8FF1F; }
+.stat:nth-child(3) span { color: rgba(255,255,255,.7); }
+.stat b { font-family: var(--display); font-weight: 800; }
+
+/* ===== Услуги: пункты «выпуклые» — поднимаются и меняют цвет при наведении ===== */
+.svc-list li {
+  --bg: var(--cobalt); --fg: #fff; --sub: rgba(255,255,255,.82); --num: #fff;
+  padding: 22px 22px; border-radius: 22px; position: relative; z-index: 0;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, background .3s, border-color .3s;
+}
+.svc-list li:nth-child(2) { --bg: var(--abyss); --sub: rgba(255,255,255,.72); --num: #E8FF1F; }
+.svc-list li:nth-child(3) { --bg: #E8FF1F; --fg: var(--abyss); --sub: rgba(10,13,18,.72); --num: var(--abyss); }
+.svc-list li:nth-child(4) { --bg: #9DB8FF; --fg: var(--abyss); --sub: rgba(10,13,18,.74); --num: var(--cobalt); }
+.svc-list li:hover, .svc-list li:focus-within {
+  background: var(--bg); border-top-color: transparent; z-index: 2;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 26px 44px -20px rgba(10,13,18,.5), 0 2px 0 rgba(255,255,255,.18) inset;
+}
+.svc-list li:hover + li { border-top-color: transparent; }
+.svc-list li h3, .svc-list li p { transition: color .3s; }
+.svc-list li:hover h3 { color: var(--fg); }
+.svc-list li:hover p { color: var(--sub); }
+.svc-list li:hover span { color: var(--num); }
+@media (max-width: 860px) { .svc-list li { padding: 18px 16px; } }
+@media (hover: none) { .svc-list li:hover { transform: none; } }
+
+/* ===== Мессенджеры в контактах ===== */
+.contacts__msgr { grid-column: 1 / -1; }
+
+.msgr-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.msgr { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px 0 8px; border-radius: 999px; border: 1px solid #2A303C; background: #12161D; color: #fff; font-weight: 600; font-size: 16px; transition: transform .25s, border-color .25s, background .25s; }
+.msgr i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; color: #fff; }
+.msgr i svg { width: 18px; height: 18px; }
+.msgr--wa i { background: #25D366; }
+.msgr--tg i { background: #27A7E7; }
+.msgr--max i { background: linear-gradient(135deg, #2F6BFF, #8A4DFF); font-style: normal; font-weight: 800; font-size: 11px; letter-spacing: .02em; }
+.msgr:hover { transform: translateY(-3px); border-color: #4A5160; background: #1A1F28; }
+@media (max-width: 640px) { .msgr-list { width: 100%; } .msgr { flex: 1 1 calc(50% - 5px); justify-content: flex-start; } }

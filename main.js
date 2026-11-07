@@ -51,7 +51,7 @@ function productCard(p) {
         <ul class="specs">${specs}</ul>
         <div class="card__foot">
           <div class="price"><small>Цена</small>${p.price}</div>
-          <a class="btn btn--primary" href="${ask}">Запросить</a>
+          <a class="ihb ihb--cobalt ihb--sm" href="${ask}"><span class="ihb__text">Запросить</span><span class="ihb__hover" aria-hidden="true"><span>Запросить</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
         </div>
       </div>
     </article>`;

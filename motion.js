@@ -65,11 +65,17 @@
       });
     });
 
+    let warmed = false;
+    function warm() {
+      if (warmed) return; warmed = true;
+      vids.forEach((v, i) => { if (i !== cur && v.preload !== 'auto') { v.preload = 'auto'; v.load(); } });
+    }
     function start() {
       if (pending) next(); // слайд скрылся во время паузы на последнем кадре
       const p = vids[cur].play();
       if (p && p.then) p.then(() => {
         root.classList.add('is-playing');
+        warm(); // первый ролик пошёл — теперь подгружаем остальные, не отнимая у него трафик
         cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
       }).catch(() => { /* автозапуск запрещён — остаётся постер */ });
     }

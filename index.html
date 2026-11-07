@@ -7,7 +7,8 @@
 <meta name="description" content="Поставка металлообрабатывающих станков и промышленного оборудования из Китая, Кореи и любой другой страны. Нижний Новгород.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Geist+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Geist+Mono:wght@400;500;600&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,14 +22,14 @@
     </a>
     <nav class="nav">
       <a href="#about">О компании</a>
-      <a href="catalog.html">Каталог</a>
-      <a href="#origins">Поставки</a>
       <a href="#process">Услуги</a>
+      <a href="#origins">Поставки</a>
+      <a href="catalog.html">Каталог</a>
       <a href="#contacts">Контакты</a>
     </nav>
     <div class="header__cta">
       <a class="phone" href="tel:+78312141495">+7 (831) 214-14-95</a>
-      <a class="btn btn--primary btn--sm" href="#contacts">Оставить заявку</a>
+      <a class="shiny" href="#contacts"><span>Оставить заявку</span></a>
       <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -38,8 +39,9 @@
 <section class="slide1" id="slide1" data-motion data-fade="0.12,0.9">
   <div class="slide1__media" aria-hidden="true">
     <img class="slide1__poster" src="assets/photo-1.jpg" alt="">
-    <video class="slide1__video is-on" src="assets/video-in.mp4" muted playsinline preload="auto"></video>
-    <video class="slide1__video" src="assets/video-out.mp4" muted playsinline preload="auto"></video>
+    <video class="slide1__video is-on" data-src="assets/video-in.mp4" data-src-m="assets/video-in-m.mp4" muted playsinline preload="auto"></video>
+    <video class="slide1__video" data-src="assets/video-out.mp4" data-src-m="assets/video-out-m.mp4" muted playsinline preload="none"></video>
+    <script>(function(){var c=navigator.connection||{},m=matchMedia('(max-width: 820px)').matches||c.saveData||/2g/.test(c.effectiveType||'');document.querySelectorAll('video[data-src]').forEach(function(v){v.src=m&&v.dataset.srcM?v.dataset.srcM:v.dataset.src;});})();</script>
   </div>
   <div class="slide1__in">
     <h1 class="slide1__title"><b class="w8">Новый</b> <span class="w2">Свет</span>.</h1>
@@ -63,16 +65,24 @@
     <div class="delivery__side">
       <p class="lead">Поставляем металлообрабатывающие станки и промышленное оборудование из Китая, Кореи и любой другой страны — от завода до вашего цеха.</p>
       <div class="hero__btns">
-        <a class="btn btn--primary" href="catalog.html">Смотреть каталог
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn--ghost" href="#contacts">Подобрать станок</a>
+        <a class="ihb ihb--cobalt" href="catalog.html">
+          <span class="ihb__text">Смотреть каталог</span>
+          <span class="ihb__hover" aria-hidden="true"><span>Смотреть каталог</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <i class="ihb__dot" aria-hidden="true"></i>
+        </a>
+        <a class="ihb ihb--dark" href="#contacts">
+          <span class="ihb__text">Подобрать станок</span>
+          <span class="ihb__hover" aria-hidden="true"><span>Подобрать станок</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <i class="ihb__dot" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
   </div>
   <div class="delivery__stage">
     <img class="delivery__poster" src="assets/delivery-poster.jpg" alt="">
-    <video class="delivery__video is-on" src="assets/video-delivery.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
-    <video class="delivery__video" src="assets/video-delivery.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    <video class="delivery__video is-on" data-src="assets/video-delivery.mp4" data-src-m="assets/video-delivery-m.mp4" muted playsinline preload="none" aria-hidden="true"></video>
+    <video class="delivery__video" data-src="assets/video-delivery.mp4" data-src-m="assets/video-delivery-m.mp4" muted playsinline preload="none" aria-hidden="true"></video>
+    <script>(function(){var c=navigator.connection||{},m=matchMedia('(max-width: 820px)').matches||c.saveData||/2g/.test(c.effectiveType||'');document.querySelectorAll('video[data-src]').forEach(function(v){v.src=m&&v.dataset.srcM?v.dataset.srcM:v.dataset.src;});})();</script>
     <div class="dl-steps" aria-label="Этапы поставки">
       <div class="dl-step" data-from="0" data-to="0.4"><b>01</b><span>Отгрузка с завода</span><i></i></div>
       <div class="dl-step" data-from="0.4" data-to="0.72"><b>02</b><span>Логистика и таможня</span><i></i></div>
@@ -165,6 +175,25 @@
   <div class="btip" id="btip"></div>
 </section>
 
+<!-- ===== О компании ===== -->
+<section class="section" id="about" data-trail>
+  <div class="wrap about about--text">
+    <div class="reveal">
+      <span class="eyebrow">О компании</span>
+      <h2 class="h2"><span class="w2">От точности —</span><br>к <em class="ac ac--hi">результату</em>.</h2>
+    </div>
+    <div class="about__text reveal">
+      <p class="lead">«Новый Свет» поставляет промышленное оборудование и металлообрабатывающие станки от производителей Китая, Кореи и других стран.</p>
+      <p>Более 15 лет подбираем оборудование под задачу производства и берём на себя весь путь станка: поставку, таможню, запуск и сервис. Не навязываем то, что есть на складе, — предлагаем станок, который действительно подходит вашей детали, объёму и бюджету.</p>
+      <div class="stats">
+        <div class="stat"><b>7+</b><span>стран поставок</span></div>
+        <div class="stat"><b>15</b><span>лет на рынке</span></div>
+        <div class="stat"><b>200+</b><span>поставленных станков</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Услуги + перекрёстные ленты ===== -->
 <section class="services" id="process" data-trail>
   <div class="ribbon ribbon--a" aria-hidden="true"><div class="ribbon__track" data-dup>
@@ -197,24 +226,29 @@
   </div>
 </section>
 
-<!-- ===== О компании ===== -->
-<section class="section" id="about" data-trail>
-  <div class="wrap about about--text">
-    <div class="reveal">
-      <span class="eyebrow">О компании</span>
-      <h2 class="h2"><span class="w2">От точности —</span><br>к <em class="ac ac--hi">результату</em>.</h2>
-    </div>
-    <div class="about__text reveal">
-      <p class="lead">«Новый Свет» поставляет промышленное оборудование и металлообрабатывающие станки от производителей Китая, Кореи и других стран.</p>
-      <p>Более 15 лет подбираем оборудование под задачу производства и берём на себя весь путь станка: поставку, таможню, запуск и сервис. Не навязываем то, что есть на складе, — предлагаем станок, который действительно подходит вашей детали, объёму и бюджету.</p>
-      <div class="stats">
-        <div class="stat"><b>7+</b><span>стран поставок</span></div>
-        <div class="stat"><b>15</b><span>лет на рынке</span></div>
-        <div class="stat"><b>200+</b><span>поставленных станков</span></div>
+<!-- ===== Страны ===== -->
+<section class="section section--dark" id="origins">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">География поставок</span>
+        <h2 class="h2"><em class="ac ac--hi">Любая</em> <b class="w8">страна.</b><br><span class="w2">Один поставщик.</span></h2>
       </div>
+      <p class="lead">Работаем напрямую с заводами и берём на себя логистику, таможню и документы. Привезём станок из любой страны.</p>
+    </div>
+    <figure class="origins-map reveal">
+      <img src="assets/map.jpg" alt="Карта поставок: маршруты из Азии в Россию" loading="lazy">
+      <figcaption><span class="bchip bchip--glass">Маршруты поставок</span><span>Китай, Корея и любая другая страна → ваш цех</span></figcaption>
+    </figure>
+    <div class="origins reveal">
+      <div class="origin"><span class="origin__code">CN</span><h3>Китай</h3><p>Широкий выбор и короткие сроки.</p><p class="origin__top"><span>Самые востребованные</span><a href="catalog.html?q=Lynx%202205G">Lynx 2205G</a><a href="catalog.html?q=PUMA%202450">PUMA 2450</a><a href="catalog.html?q=DNM%204505">DNM 4505</a><a href="catalog.html?q=NHP%205550">NHP 5550</a></p></div>
+      <div class="origin"><span class="origin__code">KR</span><h3>Корея</h3><p>Надёжные обрабатывающие центры.</p><p class="origin__top"><span>Заводы Doosan (ныне DN Solutions)</span><a href="catalog.html?q=PUMA%202600">PUMA 2600</a><a href="catalog.html?q=DVF%205000">DVF 5000</a><a href="catalog.html?q=Mynx%206500">Mynx 6500</a><a href="catalog.html?q=NHP%205000">NHP 5000</a></p></div>
+      <div class="origin origin--any"><span class="origin__code">+</span><h3>Любая страна</h3><p>Нужен станок не из этого списка? Привезём из любой страны мира — подберём завод и возьмём поставку на себя.</p><p class="origin__top"><a href="#contacts">Обсудить поставку</a></p></div>
     </div>
   </div>
 </section>
+
+
 
 <!-- ===== Направления ===== -->
 <section class="section section--chalk" id="directions">
@@ -271,35 +305,10 @@
     </div>
     <div class="grid" id="preview-grid"></div>
     <div class="preview-foot">
-      <a class="btn btn--primary" href="catalog.html">Весь каталог
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="ihb ihb--cobalt ihb--solid" href="catalog.html"><span class="ihb__text">Весь каталог</span><span class="ihb__hover" aria-hidden="true"><span>Весь каталог</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
-
-<!-- ===== Страны ===== -->
-<section class="section section--dark" id="origins">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">География поставок</span>
-        <h2 class="h2"><em class="ac ac--hi">Любая</em> <b class="w8">страна.</b><br><span class="w2">Один поставщик.</span></h2>
-      </div>
-      <p class="lead">Работаем напрямую с заводами и берём на себя логистику, таможню и документы. Привезём станок из любой страны.</p>
-    </div>
-    <figure class="origins-map reveal">
-      <img src="assets/map.jpg" alt="Карта поставок: маршруты из Азии в Россию" loading="lazy">
-      <figcaption><span class="bchip bchip--glass">Маршруты поставок</span><span>Китай, Корея и любая другая страна → ваш цех</span></figcaption>
-    </figure>
-    <div class="origins reveal">
-      <div class="origin"><span class="origin__code">CN</span><h3>Китай</h3><p>Широкий выбор и короткие сроки.</p><p class="origin__top"><span>Самые востребованные</span><a href="catalog.html?q=Lynx%202205G">Lynx 2205G</a><a href="catalog.html?q=PUMA%202450">PUMA 2450</a><a href="catalog.html?q=DNM%204505">DNM 4505</a><a href="catalog.html?q=NHP%205550">NHP 5550</a></p></div>
-      <div class="origin"><span class="origin__code">KR</span><h3>Корея</h3><p>Надёжные обрабатывающие центры.</p><p class="origin__top"><span>Заводы Doosan (ныне DN Solutions)</span><a href="catalog.html?q=PUMA%202600">PUMA 2600</a><a href="catalog.html?q=DVF%205000">DVF 5000</a><a href="catalog.html?q=Mynx%206500">Mynx 6500</a><a href="catalog.html?q=NHP%205000">NHP 5000</a></p></div>
-      <div class="origin origin--any"><span class="origin__code">+</span><h3>Любая страна</h3><p>Нужен станок не из этого списка? Привезём из любой страны мира — подберём завод и возьмём поставку на себя.</p><p class="origin__top"><a href="#contacts">Обсудить поставку</a></p></div>
-    </div>
-  </div>
-</section>
-
-
 
 <!-- ===== Фото-баннер ===== -->
 <section class="section" style="padding-top:0">
@@ -308,7 +317,7 @@
       <div class="band__in">
         <h2><span class="w2">Не нашли</span> <b class="w8">нужный станок?</b></h2>
         <p>Привезём под заказ с завода-производителя. Расскажите о задаче — подберём решение.</p>
-        <a class="btn btn--white" href="#contacts">Обсудить задачу</a>
+        <a class="ihb ihb--dark" href="#contacts"><span class="ihb__text">Обсудить задачу</span><span class="ihb__hover" aria-hidden="true"><span>Обсудить задачу</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
@@ -324,6 +333,12 @@
     <div class="contacts__row reveal">
       <div><span>Телефоны</span><b><a href="tel:+78312141495">+7 (831) 214-14-95</a><a href="tel:+78314133655">+7 (831) 413-36-55</a></b></div>
       <div><span>Почта</span><b><a href="mailto:nov-svet@list.ru">nov-svet@list.ru</a></b></div>
+      <div class="contacts__msgr">
+        <div class="msgr-list">
+          <a class="msgr msgr--wa" href="https://wa.me/78314133655" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></i>WhatsApp</a>
+          <a class="msgr msgr--tg" href="https://t.me/+78314133655" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></i>Telegram</a>
+        </div>
+      </div>
     </div>
     <form class="form form--wide reveal" id="lead-form">
       <h3>Заявка на подбор</h3>
@@ -335,7 +350,7 @@
       </div>
       <label class="consent"><input type="checkbox" id="f-consent" required><span>Я согласен на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" rel="noopener">Политикой конфиденциальности</a></span></label>
       <div class="form__foot">
-        <button class="btn btn--primary" type="submit">Отправить заявку</button>
+        <button class="shiny shiny--lg" type="submit"><span>Отправить заявку</span></button>
         <small class="form__note" aria-live="polite"></small>
       </div>
     </form>
@@ -401,7 +416,10 @@
     document.querySelectorAll('#catalog .tab').forEach(x => x.classList.toggle('active', x === b));
     render(b.dataset.tab);
   }));
-  render('stock');
+  // пока на складе ничего не отмечено — открываем вкладку «Под заказ», чтобы блок не выглядел пустым
+  const firstTab = CATALOG.some(p => p.status === 'stock') ? 'stock' : 'order';
+  document.querySelectorAll('#catalog .tab').forEach(x => x.classList.toggle('active', x.dataset.tab === firstTab));
+  render(firstTab);
 
   // заявка: подставляем модель из каталога и отправляем письмом
   const form = document.getElementById('lead-form');
@@ -413,7 +431,7 @@
   }
   // Адрес Google-скрипта (см. google-sheets/ИНСТРУКЦИЯ.md). Пока пусто — заявка уходит письмом.
   const LEAD_URL = 'https://script.google.com/macros/s/AKfycbyvdunH8Z97WBc3rNhMwUaBUc-8S7kKzFQx2KQJ97OlpjeEBZyApcahuqwYPSyg71pd/exec';
-  const btn = form.querySelector('button[type=submit]'), btnText = btn.textContent;
+  const btn = form.querySelector('button[type=submit]'), btnLabel = btn.querySelector('span'), btnText = btnLabel.textContent;
   const note = form.querySelector('.form__note');
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -421,14 +439,14 @@
     const data = { name: v('f-name'), phone: v('f-phone'), message: v('f-msg'), page: location.href.split('?')[0], website: form.website.value };
     const mail = () => { location.href = `mailto:nov-svet@list.ru?subject=${encodeURIComponent('Заявка с сайта — подбор станка')}&body=${encodeURIComponent(`Имя: ${data.name}\nТелефон: ${data.phone}\n\n${data.message}`)}`; };
     if (!LEAD_URL) { mail(); return; }
-    btn.disabled = true; btn.textContent = 'Отправляем…'; note.textContent = '';
+    btn.disabled = true; btnLabel.textContent = 'Отправляем…'; note.textContent = '';
     try {
       await fetch(LEAD_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) });
-      form.reset(); btn.textContent = 'Заявка отправлена ✓';
+      form.reset(); btnLabel.textContent = 'Заявка отправлена ✓';
       note.textContent = 'Спасибо! Мы свяжемся с вами в рабочее время.';
-      setTimeout(() => { btn.disabled = false; btn.textContent = btnText; }, 6000);
+      setTimeout(() => { btn.disabled = false; btnLabel.textContent = btnText; }, 6000);
     } catch (err) {
-      btn.disabled = false; btn.textContent = btnText;
+      btn.disabled = false; btnLabel.textContent = btnText;
       note.innerHTML = 'Не удалось отправить. Позвоните <a href="tel:+78312141495">+7 (831) 214-14-95</a> или напишите на <a href="mailto:nov-svet@list.ru">nov-svet@list.ru</a>.';
     }
   });
