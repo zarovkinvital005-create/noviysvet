@@ -26,6 +26,7 @@ def page(i, s):
     head = ''.join(f'<th scope="col">{e(c)}</th>' for c in s['columns'])
     body = ''.join('<tr>' + ''.join((f'<th scope="row">{e(c)}</th>' if k == 0 else f'<td>{e(c)}</td>') for k, c in enumerate(r)) + '</tr>' for r in s['rows'])
     facts = ''.join(f'<li><span>{e(k)}</span><b>{e(v)}</b></li>' for k, v in it['specs'])
+    facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>'
     nv = len([v for v in it['variants'].split(',') if v.strip()])
     has_photo = os.path.exists(f'assets/catalog/{i}.jpg')
     og_img = f'{BASE}assets/og/{i}.jpg?v=2' if has_photo else f'{BASE}assets/og-image.jpg?v=2'

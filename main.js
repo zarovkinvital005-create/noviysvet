@@ -49,7 +49,7 @@ function productCard(p) {
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
-        <ul class="specs">${specs}</ul>
+        <ul class="specs">${specs}${p.status === 'order' ? '<li><span>Срок поставки</span><span>от 1 до 5 мес.</span></li>' : ''}</ul>
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>Цена</small>${p.price}</div>
