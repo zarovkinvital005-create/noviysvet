@@ -324,6 +324,7 @@
     </div>
     <form class="form form--wide reveal" id="lead-form">
       <h3>Заявка на подбор</h3>
+      <input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="form__grid">
         <div class="field"><label for="f-name">Имя</label><input id="f-name" required autocomplete="name"></div>
         <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" type="tel" required autocomplete="tel"></div>
@@ -331,7 +332,7 @@
       </div>
       <div class="form__foot">
         <button class="btn btn--primary" type="submit">Отправить заявку</button>
-        <small>Заявка откроется в вашей почте и уйдёт на nov-svet@list.ru. Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</small>
+        <small class="form__note" aria-live="polite">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</small>
       </div>
     </form>
   </div>
@@ -406,12 +407,26 @@
     // секции выше успевают изменить высоту — докручиваем к форме после загрузки
     addEventListener('load', () => document.getElementById('contacts').scrollIntoView());
   }
-  form.addEventListener('submit', e => {
+  // Адрес Google-скрипта (см. google-sheets/ИНСТРУКЦИЯ.md). Пока пусто — заявка уходит письмом.
+  const LEAD_URL = 'https://script.google.com/macros/s/AKfycbyvdunH8Z97WBc3rNhMwUaBUc-8S7kKzFQx2KQJ97OlpjeEBZyApcahuqwYPSyg71pd/exec';
+  const btn = form.querySelector('button[type=submit]'), btnText = btn.textContent;
+  const note = form.querySelector('.form__note');
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const v = id => document.getElementById(id).value.trim();
-    const body = `Имя: ${v('f-name')}\nТелефон: ${v('f-phone')}\n\n${v('f-msg')}`;
-    location.href = `mailto:nov-svet@list.ru?subject=${encodeURIComponent('Заявка с сайта — подбор станка')}&body=${encodeURIComponent(body)}`;
-    form.querySelector('button').textContent = 'Открываем почту…';
+    const data = { name: v('f-name'), phone: v('f-phone'), message: v('f-msg'), page: location.href.split('?')[0], website: form.website.value };
+    const mail = () => { location.href = `mailto:nov-svet@list.ru?subject=${encodeURIComponent('Заявка с сайта — подбор станка')}&body=${encodeURIComponent(`Имя: ${data.name}\nТелефон: ${data.phone}\n\n${data.message}`)}`; };
+    if (!LEAD_URL) { mail(); return; }
+    btn.disabled = true; btn.textContent = 'Отправляем…'; note.textContent = '';
+    try {
+      await fetch(LEAD_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) });
+      form.reset(); btn.textContent = 'Заявка отправлена ✓';
+      note.textContent = 'Спасибо! Мы свяжемся с вами в рабочее время.';
+      setTimeout(() => { btn.disabled = false; btn.textContent = btnText; }, 6000);
+    } catch (err) {
+      btn.disabled = false; btn.textContent = btnText;
+      note.innerHTML = 'Не удалось отправить. Позвоните <a href="tel:+78312141495">+7 (831) 214-14-95</a> или напишите на <a href="mailto:nov-svet@list.ru">nov-svet@list.ru</a>.';
+    }
   });
 </script>
 </body>
