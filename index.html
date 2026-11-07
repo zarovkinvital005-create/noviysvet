@@ -456,8 +456,17 @@
 
   // превью каталога: 3 позиции на вкладку (сначала — избранные линейки)
   const FEATURED = ['kr-dvf5000', 'st-diamond-p3015', 'st-sunmill-jhv1100', 'kr-dvf', 'kr-smx', 'cn-dnm4505', 'kr-puma2100', 'kr-nhp', 'kr-dbm'];
+  const isDN = p => /DN Solutions|Doosan/i.test(p.brand || '') || /^(cn|kr)-/.test(p.id);
   const pick = s => {
-    const list = CATALOG.filter(p => p.status === s);
+    // «В наличии» = со склада + уже купленные и едущие на склад; сначала хит (DVF 5000), затем станки DN Solutions (Doosan)
+    const list = CATALOG.filter(p => s === 'stock' ? (p.status === 'stock' || p.status === 'transit') : p.status === s);
+    if (s === 'stock') {
+      const idx = new Map(list.map((p, i) => [p.id, i]));
+      return list.slice().sort((a, b) => (b.hit ? 1 : 0) - (a.hit ? 1 : 0)
+        || (isDN(b) ? 1 : 0) - (isDN(a) ? 1 : 0)
+        || ((b.eta && b.eta.length) ? 1 : 0) - ((a.eta && a.eta.length) ? 1 : 0)
+        || idx.get(a.id) - idx.get(b.id)).slice(0, 3);
+    }
     return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 3);
   };
   const grid = document.getElementById('preview-grid');
