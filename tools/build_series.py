@@ -171,6 +171,7 @@ def page(i, s):
 
 {ft}
 <script src="../main.js"></script>
+<script src="../metrika.js" defer></script>
 </body>
 </html>
 '''

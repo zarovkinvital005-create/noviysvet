@@ -1218,3 +1218,13 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 /* наличие: доля типа от всего склада */
 .slist .sbar { flex: 0 0 92px; height: 8px; border-radius: 99px; background: rgba(255,255,255,.18); overflow: hidden; }
 .slist .sbar i { display: block; height: 100%; border-radius: 99px; background: #fff; }
+/* плашка cookie */
+.cookie { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 10000; max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 18px; padding: 16px 18px 16px 22px; border-radius: 22px; background: rgba(10,13,18,.94); color: #fff; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 24px 60px -20px rgba(0,0,0,.6); font-size: 14px; line-height: 1.45; transform: translateY(30px); opacity: 0; transition: transform .4s, opacity .4s; }
+.cookie.on { transform: none; opacity: 1; }
+.cookie p { margin: 0; flex: 1; }
+.cookie a { color: #8FB0FF; text-decoration: underline; text-underline-offset: 3px; }
+.cookie__btns { display: flex; gap: 8px; flex: 0 0 auto; }
+.cookie button { height: 42px; padding: 0 20px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.3); background: transparent; color: #fff; font: 600 14px inherit; font-family: inherit; cursor: pointer; }
+.cookie .cookie__ok { background: #E8FF1F; color: #0A0D12; border-color: #E8FF1F; }
+.cookie button:hover { filter: brightness(1.1); }
+@media (max-width: 600px) { .cookie { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px; } .cookie__btns { justify-content: stretch; } .cookie button { flex: 1; } }
