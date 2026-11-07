@@ -1359,3 +1359,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .delivery__title .dt-mono { text-transform: uppercase; font-weight: 500; letter-spacing: .01em; font-size: .72em; }
 .delivery__title .dt-mono { text-transform: none; font-weight: 600; letter-spacing: -.01em; font-size: .9em; }
 .delivery__title .dt-mono { text-transform: uppercase; font-weight: 600; letter-spacing: .03em; font-size: .8em; }
+
+/* «Точность станка.» — единый шрифт (Manrope, средняя насыщенность), фирменный синий */
+.delivery__title .dt-one { font-family: var(--display); font-weight: 500; letter-spacing: -.03em; color: var(--cobalt); }
