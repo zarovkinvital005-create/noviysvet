@@ -751,6 +751,33 @@
   ]
  },
  {
+  "out": "assets/og/st-sts-ct52-500.jpg",
+  "title": "STS CT52-500",
+  "sub": "Токарный станок с ЧПУ",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/st-sts-ct.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/st-sts-ct8-750.jpg",
+  "title": "STS CT8-750",
+  "sub": "Токарный станок с ЧПУ",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/st-sts-ct.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/st-sts-ctxy52.jpg",
+  "title": "STS CTXY52",
+  "sub": "Токарный центр с осью Y и приводным инструментом",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/st-sts-ctxy.jpg"
+  ]
+ },
+ {
   "out": "assets/og/tr-dnm5705-conv.jpg",
   "title": "DNM 5705 (4th Gen.) с конвейером и подачей СОЖ через шпиндель",
   "sub": "Вертикальный фрезерный центр",
