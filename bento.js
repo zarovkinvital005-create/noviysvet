@@ -9,12 +9,12 @@
       { k: 'Обрабатывающие центры', v: 0.82 },
       { k: 'Шлифовальные станки', v: 0.88 }
     ],
-    // Сроки, дней. Шкала индикатора — от 0 до max
-    time: { max: 90, our: 38, market: [45, 60],
+    // Сроки, месяцев. Шкала индикатора — от 0 до max
+    time: { max: 8, our: 3, market: [4, 7],
       rows: [
         { k: 'Из наличия', v: '1–3 дня', c: '#E8FF1F' },
-        { k: 'Под заказ', v: '30–45 дней', c: '#C9D2FF' },
-        { k: 'В среднем по рынку', v: '45–60 дней', c: '#FFB37A' }
+        { k: 'Под заказ', v: '1–5 месяцев', c: '#C9D2FF' },
+        { k: 'В среднем по рынку', v: '3–7 месяцев', c: '#FFB37A' }
       ] },
     partners: 27,      // заводов-партнёров
     categories: 12,    // категорий оборудования (шкала до 20)
@@ -134,7 +134,7 @@
       s += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${col}" stroke-width="3.2" stroke-linecap="round" style="--d:${i * 12}ms"/>`;
     }
     s += `<text y="-26" text-anchor="middle" font-family="Urbanist" font-weight="200" font-size="58" fill="#fff" letter-spacing="-2" class="g-num">0</text>
-          <text y="-2" text-anchor="middle" font-size="12.5" font-weight="500" fill="rgba(255,255,255,.45)" font-family="Urbanist">дней · под заказ</text>`;
+          <text y="-2" text-anchor="middle" font-size="12.5" font-weight="500" fill="rgba(255,255,255,.45)" font-family="Urbanist">мес. · под заказ</text>`;
     svg.innerHTML = s;
     chart('glist').innerHTML = T.rows.map(r => `<div class="gr"><i style="background:${r.c}"></i><span>${r.k}</span><b>${r.v}</b></div>`).join('');
   }
