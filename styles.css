@@ -1215,3 +1215,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .sp-doc svg { flex: 0 0 auto; width: 26px; height: 26px; }
 .nav a:not(.active):hover { color: var(--cobalt); }
 .header:not(.solid):not(.light) .nav a:not(.active):hover { color: inherit; opacity: .75; }
+/* наличие: доля типа от всего склада */
+.slist .sbar { flex: 0 0 92px; height: 8px; border-radius: 99px; background: rgba(255,255,255,.18); overflow: hidden; }
+.slist .sbar i { display: block; height: 100%; border-radius: 99px; background: #fff; }

@@ -36,6 +36,25 @@
       ] }
   };
 
+  // ---- РЕАЛЬНЫЕ данные из каталога сайта (catalog-data.js + catalog-stock.js) ----
+  const CAT = window.CATALOG || [];
+  if (CAT.length) {
+    const cnt = (arr, f) => { const m = new Map(); arr.forEach(x => { const k = f(x); if (k) m.set(k, (m.get(k) || 0) + 1); }); return [...m.entries()].sort((a, b) => b[1] - a[1]); };
+    const SHORT = { 'Токарные центры': 'Ток.', 'Вертикальные фрезерные центры': 'Верт.', '5-осевые центры': '5 осей', 'Горизонтальные фрезерные центры': 'Гор.',
+      'Портальные фрезерные центры': 'Порт.', 'Многозадачные центры': 'Мног.', 'Вертикальные токарные центры': 'В.ток.', 'Расточно-фрезерные центры': 'Расточ.',
+      'Автоматы продольного точения': 'Швейц.', 'Шлифовальные станки': 'Шлиф.', 'Листообработка': 'Лист' };
+    const types = cnt(CAT, x => x.type);
+    DATA.categories = types.length;
+    DATA.choice = { avg: 0, cols: types.slice(0, 6).map(([t, n]) => ({ k: SHORT[t] || t.slice(0, 5), full: t, v: n })) };
+    const inStock = CAT.filter(x => x.status === 'stock' || x.status === 'transit');
+    const CODE = { 'Китай': 'CN', 'Корея': 'KR', 'Тайвань': 'TW' };
+    const byC = cnt(inStock, x => CODE[x.country]);
+    const withC = byC.reduce((a, [, n]) => a + n, 0) || 1;
+    DATA.stock = { total: inStock.length,
+      split: byC.map(([k, n]) => ({ k, v: n / withC, n })),
+      rows: cnt(inStock, x => x.type).slice(0, 4).map(([k, n]) => ({ k, v: n, share: n / inStock.length })) };
+  }
+
   const root = document.getElementById('bento');
   if (!root) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -169,13 +188,11 @@
         <text x="${X + bw / 2}" y="${H - 4}" text-anchor="middle" font-size="10.5" fill="rgba(255,255,255,.75)" font-family="Geist Mono">${c.k}</text>
         <rect class="hitc" x="${X - gap / 2}" y="0" width="${bw + gap}" height="${H}" fill="transparent" data-i="${i}"/>`;
     });
-    const ya = Y(C.avg);
-    s += `<line x1="${L - 6}" x2="${W}" y1="${ya}" y2="${ya}" stroke="#fff" stroke-width="1.6" stroke-dasharray="5 5" opacity=".85"/>`;
-    const lg = card.querySelector('[data-avg]'); if (lg) lg.textContent = '~' + C.avg;
+
     svg.innerHTML = s;
     svg.querySelectorAll('.hitc').forEach(h => {
       const c = C.cols[+h.dataset.i];
-      h.addEventListener('pointermove', e => showTip(e.clientX, e.clientY, c.full, [['Линеек у нас', c.v], ['В среднем у конкурентов', '~' + C.avg], ['Выбор больше', '×' + (c.v / C.avg).toFixed(1)]]));
+      h.addEventListener('pointermove', e => showTip(e.clientX, e.clientY, c.full, [['Линеек и позиций в каталоге', c.v]]));
       h.addEventListener('pointerleave', hideTip);
     });
     if (animate) requestAnimationFrame(() => requestAnimationFrame(() =>
@@ -187,11 +204,7 @@
     const S = DATA.stock, tones = ['rgba(255,255,255,.95)', 'rgba(255,255,255,.65)', 'rgba(255,255,255,.4)', 'rgba(255,255,255,.22)'];
     chart('segbar').innerHTML = `<div class="sb">${S.split.map((p, i) => `<div style="flex:0 0 calc(${p.v * 100}% - 2px);background:${tones[i]};transition-delay:${.1 + i * .1}s"></div>`).join('')}</div>
       <div class="sl">${S.split.map(p => `<span style="flex:0 0 calc(${p.v * 100}% - 2px)">${p.k} ${Math.round(p.v * 100)}%</span>`).join('')}</div>`;
-    const spark = t => { const W = 92, H = 28, lo = Math.min(...t), hi = Math.max(...t), Yv = v => H - 4 - (v - lo) / (hi - lo || 1) * (H - 8);
-      const pts = t.map((v, i) => [2 + i / (t.length - 1) * (W - 8), Yv(v)]), e = pts[pts.length - 1];
-      const d = 'M' + pts.map(p => p.join(',')).join(' L');
-      return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><path class="ln" d="${d}" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${e[0]}" cy="${e[1]}" r="3" fill="#E8FF1F" stroke="rgba(0,0,0,.35)"/></svg>`; };
-    chart('slist').innerHTML = S.rows.map(r => `<div class="sr"><div><b>${r.k}</b><small>за 6 мес.</small></div>${spark(r.trend)}<span class="cnt">${r.v} шт.</span></div>`).join('');
+    chart('slist').innerHTML = S.rows.map(r => `<div class="sr"><div><b>${r.k}</b><small>${Math.round(r.share * 100)}% наличия</small></div><span class="sbar" aria-hidden="true"><i style="width:${Math.max(6, Math.round(r.share * 100))}%"></i></span><span class="cnt">${r.v} поз.</span></div>`).join('');
   }
   drawStock();
 
@@ -206,13 +219,13 @@
     countUp(q('[data-count="partners"]'), DATA.partners);
     countUp(q('[data-count="categories"]'), DATA.categories);
     countUp(q('[data-count="stock"]'), DATA.stock.total);
-    drawTicks(chart('ticks-cat'), DATA.categories / 20);
+    drawTicks(chart('ticks-cat'), 1);
     drawCols(true);
   }
   new IntersectionObserver(([e], o) => { if (e.isIntersecting) { start(); o.disconnect(); } }, { threshold: 0.15 }).observe(root);
 
   let rz;
   new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => {
-    if (!started) return; drawCols(false); drawTicks(chart('ticks-cat'), DATA.categories / 20);
+    if (!started) return; drawCols(false); drawTicks(chart('ticks-cat'), 1);
   }, 120); }).observe(root);
 })();
