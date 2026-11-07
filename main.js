@@ -36,6 +36,7 @@ function productCard(p) {
   const codes = { 'Тайвань': 'TW', 'Китай': 'CN', 'Европа': 'EU', 'Корея': 'KR' };
   const nVar = p.variants ? p.variants.split(',').length : 0;
   const ask = `index.html?m=${encodeURIComponent(name)}#contacts`;
+  const page = (window.SERIES_PAGES || []).includes(p.id) ? `series/${p.id}.html` : '';
   return `
     <article class="card">
       <div class="card__img ${p.img ? 'card__img--photo' : 'card__img--empty'}">
@@ -45,10 +46,11 @@ function productCard(p) {
       </div>
       <div class="card__body">
         <div class="card__type">${p.type}${p.brand ? ` · ${p.brand}` : ''}</div>
-        <h3 class="card__title">${name}</h3>
+        <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
         <ul class="specs">${specs}</ul>
+        ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>Цена</small>${p.price}</div>
           <a class="ihb ihb--cobalt ihb--sm" href="${ask}"><span class="ihb__text">Запросить</span><span class="ihb__hover" aria-hidden="true"><span>Запросить</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
