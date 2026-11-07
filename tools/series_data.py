@@ -102,3 +102,10 @@ SERIES = {
    ['NHP 8000', '1400 / 1200 / 1370', '800 × 800', '10000 {6000, 6000HT, 15000}', '40 {60, 90, 120, 150, 196, 256, 316}', '45 / 25 {37 / 22, 55 / 30, 37 / 30}']],
   'note': 'Высокоскоростной и высокопроизводительный горизонтальный фрезерный центр. ' + OPT},
 }
+
+
+# Остальные серии лежат в отдельных файлах
+from series_data_cn import SERIES_CN
+from series_data_kr import SERIES_KR
+SERIES.update(SERIES_CN)
+SERIES.update(SERIES_KR)

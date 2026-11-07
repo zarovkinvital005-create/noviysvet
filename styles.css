@@ -1170,3 +1170,4 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 /* Логотип-птица внутри знака */
 .logo__mark img { width: 78%; height: auto; display: block; }
 .slide1__brand .logo__mark img { width: 82%; }
+.sp-nophoto { color: var(--muted); font-size: 16px; text-align: center; }

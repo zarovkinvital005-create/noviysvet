@@ -27,8 +27,10 @@ def page(i, s):
     body = ''.join('<tr>' + ''.join((f'<th scope="row">{e(c)}</th>' if k == 0 else f'<td>{e(c)}</td>') for k, c in enumerate(r)) + '</tr>' for r in s['rows'])
     facts = ''.join(f'<li><span>{e(k)}</span><b>{e(v)}</b></li>' for k, v in it['specs'])
     nv = len([v for v in it['variants'].split(',') if v.strip()])
+    has_photo = os.path.exists(f'assets/catalog/{i}.jpg')
+    og_img = f'{BASE}assets/og/{i}.jpg?v=2' if has_photo else f'{BASE}assets/og-image.jpg?v=2'
     ld = {"@context": "https://schema.org", "@type": "Product", "name": it['model'], "description": it['title'],
-          "brand": {"@type": "Brand", "name": "DN Solutions"}, "category": it['type'], "image": f'{BASE}assets/catalog/{i}.jpg', "url": url}
+          "brand": {"@type": "Brand", "name": "DN Solutions"}, "category": it['type'], "image": og_img, "url": url}
     arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
     def ihb(href, text, cls):
         return f'<a class="ihb {cls}" href="{href}"><span class="ihb__text">{text}</span><span class="ihb__hover" aria-hidden="true"><span>{text}</span>{arrow}</span><i class="ihb__dot" aria-hidden="true"></i></a>'
@@ -54,7 +56,7 @@ def page(i, s):
 <link rel="manifest" href="../manifest.webmanifest">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Новый Свет"><meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="{e(it['model'])} — Новый Свет"><meta property="og:description" content="{e(desc)}">
-<meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}assets/og/{i}.jpg?v=2"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="{url}"><meta property="og:image" content="{og_img}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preload" href="../assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
@@ -76,7 +78,7 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo"><img src="../assets/catalog/{i}.jpg" alt="{e(it['model'])}"><span class="badge badge--order">Под заказ</span></figure>
+    <figure class="sp-photo">{('<img src="../assets/catalog/' + i + '.jpg" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge badge--order">Под заказ</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
       <p class="sp-vars"><b>{nv} модификаци{'я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')}:</b> {e(it['variants'])}</p>
@@ -112,3 +114,20 @@ for p in pages:
     x += f'  <url><loc>{BASE}{p}</loc><lastmod>2026-11-07</lastmod></url>\n'
 open('sitemap.xml', 'w', encoding='utf-8').write(x + '</urlset>\n')
 print('страниц серий:', len(SERIES), '| в каталоге позиций:', len(items))
+
+
+# --- превью для ссылок (macOS: swift + sips) ---
+import subprocess, shutil
+if sys.platform == 'darwin' and '--no-og' not in sys.argv:
+    jobs = [{"out": "assets/og/catalog.jpg", "title": "Каталог станков", "sub": f"{len(items)} серий: токарные, фрезерные, 5-осевые, портальные центры", "label": "",
+             "foot": "Подбор и поставка под заказ из любой страны мира",
+             "photos": ["assets/catalog/cn-puma2450.jpg", "assets/catalog/kr-dvf.jpg", "assets/catalog/kr-nhp.jpg", "assets/catalog/cn-dnm4505.jpg"]}]
+    for i in SERIES:
+        if os.path.exists(f'assets/catalog/{i}.jpg'):
+            jobs.append({"out": f"assets/og/{i}.jpg", "title": items[i]['model'], "sub": items[i]['title'], "label": items[i]['type'], "photos": [f"assets/catalog/{i}.jpg"]})
+    os.makedirs('assets/og', exist_ok=True)
+    json.dump(jobs, open('tools/og-jobs.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    subprocess.run(['swift', 'tools/og.swift', 'tools/og-jobs.json', 'assets/logo-white.png'], check=True)
+    for j in jobs:
+        subprocess.run(['sips', '-z', '630', '1200', j['out']], check=True, stdout=subprocess.DEVNULL)
+    print('превью:', len(jobs))

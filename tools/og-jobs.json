@@ -92,5 +92,617 @@
   "photos": [
    "assets/catalog/kr-nhp.jpg"
   ]
+ },
+ {
+  "out": "assets/og/cn-lynx225.jpg",
+  "title": "Lynx 225 II / 225M II",
+  "sub": "Высокоэффективный токарный центр, патрон 6″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx225.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-lynx235.jpg",
+  "title": "Lynx 235 II / 235M II",
+  "sub": "Высокоэффективный токарный центр, патрон 8″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx235.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-lynx2105.jpg",
+  "title": "Lynx 2105 / 2605 series",
+  "sub": "Токарный центр с осью Y и противошпинделем, патрон 6/8/10″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx2105.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-lynx305.jpg",
+  "title": "Lynx 305 / 305M",
+  "sub": "Высокоэффективный токарный центр, патрон 10″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx305.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma215.jpg",
+  "title": "PUMA 215 II",
+  "sub": "Экономичный высокопроизводительный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma215.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma3050.jpg",
+  "title": "PUMA 3050 series",
+  "sub": "Серво-револьвер, высокая скорость подачи, патрон 12″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma3050.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma3550.jpg",
+  "title": "PUMA 3550",
+  "sub": "Высокопроизводительный токарный центр, патрон 15″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma3550.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma4005.jpg",
+  "title": "PUMA 4005 series",
+  "sub": "Токарный центр с длиной обработки до 3 м",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma4005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma605.jpg",
+  "title": "PUMA 605 / 705 / 805",
+  "sub": "Большой токарный центр с длиной обработки до 3,2 м",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma605.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-pumav405.jpg",
+  "title": "PUMA V405 series",
+  "sub": "Вертикальный токарный центр, подходит для тормозных дисков",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/cn-pumav405.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-pumav8305.jpg",
+  "title": "PUMA V8305 / V8305M",
+  "sub": "Вертикальный токарный центр, патрон 15″",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/cn-pumav8305.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-vaw7605.jpg",
+  "title": "VAW 7605",
+  "sub": "Вертикальный станок с двумя револьверами для дисков 17,5–27,5″",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/cn-vaw7605.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-aw5605.jpg",
+  "title": "AW 5605 / 6605 / 5605MF",
+  "sub": "Горизонтальный токарный центр для алюминиевых дисков",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-aw5605.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-pumadnt.jpg",
+  "title": "PUMA DNT 2450 / 3050",
+  "sub": "Высокопроизводительный токарный центр, патрон 10/12″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-pumadnt.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-t4005.jpg",
+  "title": "T 4005 / 4005L / 4005HP / 5505",
+  "sub": "Резьбонарезной фрезерный центр с серво-ATC",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-t4005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dnm5005hs.jpg",
+  "title": "DNM 5005HS",
+  "sub": "Высокоскоростной вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm5005hs.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dem5205.jpg",
+  "title": "DEM 5205",
+  "sub": "Универсальный вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dem5205.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-def5005.jpg",
+  "title": "DEF 5005",
+  "sub": "Вертикальный центр 3+2 оси с поворотным столом Ø630 мм",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/cn-def5005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dnm4th.jpg",
+  "title": "DNM 4505 / 5705 / 6705 4th",
+  "sub": "Вертикальный фрезерный центр #40 с 4-й осью",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4th.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dnm50.jpg",
+  "title": "DNM 515/50, 655/50, 755/50",
+  "sub": "Высокопроизводительный вертикальный фрезерный центр #50",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm50.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-svm.jpg",
+  "title": "SVM 4105 / 5105L",
+  "sub": "Вертикальный фрезерный центр для лёгкой резки",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-svm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-cmv920.jpg",
+  "title": "CMV 920 II",
+  "sub": "Высокожёсткий вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-cmv920.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-mynx.jpg",
+  "title": "Mynx 5450 / 6550",
+  "sub": "Вертикальный центр для тяжёлой резки, BT50",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-mynx.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-v4305.jpg",
+  "title": "V 4305",
+  "sub": "Компактный центр с двумя сменными столами и подвижной колонной",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-v4305.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-nhp5005.jpg",
+  "title": "NHP 5005",
+  "sub": "Высокопроизводительный горизонтальный фрезерный центр #40",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-nhp5005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-hm.jpg",
+  "title": "HM 635 II / 805 II / 1005 / 1255",
+  "sub": "Высокожёсткий горизонтальный центр для тяжёлой резки",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-hm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-nhm.jpg",
+  "title": "NHM 6305 / 8005",
+  "sub": "Высокожёсткий горизонтальный центр для тяжёлой резки #50",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-nhm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-hc505.jpg",
+  "title": "HC 505 II",
+  "sub": "Компактный горизонтальный фрезерный центр",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-hc505.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-bmc2745.jpg",
+  "title": "BMC 2745",
+  "sub": "Портальный центр для высокоточной и тяжёлой обработки",
+  "label": "Портальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-bmc2745.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dbm2545.jpg",
+  "title": "DBM 2545",
+  "sub": "Портальный центр с неподвижной балкой, 5-сторонняя обработка",
+  "label": "Портальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dbm2545.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dbc135.jpg",
+  "title": "DBC 135 II / 135L II",
+  "sub": "Расточно-фрезерный центр с ЧПУ и подвижной колонной",
+  "label": "Расточно-фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dbc135.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-lynx2100.jpg",
+  "title": "LEO 1600 / Lynx 2000 / 2100 / 2600",
+  "sub": "Компактный токарный центр, патрон 6/8/10″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-lynx2100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumagt.jpg",
+  "title": "PUMA DNT 2100 / 2600, GT 2600 / 3100",
+  "sub": "Токарный центр, патрон 8/10/12″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumagt.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-puma4100.jpg",
+  "title": "PUMA 4100 series",
+  "sub": "Средние и крупные токарные центры, 2 оси и фрезерование",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma4100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-puma5100.jpg",
+  "title": "PUMA 5100 series",
+  "sub": "Средние и крупные токарные центры с осью Y и фрезерованием",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma5100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-puma600.jpg",
+  "title": "PUMA 600 II / 700 II / 800 II",
+  "sub": "Большой токарный центр: 2 оси, ось Y и фрезерование",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma600.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-puma1000.jpg",
+  "title": "PUMA 1000",
+  "sub": "Тяжёлый многофункциональный токарный центр, отверстие шпинделя 560 мм",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma1000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumatt.jpg",
+  "title": "PUMA TT / TL series",
+  "sub": "Многофункциональный двухревольверный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumatt.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dnc8050.jpg",
+  "title": "DNC 8050 / 8060",
+  "sub": "Станок для обработки кварца и керамических материалов",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-dnc8050.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumatw.jpg",
+  "title": "PUMA TW 2100 / 2600",
+  "sub": "Высокопроизводительный двухшпиндельный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumatw.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumatwgl.jpg",
+  "title": "PUMA TW 2100-GL / 2600-GL",
+  "sub": "Двухшпиндельный токарный центр с портальным загрузчиком",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumatwgl.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dnx.jpg",
+  "title": "DNX 2100 series",
+  "sub": "Компактный многозадачный токарно-фрезерный центр нового поколения",
+  "label": "Многозадачные центры",
+  "photos": [
+   "assets/catalog/kr-dnx.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-smx.jpg",
+  "title": "PUMA SMX 2100 / 2600 / 3100 / 5100",
+  "sub": "Многозадачный токарно-фрезерный центр",
+  "label": "Многозадачные центры",
+  "photos": [
+   "assets/catalog/kr-smx.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumav400.jpg",
+  "title": "PUMA V400 / PV 6300 / V8300 / PV 9300",
+  "sub": "Высокопроизводительный вертикальный токарный центр",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumav400.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumavt1100.jpg",
+  "title": "PUMA VT1100",
+  "sub": "Высокопроизводительный вертикальный токарный центр",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumavt1100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-pumavtr.jpg",
+  "title": "PUMA VTR 1012F / 1216 / 1620 / 2025",
+  "sub": "Большой вертикальный токарный центр со штосселем",
+  "label": "Вертикальные токарные центры",
+  "photos": [
+   "assets/catalog/kr-pumavtr.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-t4000.jpg",
+  "title": "T 4000 series",
+  "sub": "Высокоскоростной резьбонарезной фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-t4000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dem4000.jpg",
+  "title": "DEM 4000",
+  "sub": "Компактный вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dem4000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dnm.jpg",
+  "title": "DNM 4000–6700 / SVM 4100 / 5100L",
+  "sub": "Высокопроизводительный вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dnm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-bvm5700.jpg",
+  "title": "BVM 5700",
+  "sub": "Высокоскоростной и высокоточный вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-bvm5700.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vc2sp.jpg",
+  "title": "VC 4000D-2SP / XC 4000DA-2SP",
+  "sub": "Двухшпиндельный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vc2sp.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vc3600.jpg",
+  "title": "VC 3600 / 430 / 510",
+  "sub": "Высокопроизводительный вертикальный центр с двумя столами",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vc3600.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vcf.jpg",
+  "title": "VCF 5500 / VCF 850 II",
+  "sub": "Многофункциональный вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vcf.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vm40.jpg",
+  "title": "VM 5400 / 6500 (#40)",
+  "sub": "Вертикальный центр для штампов и пресс-форм",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vm40.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vm50.jpg",
+  "title": "VM 750 / 960 / 1260 (#50)",
+  "sub": "Высокоскоростной высокоточный центр для пресс-форм",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vm50.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-md6700.jpg",
+  "title": "MD 6700",
+  "sub": "Высокоскоростной высокоточный центр для пресс-форм",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-md6700.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dvm.jpg",
+  "title": "DVM 500 II / 650 II",
+  "sub": "Вертикальный центр для высокоточной обработки пресс-форм",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dvm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-nx5500.jpg",
+  "title": "NX 5500 II / MP 6500",
+  "sub": "Вертикальный центр для высокоточной резки пресс-форм",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-nx5500.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-vx6500.jpg",
+  "title": "VX 6500C / G",
+  "sub": "Высокоточный специальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-vx6500.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-nhc.jpg",
+  "title": "NHC 4000 / 5000",
+  "sub": "Компактный горизонтальный фрезерный центр",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-nhc.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-nhm.jpg",
+  "title": "NHM 5000 / 6300 / 8000",
+  "sub": "Горизонтальный центр для тяжёлой обработки",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-nhm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-hm.jpg",
+  "title": "HM 1000 / 1250",
+  "sub": "Большой горизонтальный фрезерный центр",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-hm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dhf8000.jpg",
+  "title": "DHF 8000 / ST",
+  "sub": "5-осевой горизонтальный фрезерный центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/kr-dhf8000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-hfp1540.jpg",
+  "title": "HFP 1540",
+  "sub": "5-осевой горизонтальный фрезерный центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/kr-hfp1540.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-bm.jpg",
+  "title": "BM series",
+  "sub": "Высокоскоростной портальный фрезерный центр",
+  "label": "Портальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-bm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dbm.jpg",
+  "title": "DBM / DCM II series",
+  "sub": "Большой портальный фрезерный центр",
+  "label": "Портальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dbm.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dbc.jpg",
+  "title": "DBC 110 / 130 / 160",
+  "sub": "Горизонтально-расточной фрезерный центр",
+  "label": "Расточно-фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dbc.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dbd1270.jpg",
+  "title": "DBD 1270",
+  "sub": "Горизонтально-расточной центр с двумя шпинделями",
+  "label": "Расточно-фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-dbd1270.jpg"
+  ]
  }
 ]
