@@ -4,6 +4,7 @@
 import re, os, sys, html, json
 sys.path.insert(0, os.path.dirname(__file__))
 from series_data import SERIES
+from stock_items import STOCK_ITEMS
 
 BASE = 'https://zarovkinvital005-create.github.io/noviysvet/'
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,11 +20,41 @@ for m in re.finditer(r"\['([\w-]+)', (\w+), (\w+), '([^']*)', '([^']*)', '([^']*
     sp = re.findall(r"'([^']+)': '([^']+)'", specs)
     items[i] = dict(id=i, type=T[typ], country=T[ctry], model=model, title=title, variants=variants, specs=sp)
 
+# --- позиции из списка склада (tools/stock_items.py) ---
+TRANSIT = set()
+for x in STOCK_ITEMS:
+    items[x['id']] = dict(id=x['id'], type=x['type'], country=x['country'], model=x['model'], title=x['title'], variants='', specs=x['specs'],
+                          brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'])
+    if x['status'] == 'stock': STOCK.add(x['id'])
+    else: TRANSIT.add(x['id'])
+def photo_of(i):
+    p = items[i].get('img') or f'assets/catalog/{i}.jpg'
+    return p if os.path.exists(p) else ''
+
+def parse_price(s):
+    """'133 580 USD, акция 119 000 USD' -> (текущая, старая, примечание)"""
+    nums = re.findall(r'(\d[\d ]*\d)\s*(USD|руб\.)', s or '')
+    if not nums: return 'По запросу', '', ''
+    fmt = lambda n: f"{n[0].strip()} {n[1]}"
+    cur, old = (fmt(nums[-1]), fmt(nums[0]) if len(nums) > 1 else '')
+    return cur, old, ('с НДС 22%' if nums[-1][1] == 'USD' else '')
+for x in STOCK_ITEMS:
+    x['price'], x['price_old'], x['price_note'] = parse_price(x['_price'])
+    items[x['id']]['price'], items[x['id']]['price_old'], items[x['id']]['price_note'] = x['price'], x['price_old'], x['price_note']
+
+# catalog-stock.js — позиции склада для каталога (цены не публикуем)
+def js(v): return json.dumps(v, ensure_ascii=False)
+rows_js = []
+for x in STOCK_ITEMS:
+    rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], specs=dict(x['specs']))))
+open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
+
 e = html.escape
 def page(i, s):
     it = items[i]
     url = f'{BASE}series/{i}.html'
-    desc = f"{it['model']} — {it['title'].lower()}. Технические характеристики, модификации, подбор и поставка под заказ. DN Solutions, {it['country']}. ООО «Новый Свет», Нижний Новгород."
+    desc = f"{it['model']} — {it['title'].lower()}. Технические характеристики, модификации, подбор и поставка под заказ. {it.get('brand') or 'DN Solutions'}, {it['country'] or 'импорт'}. ООО «Новый Свет», Нижний Новгород."
     def table(cols, rows):
         head = ''.join(f'<th scope="col">{e(c)}</th>' for c in cols)
         body = ''.join('<tr>' + ''.join((f'<th scope="row">{e(x)}</th>' if k == 0 else f'<td>{e(x)}</td>') for k, x in enumerate(r)) + '</tr>' for r in rows)
@@ -34,12 +65,21 @@ def page(i, s):
         tables = table(s['columns'], s['rows'])
     in_stock = i in STOCK
     facts = ''.join(f'<li><span>{e(k)}</span><b>{e(v)}</b></li>' for k, v in it['specs'])
-    facts += ('<li class="sp-term"><span>Срок поставки из наличия</span><b>до 1 месяца</b></li>' if in_stock else '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>')
+    in_transit = i in TRANSIT
+    if in_transit: facts += '<li class="sp-term"><span>Статус</span><b>готов к поставке, в пути на склад</b></li>'
+    elif in_stock: facts += '<li class="sp-term"><span>Срок поставки из наличия</span><b>до 1 месяца</b></li>'
+    else: facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>'
+    used = items[i].get('cond') == 'used'
+    pr = items[i].get('price', 'По запросу')
+    if pr != 'По запросу':
+        old = items[i].get('price_old', ''); note = items[i].get('price_note', '')
+        facts += '<li class="sp-price"><span>Цена' + (' (акция)' if old else '') + '</span><b>' + (('<s>' + e(old) + '</s> ') if old else '') + e(pr) + (('<small>' + e(note) + '</small>') if note else '') + '</b></li>'
     nv = len([v for v in it['variants'].split(',') if v.strip()])
-    has_photo = os.path.exists(f'assets/catalog/{i}.jpg')
+    ph = photo_of(i)
+    has_photo = bool(ph)
     og_img = f'{BASE}assets/og/{i}.jpg?v=2' if has_photo else f'{BASE}assets/og-image.jpg?v=2'
     ld = {"@context": "https://schema.org", "@type": "Product", "name": it['model'], "description": it['title'],
-          "brand": {"@type": "Brand", "name": "DN Solutions"}, "category": it['type'], "image": og_img, "url": url}
+          "brand": {"@type": "Brand", "name": it.get('brand') or "DN Solutions"}, "category": it['type'], "image": og_img, "url": url}
     arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
     def ihb(href, text, cls):
         return f'<a class="ihb {cls}" href="{href}"><span class="ihb__text">{text}</span><span class="ihb__hover" aria-hidden="true"><span>{text}</span>{arrow}</span><i class="ihb__dot" aria-hidden="true"></i></a>'
@@ -87,10 +127,11 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo">{('<img src="../assets/catalog/' + i + '.jpg" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' ' if in_stock else ' badge--order'}">{'В наличии' if in_stock else 'Под заказ'}</span></figure>
+    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if (in_transit or not in_stock) else ''}">{'В пути на склад' if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
-      <p class="sp-vars"><b>{nv} модификаци{'я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')}:</b> {e(it['variants'])}</p>
+      {('<p class="sp-vars"><b>' + str(nv) + ' модификаци' + ('я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')) + ':</b> ' + e(it['variants']) + '</p>') if it['variants'] else ''}
+      {('<p class="sp-vars">Полные характеристики серии: <a href="' + it['see'] + '.html">открыть страницу серии →</a></p>') if it.get('see') else ''}
       <div class="sp-cta">
         {ihb(ask, 'Запросить цену и сроки', 'ihb--cobalt ihb--solid')}
         <a class="sp-tel" href="tel:+78312141495">или позвоните: +7 (831) 214-14-95</a>
@@ -128,12 +169,12 @@ print('страниц серий:', len(SERIES), '| в каталоге пози
 # --- превью для ссылок (macOS: swift + sips) ---
 import subprocess, shutil
 if sys.platform == 'darwin' and '--no-og' not in sys.argv:
-    jobs = [{"out": "assets/og/catalog.jpg", "title": "Каталог станков", "sub": f"{len(items)} серий: токарные, фрезерные, 5-осевые, портальные центры", "label": "",
+    jobs = [{"out": "assets/og/catalog.jpg", "title": "Каталог станков", "sub": f"{len(items) - len(STOCK_ITEMS)} серий и станки в наличии: токарные, фрезерные, 5-осевые, портальные центры", "label": "",
              "foot": "Подбор и поставка под заказ из любой страны мира",
              "photos": ["assets/catalog/cn-puma2450.jpg", "assets/catalog/kr-dvf.jpg", "assets/catalog/kr-nhp.jpg", "assets/catalog/cn-dnm4505.jpg"]}]
     for i in SERIES:
-        if os.path.exists(f'assets/catalog/{i}.jpg'):
-            jobs.append({"out": f"assets/og/{i}.jpg", "title": items[i]['model'], "sub": items[i]['title'], "label": items[i]['type'], "photos": [f"assets/catalog/{i}.jpg"]})
+        if photo_of(i):
+            jobs.append({"out": f"assets/og/{i}.jpg", "title": items[i]['model'], "sub": items[i]['title'], "label": items[i]['type'], "photos": [photo_of(i)]})
     os.makedirs('assets/og', exist_ok=True)
     json.dump(jobs, open('tools/og-jobs.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     subprocess.run(['swift', 'tools/og.swift', 'tools/og-jobs.json', 'assets/logo-white.png'], check=True)

@@ -2,7 +2,7 @@
  {
   "out": "assets/og/catalog.jpg",
   "title": "Каталог станков",
-  "sub": "79 серий: токарные, фрезерные, 5-осевые, портальные центры",
+  "sub": "79 серий и станки в наличии: токарные, фрезерные, 5-осевые, портальные центры",
   "label": "",
   "foot": "Подбор и поставка под заказ из любой страны мира",
   "photos": [
@@ -712,6 +712,105 @@
   "label": "5-осевые центры",
   "photos": [
    "assets/catalog/kr-dvf5000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-dnm5705-conv.jpg",
+  "title": "DNM 5705 (4th Gen.) с конвейером и подачей СОЖ через шпиндель",
+  "sub": "Вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4th.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-puma4005.jpg",
+  "title": "DN Solutions PUMA 4005",
+  "sub": "Горизонтальный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma4005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-puma4005l.jpg",
+  "title": "DN Solutions PUMA 4005L",
+  "sub": "Горизонтальный токарный центр (удлинённая станина)",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma4005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-puma4005m.jpg",
+  "title": "DN Solutions PUMA 4005M",
+  "sub": "Токарно-фрезерный центр с приводным инструментом",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma4005.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-lynx235m2.jpg",
+  "title": "DN Solutions Lynx 235M II",
+  "sub": "Токарный центр с приводным инструментом",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx235.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-lynx305.jpg",
+  "title": "DN Solutions Lynx 305",
+  "sub": "Токарный центр с 10-дюймовым патроном",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx305.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-puma3100xly.jpg",
+  "title": "DN Solutions PUMA 3100XLY",
+  "sub": "Токарный центр с осью Y и задней бабкой",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma2100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-dnm4505-8000.jpg",
+  "title": "DNM 4505 (4th Gen.), шпиндель 8000 об/мин",
+  "sub": "Вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4th.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-dnm4505-12000.jpg",
+  "title": "DNM 4505 (4th Gen.), шпиндель 12 000 об/мин",
+  "sub": "Вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4th.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-dnm5705-8000.jpg",
+  "title": "DNM 5705 (4th Gen.), шпиндель 8000 об/мин",
+  "sub": "Вертикальный фрезерный центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4th.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-mynx6550.jpg",
+  "title": "DN Solutions Mynx 6550",
+  "sub": "Вертикальный фрезерный центр для тяжёлой резки (BT50)",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-mynx.jpg"
   ]
  }
 ]

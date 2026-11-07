@@ -321,10 +321,10 @@
       <p class="lead">Подбираем станок под вашу деталь, объём и бюджет — из наличия или под заказ напрямую с завода.</p>
     </div>
     <div class="cats">
-      <a class="cat reveal" href="catalog.html?type=Токарные центры,Многозадачные центры" data-types="Токарные центры,Многозадачные центры">
+      <a class="cat reveal" href="catalog.html?type=Токарные центры,Многозадачные центры,Автоматы продольного точения" data-types="Токарные центры,Многозадачные центры,Автоматы продольного точения">
         <span class="cat__num">01</span>
         <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        <div><h3>Токарные центры</h3><p>Горизонтальные, двухшпиндельные и многозадачные: LEO, Lynx, PUMA, SMX, DNX.</p></div>
+        <div><h3>Токарные центры</h3><p>Горизонтальные, многозадачные и автоматы продольного точения: LEO, Lynx, PUMA, SMX, DNX, JIANKE, STS.</p></div>
       </a>
       <a class="cat reveal" href="catalog.html?type=Вертикальные фрезерные центры" data-types="Вертикальные фрезерные центры">
         <span class="cat__num">02</span>
@@ -341,10 +341,10 @@
         <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         <div><h3>Вертикальные токарные центры</h3><p>PUMA V, VT, VTR — для дисков, фланцев и крупных деталей.</p></div>
       </a>
-      <a class="cat cat--wide reveal" href="catalog.html?type=Портальные фрезерные центры,Расточно-фрезерные центры" data-types="Портальные фрезерные центры,Расточно-фрезерные центры">
+      <a class="cat cat--wide reveal" href="catalog.html?type=Портальные фрезерные центры,Расточно-фрезерные центры,Шлифовальные станки,Листообработка" data-types="Портальные фрезерные центры,Расточно-фрезерные центры,Шлифовальные станки,Листообработка">
         <span class="cat__num">05+</span>
         <span class="cat__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        <div><h3>Портальные и расточно-фрезерные<br>центры</h3><p>BM, DBM, DCM, DBC — крупногабаритная обработка. Не нашли нужное? Привезём под заказ.</p></div>
+        <div><h3>Портальные, расточные,<br>шлифовальные и лазерные</h3><p>BM, DBM, DCM, DBC — крупногабаритная обработка; шлифовальные станки и установки лазерной резки. Не нашли нужное? Привезём под заказ.</p></div>
       </a>
     </div>
   </div>
@@ -420,6 +420,7 @@
 </footer>
 
 <script src="catalog-data.js"></script>
+<script src="catalog-stock.js"></script>
 <script src="series-pages.js"></script>
 <script src="main.js"></script>
 <script src="motion.js"></script>
@@ -453,7 +454,7 @@
   });
 
   // превью каталога: 3 позиции на вкладку (сначала — избранные линейки)
-  const FEATURED = ['kr-dvf', 'kr-smx', 'cn-dnm4505', 'kr-puma2100', 'kr-nhp', 'kr-dbm'];
+  const FEATURED = ['kr-dvf5000', 'st-diamond-p3015', 'st-sunmill-jhv1100', 'kr-dvf', 'kr-smx', 'cn-dnm4505', 'kr-puma2100', 'kr-nhp', 'kr-dbm'];
   const pick = s => {
     const list = CATALOG.filter(p => p.status === s);
     return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 3);

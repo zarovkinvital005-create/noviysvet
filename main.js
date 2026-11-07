@@ -41,18 +41,18 @@ function productCard(p) {
     <article class="card">
       <div class="card__img ${p.img ? 'card__img--photo' : 'card__img--empty'}">
         ${img || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>`}
-        <span class="badge ${p.status === 'order' ? 'badge--order' : ''}">${p.status === 'order' ? 'Под заказ' : 'В наличии'}</span>
-        <span class="flag">${codes[p.country] || p.country}</span>
+        <span class="badge ${p.status === 'stock' ? '' : 'badge--order'}">${p.status === 'order' ? 'Под заказ' : p.status === 'transit' ? 'В пути на склад' : 'В наличии'}${p.cond === 'used' ? ' · б/у' : ''}</span>
+        ${p.country ? `<span class="flag">${codes[p.country] || p.country}</span>` : ''}
       </div>
       <div class="card__body">
         <div class="card__type">${p.type}${p.brand ? ` · ${p.brand}` : ''}</div>
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
-        <ul class="specs">${specs}<li><span>Срок поставки</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : 'до 1 месяца'}</span></li></ul>
+        <ul class="specs">${specs}<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в пути на склад' : 'до 1 месяца'}</span></li></ul>
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
-          <div class="price"><small>Цена</small>${p.price}</div>
+          <div class="price"><small>${p.priceOld ? 'Цена по акции' : 'Цена'}${p.priceNote ? ` · ${p.priceNote}` : ''}</small>${p.priceOld ? `<s class="price__old">${p.priceOld}</s> ` : ''}${p.price}</div>
           <a class="ihb ihb--cobalt ihb--sm" href="${ask}"><span class="ihb__text">Запросить</span><span class="ihb__hover" aria-hidden="true"><span>Запросить</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
         </div>
       </div>
