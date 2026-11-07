@@ -462,10 +462,15 @@
     const list = CATALOG.filter(p => s === 'stock' ? (p.status === 'stock' || p.status === 'transit') : p.status === s);
     if (s === 'stock') {
       const idx = new Map(list.map((p, i) => [p.id, i]));
-      return list.slice().sort((a, b) => (b.hit ? 1 : 0) - (a.hit ? 1 : 0)
+      const sorted = list.slice().sort((a, b) => (b.hit ? 1 : 0) - (a.hit ? 1 : 0)
         || (isDN(b) ? 1 : 0) - (isDN(a) ? 1 : 0)
         || ((b.eta && b.eta.length) ? 1 : 0) - ((a.eta && a.eta.length) ? 1 : 0)
-        || idx.get(a.id) - idx.get(b.id)).slice(0, 4);
+        || idx.get(a.id) - idx.get(b.id));
+      // два первых — DVF 5000 и ближайший DN Solutions; следующие два — лучшие станки, которые уже сейчас на складе
+      const BEST_NOW = ['st-smec-sl3000bl', 'st-sunmill-jhv1100', 'st-diamond-p3015', 'st-sts-ctxy52'];
+      const now = BEST_NOW.map(id => list.find(p => p.id === id && p.status === 'stock')).filter(Boolean);
+      const top = sorted.slice(0, 2);
+      return [...top, ...now.filter(p => !top.includes(p)), ...sorted.filter(p => !top.includes(p) && !now.includes(p))].slice(0, 4);
     }
     return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 4);
   };
