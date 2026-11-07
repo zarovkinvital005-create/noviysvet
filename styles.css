@@ -869,3 +869,26 @@ html.sr-lock, html.sr-lock body { overflow: hidden; }
 
 .origin--any .origin__code { color: #E8FF1F; }
 @media (max-width: 1000px) and (min-width: 641px) { .origin--any { grid-column: 1 / -1; } }
+
+/* ===== Типографика заголовков =====
+   Urbanist не содержит кириллицу, поэтому русский текст раньше везде шёл системным шрифтом.
+   Заголовки — Manrope (геометрический, строгий), акцентные слова — Playfair Display курсивом. */
+:root { --display: "Manrope", "Urbanist", system-ui, sans-serif; --serif: "Playfair Display", Georgia, "Times New Roman", serif; }
+h1, .h2, .slide1__title, .delivery__title, .band h2, .contacts__head .h2 { font-family: var(--display); }
+.ac { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; font-size: 1.03em; }
+.slide1__title { font-weight: 300; letter-spacing: -.04em; }
+.slide1__title .ac { font-weight: 400; letter-spacing: -.03em; }
+.h2 { letter-spacing: -.035em; }
+.h2 .ac { letter-spacing: -.025em; }
+.ac { padding: 0 .01em 0 .03em; }
+
+/* ===== Заголовки: разная «подача» слов — тонкое / жирное / курсив / акцент ===== */
+h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800; }
+.w2 { font-weight: 200; }
+.w8 { font-weight: 800; }
+.dim { opacity: .5; }
+.ac--hi { color: var(--cobalt); }
+.section--dark .ac--hi, .bento-sec .ac--hi, .slide1 .ac--hi { color: #9DB8FF; }
+.kick { display: inline-block; font-family: var(--serif); font-style: italic; font-size: .72em; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--cobalt); margin-bottom: .25em; }
+.section--dark .kick, .bento-sec .kick { color: #9DB8FF; }
+.slide1__title b, .slide1__title .w2 { letter-spacing: -.05em; }
