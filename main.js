@@ -1,4 +1,4 @@
-function whenEta(eta){if(!eta||!eta.length)return 'скоро';const m={январь:'январе',февраль:'феврале',март:'марте',апрель:'апреле',май:'мае',июнь:'июне',июль:'июле',август:'августе',сентябрь:'сентябре',октябрь:'октябре',ноябрь:'ноябре',декабрь:'декабре'};const g=[];eta.forEach(e=>{const r=/^(.*?)\s+(\d{4})$/.exec(e[0])||[0,e[0],''];const mon=r[1].replace(/[а-я]+/g,w=>m[w]||w);const last=g[g.length-1];if(last&&last.y===r[2])last.m.push(mon);else g.push({y:r[2],m:[mon]});});return 'в '+g.map(x=>x.m.join(', ')+(x.y?' '+x.y:'')).join(', ');}
+function whenEta(eta){if(!eta||!eta.length)return '';const m={январь:'январе',февраль:'феврале',март:'марте',апрель:'апреле',май:'мае',июнь:'июне',июль:'июле',август:'августе',сентябрь:'сентябре',октябрь:'октябре',ноябрь:'ноябре',декабрь:'декабре'};const g=[];eta.forEach(e=>{const r=/^(.*?)\s+(\d{4})$/.exec(e[0])||[0,e[0],''];const mon=r[1].replace(/[а-я]+/g,w=>m[w]||w);const last=g[g.length-1];if(last&&last.y===r[2])last.m.push(mon);else g.push({y:r[2],m:[mon]});});return 'в '+g.map(x=>x.m.join(', ')+(x.y?' '+x.y:'')).join(', ');}
 // ===== Общие скрипты =====
 (function () {
   const header = document.querySelector('.header');
@@ -42,7 +42,7 @@ function productCard(p) {
     <article class="card">
       <div class="card__img ${p.img ? 'card__img--photo' : 'card__img--empty'}">
         ${img || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>`}
-        <span class="badge ${p.status === 'stock' ? '' : 'badge--order'}">${p.status === 'order' ? 'Под заказ' : p.status === 'transit' ? 'В наличии ' + whenEta(p.eta) : 'В наличии'}${p.cond === 'used' ? ' · б/у' : ''}</span>
+        <span class="badge ${p.status === 'stock' || (p.status === 'transit' && !(p.eta && p.eta.length)) ? '' : 'badge--order'}">${p.status === 'order' ? 'Под заказ' : p.status === 'transit' ? 'В наличии' + (whenEta(p.eta) ? ' ' + whenEta(p.eta) : '') : 'В наличии'}${p.cond === 'used' ? ' · б/у' : ''}</span>
         ${p.country ? `<span class="flag">${codes[p.country] || p.country}</span>` : ''}
       </div>
       <div class="card__body">
@@ -50,7 +50,7 @@ function productCard(p) {
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
-        <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? `${p.eta.map(e => `<li><span>${e[0].charAt(0).toUpperCase() + e[0].slice(1)}</span><span>${e[1] ? e[1] + ' шт.' : 'оплачен'}</span></li>`).join('')}${p.eta.some(e => e[1]) ? `<li><span>Всего ожидается</span><span>${p.eta.reduce((s, e) => s + (e[1] || 0), 0)} шт.</span></li>` : ''}` : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в наличии, поступление скоро' : 'до 1 месяца'}</span></li>`}</ul>
+        <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? `${p.eta.map(e => `<li><span>${e[0].charAt(0).toUpperCase() + e[0].slice(1)}</span><span>${e[1] ? e[1] + ' шт.' : 'оплачен'}</span></li>`).join('')}${p.eta.some(e => e[1]) ? `<li><span>Всего ожидается</span><span>${p.eta.reduce((s, e) => s + (e[1] || 0), 0)} шт.</span></li>` : ''}` : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в наличии' : 'до 1 месяца'}</span></li>`}</ul>
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>${p.priceOld ? 'Цена по акции' : 'Цена'}${p.priceNote ? ` · ${p.priceNote}` : ''}</small>${p.priceOld ? `<s class="price__old">${p.priceOld}</s> ` : ''}${p.price}</div>
