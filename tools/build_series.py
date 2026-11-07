@@ -106,6 +106,7 @@ def page(i, s):
     def ihb(href, text, cls):
         return f'<a class="ihb {cls}" href="{href}"><span class="ihb__text">{text}</span><span class="ihb__hover" aria-hidden="true"><span>{text}</span>{arrow}</span><i class="ihb__dot" aria-hidden="true"></i></a>'
     ask = '../index.html?m=' + __import__('urllib.parse').parse.quote(it['model']) + ('&b=1' if in_transit else '') + '#contacts'
+    ask_plain = '../index.html?m=' + __import__('urllib.parse').parse.quote(it['model']) + '#contacts'
     hdr = re.search(r'<header class="header[^"]*">.*?</header>', open('catalog.html', encoding='utf-8').read(), re.S).group(0)
     hdr = re.sub(r'href="(index|catalog)\.html', r'href="../\1.html', hdr)
     hdr = hdr.replace('src="assets/', 'src="../assets/')
@@ -155,7 +156,7 @@ def page(i, s):
       {('<p class="sp-vars"><b>' + str(nv) + ' модификаци' + ('я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')) + ':</b> ' + e(it['variants']) + '</p>') if it['variants'] else ''}
       {('<p class="sp-vars">Полные характеристики серии: <a href="' + it['see'] + '.html">открыть страницу серии →</a></p>') if it.get('see') else ''}
       <div class="sp-cta">
-        {ihb(ask, 'Забронировать станок', 'ihb--cobalt ihb--solid ihb--book') if in_transit else ihb(ask, 'Запросить цену и сроки', 'ihb--cobalt ihb--solid')}
+        {(ihb(ask, 'Забронировать станок', 'ihb--cobalt ihb--solid ihb--book') + ihb(ask_plain, 'Просто запросить станок', 'ihb--cobalt ihb--solid ihb--plain')) if in_transit else ihb(ask, 'Запросить цену и сроки', 'ihb--cobalt ihb--solid')}
         <a class="sp-tel" href="tel:+78312141495">или позвоните: +7 (831) 214-14-95</a>
       </div>
       {'<p class="sp-book-note">Бронь ни к чему не обязывает: менеджер подтвердит срок поступления и условия и закрепит станок за вами.</p>' if in_transit else ''}

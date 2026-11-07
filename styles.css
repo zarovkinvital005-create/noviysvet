@@ -1272,3 +1272,16 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 @media (max-width: 520px) { .card__foot .ihb { flex: 0 0 auto; } }
 /* телефон: капсула меню почти вплотную к верху */
 @media (max-width: 860px) { .header { padding-top: max(2px, env(safe-area-inset-top)); } }
+
+/* две кнопки у станков в пути: «Забронировать» + «Просто запросить» */
+.card__btns { display: flex; flex-direction: column; gap: 10px; flex: 1 1 100%; }
+.card__btns .ihb { flex: 0 0 auto; width: 100%; }
+.card__foot .ihb--plain { background: #fff; color: var(--cobalt); border-color: var(--cobalt); box-shadow: none; }
+.card__foot .ihb--plain .ihb__dot { background: var(--cobalt); }
+.card__foot .ihb--plain:hover, .card__foot .ihb--plain:focus-visible { border-color: var(--cobalt); box-shadow: none; }
+.card__foot .ihb--plain:hover .ihb__dot, .card__foot .ihb--plain:focus-visible .ihb__dot { background: var(--cobalt); }
+.card__foot .ihb--plain .ihb__hover { color: #fff; }
+.sp-cta .ihb--plain { background: #fff !important; color: var(--cobalt) !important; border-color: var(--cobalt) !important; box-shadow: none !important; }
+.sp-cta .ihb--plain .ihb__dot { background: var(--cobalt) !important; }
+.sp-cta .ihb--plain .ihb__hover { color: #fff; }
+.sp-cta { flex-wrap: wrap; }

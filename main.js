@@ -48,6 +48,7 @@ function productCard(p) {
   const nVar = p.variants ? p.variants.split(',').length : 0;
   const book = p.status === 'transit';
   const ask = `index.html?m=${encodeURIComponent(name)}${book ? '&b=1' : ''}#contacts`;
+  const askPlain = `index.html?m=${encodeURIComponent(name)}#contacts`;
   const page = (window.SERIES_PAGES || []).includes(p.id) ? `series/${p.id}.html` : '';
   return `
     <article class="card">
@@ -67,7 +68,7 @@ function productCard(p) {
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>${p.priceOld ? 'Цена по акции' : 'Цена'}${p.priceNote ? ` · ${p.priceNote}` : ''}</small>${p.priceOld ? `<s class="price__old">${p.priceOld}</s> ` : ''}${p.price}</div>
-          <a class="ihb ihb--cobalt ihb--sm${book ? ' ihb--book' : ''}" href="${ask}"><span class="ihb__text">${book ? 'Забронировать' : 'Запросить'}</span><span class="ihb__hover" aria-hidden="true"><span>${book ? 'Забронировать' : 'Запросить'}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
+          ${book ? `<div class="card__btns"><a class="ihb ihb--cobalt ihb--sm ihb--book" href="${ask}"><span class="ihb__text">Забронировать</span><span class="ihb__hover" aria-hidden="true"><span>Забронировать</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a><a class="ihb ihb--cobalt ihb--sm ihb--plain" href="${askPlain}"><span class="ihb__text">Просто запросить</span><span class="ihb__hover" aria-hidden="true"><span>Просто запросить</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a></div>` : `<a class="ihb ihb--cobalt ihb--sm" href="${ask}"><span class="ihb__text">Запросить</span><span class="ihb__hover" aria-hidden="true"><span>Запросить</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>`}
         </div>
       </div>
     </article>`;
