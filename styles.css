@@ -1251,3 +1251,5 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .nav.open a:not(.nav__call) { padding: 16px 0; border-bottom: 1px solid rgba(10, 13, 18, .1); font-weight: 700; }
   .nav.open .nav__call { display: flex; align-items: center; justify-content: center; margin-top: 18px; height: 54px; border-radius: 999px; background: var(--cobalt); color: #fff; font-size: 17px; font-weight: 700; box-shadow: 0 14px 28px -12px rgba(0, 64, 193, .8); }
 }
+/* телефон: капсула меню ближе к верху экрана (меньше зазор под адресной строкой) */
+@media (max-width: 860px) { .header { padding-top: max(5px, env(safe-area-inset-top)); } .header .header__in { width: calc(100% - 16px); } }
