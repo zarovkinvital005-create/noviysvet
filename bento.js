@@ -65,7 +65,7 @@
 
   // ---------- подсказка ----------
   const tip = document.getElementById('btip');
-  function showTip(x, y, title, rows) {
+  let showTip = function (x, y, title, rows) {
     tip.innerHTML = `<div class="t">${title}</div>` + rows.map(([k, v]) => `<div class="r"><span>${k}</span><b>${v}</b></div>`).join('');
     tip.classList.add('on');
     const r = tip.getBoundingClientRect();
@@ -73,8 +73,16 @@
     if (L + r.width > innerWidth - 8) L = x - r.width - 16;
     if (T < 8) T = y + 16;
     tip.style.left = L + 'px'; tip.style.top = T + 'px';
-  }
-  const hideTip = () => tip.classList.remove('on');
+  };
+  const hideTip = () => { tip.classList.remove('on'); clearTimeout(tipTimer); };
+  // на телефоне подсказка не должна «залипать»: прячем при прокрутке, касании в другом месте и через пару секунд
+  let tipTimer;
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  const _show = showTip;
+  showTip = function () { _show.apply(null, arguments); clearTimeout(tipTimer); if (coarse) tipTimer = setTimeout(hideTip, 2600); };
+  window.addEventListener('scroll', hideTip, { passive: true });
+  window.addEventListener('touchmove', hideTip, { passive: true });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest || !e.target.closest('#bento svg, #bento .bc')) hideTip(); });
 
   // ---------- точечное число (как на табло) ----------
   const GL = {
