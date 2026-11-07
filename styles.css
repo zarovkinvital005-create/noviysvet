@@ -1228,3 +1228,9 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .cookie .cookie__ok { background: #E8FF1F; color: #0A0D12; border-color: #E8FF1F; }
 .cookie button:hover { filter: brightness(1.1); }
 @media (max-width: 600px) { .cookie { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px; } .cookie__btns { justify-content: stretch; } .cookie button { flex: 1; } }
+/* телефон: цена сверху, кнопка «Запросить» отдельной строкой ниже — не перекрывает цену */
+@media (max-width: 520px) {
+  .card__foot { flex-direction: column; align-items: stretch; gap: 14px; }
+  .card__foot .price { white-space: normal; }
+  .card__foot .ihb { flex: 0 0 auto; width: 100%; }
+}
