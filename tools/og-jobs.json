@@ -823,6 +823,24 @@
   ]
  },
  {
+  "out": "assets/og/tr-dnu500d.jpg",
+  "title": "DNU 500D (Siemens ONE)",
+  "sub": "5-осевой обрабатывающий центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/tr-dnu500d.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-litz-lu620.jpg",
+  "title": "LITZ LU-620 (Siemens ONE)",
+  "sub": "5-осевой обрабатывающий центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/tr-litz-lu620.jpg"
+  ]
+ },
+ {
   "out": "assets/og/tr-puma2600m.jpg",
   "title": "DN Solutions PUMA 2600M",
   "sub": "Токарный центр с приводным инструментом (фрезерование)",
