@@ -57,12 +57,13 @@ for x in STOCK_ITEMS:
 
 # catalog-stock.js — позиции склада для каталога (цены не публикуем)
 def js(v): return json.dumps(v, ensure_ascii=False)
+CARD_ETA = {'kr-dvf5000': [['январь', 2]]}
 HITS = {'kr-dvf5000'}
 DOCS = {'kr-dvf5000': 'assets/docs/dvf5000-passport.pdf'}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
-                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), doc=DOCS.get(x['id'], ''), specs=dict(x['specs']))))
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), etaCard=CARD_ETA.get(x['id'], []), doc=DOCS.get(x['id'], ''), specs=dict(x['specs']))))
 open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
 
 e = html.escape
@@ -148,7 +149,7 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
+    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(CARD_ETA.get(i) or eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
       {('<p class="sp-vars"><b>' + str(nv) + ' модификаци' + ('я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')) + ':</b> ' + e(it['variants']) + '</p>') if it['variants'] else ''}
