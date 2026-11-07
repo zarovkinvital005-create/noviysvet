@@ -1297,3 +1297,14 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .card__btns { flex: 0 0 auto; width: 100%; }
   .card__btns .ihb, .card__foot > .ihb { width: 100%; min-width: 0; }
 }
+
+/* первый экран: кнопка «Купить станок» → карточка DVF 5000 */
+.slide1__cta { position: absolute; left: var(--gutter); bottom: 32px; z-index: 10000; display: grid; gap: 12px; justify-items: start; text-align: left; }
+.slide1__cap { display: inline-flex; align-items: center; gap: 9px; height: 34px; padding: 0 16px 0 12px; border-radius: 999px; background: rgba(10, 13, 18, .45); border: 1px solid rgba(255, 255, 255, .22); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+.slide1__cap i { width: 8px; height: 8px; border-radius: 50%; background: #E8FF1F; box-shadow: 0 0 0 4px rgba(232, 255, 31, .22); }
+.slide1__cta .ihb { min-width: 252px; }
+@media (max-width: 700px) {
+  .slide1__cta { left: var(--gutter); right: var(--gutter); bottom: 96px; justify-items: stretch; }
+  .slide1__cap { justify-self: start; }
+  .slide1__cta .ihb { width: 100%; min-width: 0; height: 58px; font-size: 17px; }
+}

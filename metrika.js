@@ -34,7 +34,7 @@
       else if (h.indexOf('t.me') > -1 || h.indexOf('telegram') > -1) goal('click_telegram');
       else if (h.indexOf('max.ru') > -1) goal('click_max');
       else if (h.slice(-4) === '.pdf') goal('download_passport');
-      else if (a.classList.contains('ihb') && /Запросить|Оставить заявку|Подобрать/i.test(a.textContent)) goal('click_request');
+      else if (a.classList.contains('ihb') && /Запросить|Оставить заявку|Подобрать|Купить|Забронировать/i.test(a.textContent)) goal('click_request');
     }, true);
   }
 
