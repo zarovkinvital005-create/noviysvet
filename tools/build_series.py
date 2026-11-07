@@ -12,6 +12,7 @@ os.chdir(root)
 # --- читаем каталог ---
 src = open('catalog-data.js', encoding='utf-8').read()
 T = dict(re.findall(r"(\w+) = '([^']+)'", src.split('const rows')[0]))
+STOCK = set(re.findall(r"'([\w-]+)'", (re.search(r"const STOCK = new Set\(\[(.*?)\]\)", src) or [None, ''])[1]))
 items = {}
 for m in re.finditer(r"\['([\w-]+)', (\w+), (\w+), '([^']*)', '([^']*)', '([^']*)',\s*\{(.*?)\}\]", src, re.S):
     i, typ, ctry, model, title, variants, specs = m.groups()
@@ -23,10 +24,17 @@ def page(i, s):
     it = items[i]
     url = f'{BASE}series/{i}.html'
     desc = f"{it['model']} — {it['title'].lower()}. Технические характеристики, модификации, подбор и поставка под заказ. DN Solutions, {it['country']}. ООО «Новый Свет», Нижний Новгород."
-    head = ''.join(f'<th scope="col">{e(c)}</th>' for c in s['columns'])
-    body = ''.join('<tr>' + ''.join((f'<th scope="row">{e(c)}</th>' if k == 0 else f'<td>{e(c)}</td>') for k, c in enumerate(r)) + '</tr>' for r in s['rows'])
+    def table(cols, rows):
+        head = ''.join(f'<th scope="col">{e(c)}</th>' for c in cols)
+        body = ''.join('<tr>' + ''.join((f'<th scope="row">{e(x)}</th>' if k == 0 else f'<td>{e(x)}</td>') for k, x in enumerate(r)) + '</tr>' for r in rows)
+        return f'<div class="sp-table"><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+    if 'sections' in s:
+        tables = ''.join(f'<h3 class="sp-h3">{e(sec["title"])}</h3>' + table(sec['columns'], sec['rows']) + (f'<p class="sp-note sp-note--sec">{e(sec["note"])}</p>' if sec.get('note') else '') for sec in s['sections'])
+    else:
+        tables = table(s['columns'], s['rows'])
+    in_stock = i in STOCK
     facts = ''.join(f'<li><span>{e(k)}</span><b>{e(v)}</b></li>' for k, v in it['specs'])
-    facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>'
+    facts += ('<li class="sp-term"><span>Срок поставки из наличия</span><b>до 1 месяца</b></li>' if in_stock else '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>')
     nv = len([v for v in it['variants'].split(',') if v.strip()])
     has_photo = os.path.exists(f'assets/catalog/{i}.jpg')
     og_img = f'{BASE}assets/og/{i}.jpg?v=2' if has_photo else f'{BASE}assets/og-image.jpg?v=2'
@@ -79,7 +87,7 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo">{('<img src="../assets/catalog/' + i + '.jpg" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge badge--order">Под заказ</span></figure>
+    <figure class="sp-photo">{('<img src="../assets/catalog/' + i + '.jpg" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' ' if in_stock else ' badge--order'}">{'В наличии' if in_stock else 'Под заказ'}</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
       <p class="sp-vars"><b>{nv} модификаци{'я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')}:</b> {e(it['variants'])}</p>
@@ -91,7 +99,7 @@ def page(i, s):
   </div>
   <div class="wrap">
     <h2 class="sp-h2"><b class="w8">Технические</b> <span class="w2">характеристики</span></h2>
-    <div class="sp-table"><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>
+    {tables}
     <p class="sp-note">{e(s['note'])} Характеристики приведены по данным производителя; точную конфигурацию, цену и срок поставки уточняйте у менеджера.</p>
     <div class="sp-more">{ihb('../catalog.html', 'Весь каталог', 'ihb--dark')}</div>
   </div>

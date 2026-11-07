@@ -1179,3 +1179,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .card:has(.card__title a) { cursor: pointer; }
 .card__title a:focus-visible::after { outline: 2px solid var(--cobalt); outline-offset: 2px; }
 .sp-facts .sp-term b { color: var(--cobalt); }
+.sp-h3 { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -.02em; margin: 40px 0 14px; }
+.sp-note--sec { margin-top: 10px; }
+.sp-photo .badge:not(.badge--order) { }

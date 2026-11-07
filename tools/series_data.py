@@ -109,3 +109,5 @@ from series_data_cn import SERIES_CN
 from series_data_kr import SERIES_KR
 SERIES.update(SERIES_CN)
 SERIES.update(SERIES_KR)
+from series_data_stock import SERIES_STOCK
+SERIES.update(SERIES_STOCK)
