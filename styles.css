@@ -1078,3 +1078,27 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .msgr--max i { background: linear-gradient(135deg, #2F6BFF, #8A4DFF); font-style: normal; font-weight: 800; font-size: 11px; letter-spacing: .02em; }
 .msgr:hover { transform: translateY(-3px); border-color: #4A5160; background: #1A1F28; }
 @media (max-width: 640px) { .msgr-list { width: 100%; } .msgr { flex: 1 1 calc(50% - 5px); justify-content: flex-start; } }
+
+.footer__req { margin-top: 18px; padding-top: 18px; border-top: 1px solid #1E232D; font-size: 13px; line-height: 1.5; color: #6B7180; }
+
+/* Карта целиком: все страны и подписи видны, ничего не обрезается */
+.origins-map { aspect-ratio: 16 / 9; }
+.origins-map img { object-position: center; }
+@media (max-width: 640px) { .origins-map { aspect-ratio: 16 / 9; } .origins-map figcaption { font-size: 12px; } }
+
+/* Форма Яндекса внутри нашей карточки */
+.ya-wrap[hidden] { display: none; }
+.ya-frame iframe { display: block; width: 100%; min-height: 560px; border: 0; border-radius: 16px; background: #fff; }
+
+/* Форма Яндекса: «заряженная» карточка — по кромке бежит синий блик, мягкое свечение */
+.ya-wrap {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--slate), var(--slate)) padding-box,
+    conic-gradient(from var(--sh-angle), transparent 0%, #2F6BFF 12%, #9DB8FF 22%, #2F6BFF 32%, transparent 45%, transparent 100%) border-box;
+  box-shadow: 0 40px 90px -40px rgba(47, 107, 255, .55);
+  animation: sh-angle 7s linear infinite;
+}
+.ya-wrap h3 { font-weight: 800; letter-spacing: -.02em; }
+.ya-frame iframe { background: transparent; color-scheme: normal; }
+@media (prefers-reduced-motion: reduce) { .ya-wrap { animation: none; } }
