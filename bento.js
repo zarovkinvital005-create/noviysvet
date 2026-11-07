@@ -10,31 +10,29 @@
       { k: 'Шлифовальные станки', v: 0.88 }
     ],
     // Сроки, дней. Шкала индикатора — от 0 до max
-    time: { max: 120, our: 45, market: [60, 90],
+    time: { max: 90, our: 38, market: [45, 60],
       rows: [
         { k: 'Из наличия', v: '1–3 дня', c: '#E8FF1F' },
-        { k: 'Под заказ', v: 'от 30 дней', c: '#C9D2FF' },
-        { k: 'В среднем по рынку', v: '60–90 дней', c: '#FFB37A' }
+        { k: 'Под заказ', v: '30–45 дней', c: '#C9D2FF' },
+        { k: 'В среднем по рынку', v: '45–60 дней', c: '#FFB37A' }
       ] },
-    partners: 40,      // заводов-партнёров
-    countries: 4,      // стран поставок
+    partners: 27,      // заводов-партнёров
     categories: 12,    // категорий оборудования (шкала до 20)
     // Моделей в каталоге по категориям + среднее у конкурентов
-    choice: { avg: 15, cols: [
-      { k: 'Ток.', full: 'Токарные', v: 48 },
-      { k: 'Фрез.', full: 'Фрезерные', v: 36 },
-      { k: 'ОЦ', full: 'Обрабатывающие центры', v: 30 },
-      { k: 'Шлиф.', full: 'Шлифовальные', v: 22 },
-      { k: 'Лист.', full: 'Листообработка', v: 26 },
-      { k: 'ЭЭ', full: 'Электроэрозионные', v: 14 }
+    choice: { avg: 5, cols: [
+      { k: 'Ток.', full: 'Токарные и многозадачные центры', v: 34 },
+      { k: 'Фрез.', full: 'Вертикальные фрезерные центры', v: 24 },
+      { k: 'Гор.', full: 'Горизонтальные фрезерные центры', v: 9 },
+      { k: '5 осей', full: '5-осевые центры', v: 4 },
+      { k: 'Порт.', full: 'Портальные и расточно-фрезерные', v: 7 }
     ] },
     // Станки на складе
-    stock: { total: 120,
-      split: [ { k: 'TW', v: .38 }, { k: 'CN', v: .32 }, { k: 'KR', v: .18 }, { k: 'EU', v: .12 } ],
+    stock: { total: 34,
+      split: [ { k: 'CN', v: .55 }, { k: 'KR', v: .45 } ],
       rows: [
-        { k: 'Токарные', v: 38, trend: [22, 26, 25, 30, 33, 38] },
-        { k: 'Фрезерные', v: 31, trend: [24, 23, 27, 26, 29, 31] },
-        { k: 'Обрабатывающие центры', v: 27, trend: [14, 17, 19, 21, 24, 27] }
+        { k: 'Токарные', v: 14, trend: [6, 8, 9, 11, 13, 14] },
+        { k: 'Фрезерные', v: 12, trend: [8, 8, 10, 10, 11, 12] },
+        { k: 'Обрабатывающие центры', v: 8, trend: [3, 4, 5, 6, 7, 8] }
       ] }
   };
 
@@ -177,7 +175,7 @@
     svg.innerHTML = s;
     svg.querySelectorAll('.hitc').forEach(h => {
       const c = C.cols[+h.dataset.i];
-      h.addEventListener('pointermove', e => showTip(e.clientX, e.clientY, c.full, [['Моделей у нас', c.v], ['В среднем у конкурентов', '~' + C.avg], ['Выбор больше', '×' + (c.v / C.avg).toFixed(1)]]));
+      h.addEventListener('pointermove', e => showTip(e.clientX, e.clientY, c.full, [['Линеек у нас', c.v], ['В среднем у конкурентов', '~' + C.avg], ['Выбор больше', '×' + (c.v / C.avg).toFixed(1)]]));
       h.addEventListener('pointerleave', hideTip);
     });
     if (animate) requestAnimationFrame(() => requestAnimationFrame(() =>
@@ -206,7 +204,6 @@
     dn.count(avgCut);
     countUp(root.querySelector('.g-num'), DATA.time.our);
     countUp(q('[data-count="partners"]'), DATA.partners);
-    countUp(q('[data-count="countries"]'), DATA.countries);
     countUp(q('[data-count="categories"]'), DATA.categories);
     countUp(q('[data-count="stock"]'), DATA.stock.total);
     drawTicks(chart('ticks-cat'), DATA.categories / 20);

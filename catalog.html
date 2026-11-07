@@ -25,7 +25,7 @@
       <a href="index.html#contacts">Контакты</a>
     </nav>
     <div class="header__cta">
-      <a class="phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+      <a class="phone" href="tel:+78312141495">+7 (831) 214-14-95</a>
       <a class="btn btn--primary btn--sm" href="index.html#contacts">Оставить заявку</a>
       <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
@@ -44,7 +44,7 @@
       </div>
       <label class="search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-        <input id="q" placeholder="Поиск по названию или модели">
+        <input id="q" placeholder="Поиск по модели, например PUMA 2600">
       </label>
     </div>
   </div>
@@ -82,7 +82,7 @@
       Новый Свет
     </a>
     <nav><a href="index.html#about">О компании</a><a href="catalog.html">Каталог</a><a href="index.html#contacts">Контакты</a></nav>
-    <span>© <span id="year"></span> Новый Свет, Нижний Новгород</span>
+    <span>© <span id="year"></span> Новый Свет, Нижний Новгород · <a href="tel:+78312141495">+7 (831) 214-14-95</a> · <a href="mailto:nov-svet@list.ru">nov-svet@list.ru</a></span>
   </div>
 </footer>
 
@@ -92,11 +92,15 @@
 <script>
   const state = { tab: 'all', q: '', type: new Set(), country: new Set(), sort: 'default' };
   const params = new URLSearchParams(location.search);
-  if (params.get('type')) state.type.add(params.get('type'));
+  if (params.get('type')) params.get('type').split(',').forEach(t => state.type.add(t.trim()));
   if (params.get('status')) state.tab = params.get('status');
+  if (params.get('q')) { state.q = params.get('q').toLowerCase(); document.getElementById('q').value = params.get('q'); }
 
   const uniq = key => [...new Set(CATALOG.map(p => p[key]))];
-  const countries = ['Тайвань', 'Китай', 'Европа', 'Корея'];
+  const typeOrder = ['Токарные центры', 'Многозадачные центры', 'Вертикальные токарные центры', 'Вертикальные фрезерные центры', '5-осевые центры', 'Горизонтальные фрезерные центры', 'Портальные фрезерные центры', 'Расточно-фрезерные центры'];
+  const types = uniq('type').sort((a, b) => (typeOrder.indexOf(a) + 1 || 99) - (typeOrder.indexOf(b) + 1 || 99));
+  // показываем только страны, по которым уже есть позиции
+  const countries = ['Китай', 'Корея'].filter(c => CATALOG.some(p => p.country === c));
 
   function buildFilter(el, key, values) {
     el.innerHTML = values.map(v => `
@@ -107,7 +111,7 @@
       render();
     });
   }
-  buildFilter(document.getElementById('f-type'), 'type', uniq('type'));
+  buildFilter(document.getElementById('f-type'), 'type', types);
   buildFilter(document.getElementById('f-country'), 'country', countries);
 
   document.querySelectorAll('[data-c]').forEach(s => {
@@ -132,15 +136,17 @@
       (state.tab === 'all' || p.status === state.tab) &&
       (!state.type.size || state.type.has(p.type)) &&
       (!state.country.size || state.country.has(p.country)) &&
-      (!state.q || (p.title + ' ' + (p.model || '') + ' ' + p.type).toLowerCase().includes(state.q))
+      (!state.q || state.q.split(/\s+/).every(w => [p.title, p.model, p.variants, p.type, p.brand].join(' ').toLowerCase().includes(w)))
     );
     list.sort(state.sort === 'az'
-      ? (a, b) => a.title.localeCompare(b.title, 'ru')
+      ? (a, b) => (a.model || a.title).localeCompare(b.model || b.title, 'ru')
       : (a, b) => (a.status === 'stock' ? 0 : 1) - (b.status === 'stock' ? 0 : 1));
     document.getElementById('info').textContent = `Найдено позиций: ${list.length}`;
     document.getElementById('grid').innerHTML = list.length
       ? list.map(productCard).join('')
-      : `<div class="empty"><b>Ничего не найдено</b>Измените фильтры или оставьте заявку — привезём под заказ.</div>`;
+      : state.tab === 'stock' && !CATALOG.some(p => p.status === 'stock')
+        ? `<div class="empty"><b>Наличие обновляется</b>Актуальные станки на складе уточняйте по телефону <a href="tel:+78312141495">+7 (831) 214-14-95</a> или почте <a href="mailto:nov-svet@list.ru">nov-svet@list.ru</a>.</div>`
+        : `<div class="empty"><b>Ничего не найдено</b>Измените фильтры или оставьте заявку — привезём под заказ.</div>`;
   }
   render();
 </script>
