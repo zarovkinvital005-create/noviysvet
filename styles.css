@@ -1290,3 +1290,10 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 @media (max-width: 1100px) { #preview-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { #preview-grid { grid-template-columns: 1fr; } }
 .preview-foot { display: flex; justify-content: center; }
+/* телефон: цена сверху, обе кнопки ниже на всю ширину (колонкой, без переноса в соседний столбец) */
+@media (max-width: 520px) {
+  .card__foot { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+  .card__foot .price { flex: 0 0 auto; }
+  .card__btns { flex: 0 0 auto; width: 100%; }
+  .card__btns .ihb, .card__foot > .ihb { width: 100%; min-width: 0; }
+}
