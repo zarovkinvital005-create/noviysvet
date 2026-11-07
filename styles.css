@@ -1341,3 +1341,9 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .slide1__in { top: 80px; right: var(--gutter); left: auto; text-align: right; }
   .slide1__tag { font-size: 10px; letter-spacing: .18em; }
 }
+/* первый экран: кнопки чуть крупнее */
+.slide1__btn { height: 52px; min-width: 214px; padding: 0 26px 0 28px; justify-content: space-between; font-size: 16px; gap: 14px; }
+.slide1__btn svg { width: 20px; height: 20px; }
+.slide1__down { width: 62px; height: 62px; }
+.slide1__down svg { width: 24px; height: 24px; }
+@media (max-width: 700px) { .slide1__btn { height: 50px; min-width: 200px; font-size: 16px; } }
