@@ -1,4 +1,4 @@
-function whenEta(eta){if(!eta||!eta.length)return 'скоро';const m={январь:'январе',февраль:'феврале',март:'марте',апрель:'апреле',май:'мае',июнь:'июне',июль:'июле',август:'августе',сентябрь:'сентябре',октябрь:'октябре',ноябрь:'ноябре',декабрь:'декабре'};return 'в '+eta[0][0].replace(/[а-я]+/g,w=>m[w]||w);}
+function whenEta(eta){if(!eta||!eta.length)return 'скоро';const m={январь:'январе',февраль:'феврале',март:'марте',апрель:'апреле',май:'мае',июнь:'июне',июль:'июле',август:'августе',сентябрь:'сентябре',октябрь:'октябре',ноябрь:'ноябре',декабрь:'декабре'};const g=[];eta.forEach(e=>{const r=/^(.*?)\s+(\d{4})$/.exec(e[0])||[0,e[0],''];const mon=r[1].replace(/[а-я]+/g,w=>m[w]||w);const last=g[g.length-1];if(last&&last.y===r[2])last.m.push(mon);else g.push({y:r[2],m:[mon]});});return 'в '+g.map(x=>x.m.join(', ')+(x.y?' '+x.y:'')).join(', ');}
 // ===== Общие скрипты =====
 (function () {
   const header = document.querySelector('.header');

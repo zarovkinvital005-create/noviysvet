@@ -6,7 +6,14 @@ import re, os, sys, html, json
 def when(eta):
     if not eta: return 'скоро'
     m={'январь':'январе','февраль':'феврале','март':'марте','апрель':'апреле','май':'мае','июнь':'июне','июль':'июле','август':'августе','сентябрь':'сентябре','октябрь':'октябре','ноябрь':'ноябре','декабрь':'декабре'}
-    return 'в ' + re.sub(r'[а-я]+', lambda x: m.get(x.group(0), x.group(0)), eta[0][0])
+    g=[]
+    for per,_q in eta:
+        r=re.match(r'^(.*?)\s+(\d{4})$', per); mon,y=(r.group(1),r.group(2)) if r else (per,'')
+        mon=re.sub(r'[а-я]+', lambda x: m.get(x.group(0), x.group(0)), mon)
+        if g and g[-1][0]==y: g[-1][1].append(mon)
+        else: g.append((y,[mon]))
+    return 'в ' + ', '.join(', '.join(ms)+(' '+y if y else '') for y,ms in g)
+
 
 sys.path.insert(0, os.path.dirname(__file__))
 from series_data import SERIES

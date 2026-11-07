@@ -1201,3 +1201,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .card__foot .ihb:hover .ihb__dot, .card__foot .ihb:focus-visible .ihb__dot { background: var(--abyss); }
 /* фото не на белом фоне — на всю карточку, без серых полей */
 .card__img--photo.card__img--fill img { object-fit: cover; padding: 0; mix-blend-mode: normal; }
+/* длинная плашка «В наличии в декабре 2026, январе, марте 2027» — в две строки, не заходит на флаг страны */
+.badge { height: auto; min-height: 30px; padding: 6px 12px; max-width: calc(100% - 84px); line-height: 1.25; border-radius: 16px; }
+.badge::before { flex: 0 0 7px; }
