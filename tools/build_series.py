@@ -4,15 +4,12 @@
 import re, os, sys, html, json
 
 def when(eta):
+    """Ближайший месяц без года: «в декабре», «в августе–сентябре»."""
     if not eta: return ''
     m={'январь':'январе','февраль':'феврале','март':'марте','апрель':'апреле','май':'мае','июнь':'июне','июль':'июле','август':'августе','сентябрь':'сентябре','октябрь':'октябре','ноябрь':'ноябре','декабрь':'декабре'}
-    g=[]
-    for per,_q in eta:
-        r=re.match(r'^(.*?)\s+(\d{4})$', per); mon,y=(r.group(1),r.group(2)) if r else (per,'')
-        mon=re.sub(r'[а-я]+', lambda x: m.get(x.group(0), x.group(0)), mon)
-        if g and g[-1][0]==y: g[-1][1].append(mon)
-        else: g.append((y,[mon]))
-    return 'в ' + ', '.join(', '.join(ms)+(' '+y if y else '') for y,ms in g)
+    per=re.sub(r'\s+\d{4}$','',eta[0][0])
+    return 'в ' + re.sub(r'[а-я]+', lambda x: m.get(x.group(0), x.group(0)), per)
+
 
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -150,7 +147,7 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(CARD_ETA.get(i) or eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
+    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
       {('<p class="sp-vars"><b>' + str(nv) + ' модификаци' + ('я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')) + ':</b> ' + e(it['variants']) + '</p>') if it['variants'] else ''}
