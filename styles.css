@@ -1327,3 +1327,7 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .slide1__cta { left: var(--gutter); right: auto; bottom: 36px; justify-items: start; }
   .slide1__down { display: none; }
 }
+
+/* первый экран: тихая подпись модели над кнопкой */
+.slide1__model { font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; opacity: .72; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
+.slide1__cta { gap: 10px; }

@@ -130,7 +130,7 @@ def page(i, s):
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preload" href="../assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../fonts.css">
-<link rel="stylesheet" href="../styles.css?v=20261107b">
+<link rel="stylesheet" href="../styles.css?v=20261107c">
 </head>
 <body class="series-body">
 
@@ -169,7 +169,7 @@ def page(i, s):
 </main>
 
 {ft}
-<script src="../main.js?v=20261107b"></script>
+<script src="../main.js?v=20261107c"></script>
 <script src="../metrika.js" defer></script>
 </body>
 </html>
