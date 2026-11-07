@@ -1189,3 +1189,8 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .sp-price b { color: var(--abyss); }
 .sp-price b s { font-weight: 500; font-size: .8em; color: var(--muted); margin-right: 6px; }
 .sp-price b small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); }
+/* цена — всегда в одну строку: старая над новой */
+.price { white-space: nowrap; min-width: 0; }
+.price__old { display: block; margin: 0 0 2px; }
+.price small { white-space: normal; }
+.card__foot .ihb { flex-shrink: 0; }
