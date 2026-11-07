@@ -1,0 +1,96 @@
+[
+ {
+  "out": "assets/og/catalog.jpg",
+  "title": "Каталог станков",
+  "sub": "78 серий: токарные, фрезерные, 5-осевые, портальные центры",
+  "label": "",
+  "foot": "Подбор и поставка под заказ из любой страны мира",
+  "photos": [
+   "assets/catalog/cn-puma2450.jpg",
+   "assets/catalog/kr-dvf.jpg",
+   "assets/catalog/kr-nhp.jpg",
+   "assets/catalog/cn-dnm4505.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-leo225.jpg",
+  "title": "LEO 225 / 235 / 235L",
+  "sub": "Высокоэффективный горизонтальный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-leo225.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-lynx2205g.jpg",
+  "title": "Lynx 2205G",
+  "sub": "Новый 6-дюймовый горизонтальный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-lynx2205g.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-puma2450.jpg",
+  "title": "PUMA 2450 / 2450M",
+  "sub": "Серво-револьвер, высокая скорость подачи, патрон 10″",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/cn-puma2450.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-dnm4505.jpg",
+  "title": "DNM 4505 / 5705 / 6705",
+  "sub": "Высокопроизводительный вертикальный фрезерный центр #40",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-dnm4505.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/cn-nhp50.jpg",
+  "title": "NHP 5550 / 6350 / 8005",
+  "sub": "Высокопроизводительный горизонтальный фрезерный центр #50",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/cn-nhp50.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-puma2100.jpg",
+  "title": "PUMA 2100 / 2600 / 3100",
+  "sub": "Высокопроизводительный горизонтальный токарный центр",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/kr-puma2100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-dvf.jpg",
+  "title": "DVF 4000 / 5000 / 6500 / 8000",
+  "sub": "5-осевой вертикальный фрезерный центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/kr-dvf.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-mynx.jpg",
+  "title": "Mynx 5400 II / 6500 II / 7500 II / 9500",
+  "sub": "Мощный вертикальный фрезерный центр для тяжёлой резки",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-mynx.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/kr-nhp.jpg",
+  "title": "NHP 4000 / 5000 / 5500 / 6300 / 8000",
+  "sub": "Высокоскоростной горизонтальный фрезерный центр",
+  "label": "Горизонтальные фрезерные центры",
+  "photos": [
+   "assets/catalog/kr-nhp.jpg"
+  ]
+ }
+]

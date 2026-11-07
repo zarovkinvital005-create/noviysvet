@@ -51,9 +51,10 @@ def page(i, s):
 <link rel="icon" href="../assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Новый Свет"><meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="{e(it['model'])} — Новый Свет"><meta property="og:description" content="{e(desc)}">
-<meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}assets/catalog/{i}.jpg">
+<meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}assets/og/{i}.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preload" href="../assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
