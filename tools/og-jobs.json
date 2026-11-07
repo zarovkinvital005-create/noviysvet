@@ -751,6 +751,15 @@
   ]
  },
  {
+  "out": "assets/og/st-smec-sl3000bl.jpg",
+  "title": "SMEC SL3000BL",
+  "sub": "Токарный станок с ЧПУ",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/st-smec-sl3000.jpg"
+  ]
+ },
+ {
   "out": "assets/og/st-sts-ct52-500.jpg",
   "title": "STS CT52-500",
   "sub": "Токарный станок с ЧПУ",
@@ -937,6 +946,33 @@
   "label": "Токарные центры",
   "photos": [
    "assets/catalog/kr-puma2100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/us-smec-sl2000sy.jpg",
+  "title": "SMEC SL 2000SY, тип «B»",
+  "sub": "Токарный обрабатывающий центр с ЧПУ",
+  "label": "Токарные центры",
+  "photos": [
+   "assets/catalog/us-smec-sl2000.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/us-smec-ns2000m.jpg",
+  "title": "SMEC NS 2000M, тип «A»",
+  "sub": "Токарно-фрезерный обрабатывающий центр с ЧПУ",
+  "label": "Многозадачные центры",
+  "photos": [
+   "assets/catalog/us-smec-ns2000m.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/us-blin-blh40y.jpg",
+  "title": "BLIN BL-H40Y",
+  "sub": "Токарный автомат / токарно-фрезерный центр с ЧПУ",
+  "label": "Многозадачные центры",
+  "photos": [
+   "assets/catalog/st-blin-blh40y.jpg"
   ]
  }
 ]
