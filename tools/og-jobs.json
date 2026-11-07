@@ -715,6 +715,42 @@
   ]
  },
  {
+  "out": "assets/og/st-jianke-ma25-5ii-a.jpg",
+  "title": "JIANKE MA25-5II (с приводом в обоих шпинделях)",
+  "sub": "Автомат продольного точения с противошпинделем",
+  "label": "Автоматы продольного точения",
+  "photos": [
+   "assets/catalog/st-jianke-ma25.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/st-jianke-ma25-5ii-b.jpg",
+  "title": "JIANKE MA25-5II (привод в главном шпинделе)",
+  "sub": "Автомат продольного точения с противошпинделем",
+  "label": "Автоматы продольного точения",
+  "photos": [
+   "assets/catalog/st-jianke-ma25.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/st-sunmill-jhv1100.jpg",
+  "title": "Sunmill JHV-1100",
+  "sub": "Вертикальный фрезерный обрабатывающий центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/st-sunmill-jhv1100.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/st-sunmill-jhv1020.jpg",
+  "title": "Sunmill JHV-1020",
+  "sub": "Вертикальный фрезерный обрабатывающий центр",
+  "label": "Вертикальные фрезерные центры",
+  "photos": [
+   "assets/catalog/st-sunmill-jhv1020.jpg"
+  ]
+ },
+ {
   "out": "assets/og/tr-dnm5705-conv.jpg",
   "title": "DNM 5705 (4th Gen.) с конвейером и подачей СОЖ через шпиндель",
   "sub": "Вертикальный фрезерный центр",
