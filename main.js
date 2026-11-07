@@ -11,11 +11,21 @@ function whenEta(eta){if(!eta||!eta.length)return '';const m={январь:'ян
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
   if (burger && nav) {
-    burger.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      header.classList.add('solid');
-    });
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+    // затемнение страницы под открытым меню + кнопка «Позвонить»
+    const back = document.createElement('div'); back.className = 'nav-backdrop'; document.body.appendChild(back);
+    if (!nav.querySelector('.nav__call')) {
+      const call = document.createElement('a'); call.className = 'nav__call'; call.href = 'tel:+78312141495'; call.textContent = 'Позвонить +7 (831) 214-14-95';
+      nav.appendChild(call);
+    }
+    const setOpen = on => {
+      nav.classList.toggle('open', on); back.classList.toggle('on', on); document.body.classList.toggle('menu-open', on);
+      burger.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on) header.classList.add('solid');
+    };
+    burger.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    back.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   }
 
   const io = new IntersectionObserver(entries => {

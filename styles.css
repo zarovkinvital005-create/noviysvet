@@ -1239,3 +1239,15 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .origins { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 1100px) { .origins { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .origins { grid-template-columns: 1fr; } }
+
+/* мобильное меню: затемнение фона, рамка и тень у панели, крупные пункты, кнопка «Позвонить» */
+.nav-backdrop { display: none; }
+.nav__call { display: none; }
+@media (max-width: 860px) {
+  .nav-backdrop { display: block; position: fixed; inset: 0; z-index: 40; background: rgba(5, 8, 14, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .nav-backdrop.on { opacity: 1; pointer-events: auto; }
+  body.menu-open { overflow: hidden; }
+  .nav.open { padding: 8px 22px 22px; gap: 0; border: 1.5px solid rgba(255, 255, 255, .9); box-shadow: 0 30px 70px -10px rgba(0, 0, 0, .55), 0 0 0 1px rgba(10, 13, 18, .18); }
+  .nav.open a:not(.nav__call) { padding: 16px 0; border-bottom: 1px solid rgba(10, 13, 18, .1); font-weight: 700; }
+  .nav.open .nav__call { display: flex; align-items: center; justify-content: center; margin-top: 18px; height: 54px; border-radius: 999px; background: var(--cobalt); color: #fff; font-size: 17px; font-weight: 700; box-shadow: 0 14px 28px -12px rgba(0, 64, 193, .8); }
+}
