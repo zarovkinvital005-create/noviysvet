@@ -11,6 +11,13 @@
 
   document.querySelectorAll('[data-motion]').forEach(root => {
     const vids = [...root.querySelectorAll('video')];
+    if (vids.length === 1) { // единый ролик: играет по кругу, пока слайд виден
+      const v = vids[0]; v.muted = true; v.playsInline = true; v.loop = true;
+      const go = () => { const p = v.play(); if (p && p.then) p.then(() => root.classList.add('is-playing')).catch(() => {}); };
+      new IntersectionObserver(([e]) => { e.isIntersecting ? go() : v.pause(); }, { threshold: 0.05 }).observe(root);
+      document.addEventListener('visibilitychange', () => { if (document.hidden) v.pause(); else if (root.getBoundingClientRect().bottom > 0) go(); });
+      return;
+    }
     if (vids.length < 2) return;
     const nums = attr => (root.dataset[attr] || '').split(',').filter(Boolean).map(Number);
     const fadeList = nums('fade'), holdList = nums('hold');
