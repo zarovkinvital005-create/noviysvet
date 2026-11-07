@@ -57,10 +57,12 @@ for x in STOCK_ITEMS:
 
 # catalog-stock.js — позиции склада для каталога (цены не публикуем)
 def js(v): return json.dumps(v, ensure_ascii=False)
+HITS = {'kr-dvf5000'}
+DOCS = {'kr-dvf5000': 'assets/docs/dvf5000-passport.pdf'}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
-                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], specs=dict(x['specs']))))
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), doc=DOCS.get(x['id'], ''), specs=dict(x['specs']))))
 open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
 
 e = html.escape
@@ -161,6 +163,7 @@ def page(i, s):
     <h2 class="sp-h2"><b class="w8">Технические</b> <span class="w2">характеристики</span></h2>
     {tables}
     <p class="sp-note">{e(s['note'])} Характеристики приведены по данным производителя; точную конфигурацию, цену и срок поставки уточняйте у менеджера.</p>
+    {('<a class="sp-doc" href="../' + DOCS[i] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>Паспорт станка (PDF)<small>Спецификация производителя DN Solutions · 9 стр.</small></span></a>') if i in DOCS else ''}
     <div class="sp-more">{ihb('../catalog.html', 'Весь каталог', 'ihb--dark')}</div>
   </div>
 </main>

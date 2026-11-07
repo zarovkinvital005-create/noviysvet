@@ -43,11 +43,13 @@ function productCard(p) {
       <div class="card__img ${p.img ? 'card__img--photo' : 'card__img--empty'}">
         ${img || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>`}
         <span class="badge ${p.status === 'stock' || (p.status === 'transit' && !(p.eta && p.eta.length)) ? '' : 'badge--order'}">${p.status === 'order' ? 'Под заказ' : p.status === 'transit' ? 'В наличии' + (whenEta(p.eta) ? ' ' + whenEta(p.eta) : '') : 'В наличии'}${p.cond === 'used' ? ' · б/у' : ''}</span>
+        ${p.hit ? '<span class="hit">★ Хит продаж</span>' : ''}
         ${p.country ? `<span class="flag">${codes[p.country] || p.country}</span>` : ''}
       </div>
       <div class="card__body">
         <div class="card__type">${p.type}${p.brand ? ` · ${p.brand}` : ''}</div>
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
+        ${p.doc ? `<a class="card__doc" href="${p.doc}" target="_blank" rel="noopener" download>📄 Паспорт станка (PDF)</a>` : ''}
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
         <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? `${p.eta.map(e => `<li><span>${e[0].charAt(0).toUpperCase() + e[0].slice(1)}</span><span>${e[1] ? e[1] + ' шт.' : 'оплачен'}</span></li>`).join('')}${p.eta.some(e => e[1]) ? `<li><span>Всего ожидается</span><span>${p.eta.reduce((s, e) => s + (e[1] || 0), 0)} шт.</span></li>` : ''}` : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в наличии' : 'до 1 месяца'}</span></li>`}</ul>

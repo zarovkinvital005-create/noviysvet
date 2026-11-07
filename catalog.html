@@ -159,7 +159,7 @@
     );
     list.sort(state.sort === 'az'
       ? (a, b) => (a.model || a.title).localeCompare(b.model || b.title, 'ru')
-      : (a, b) => ({ stock: 0, transit: 1, order: 2 }[a.status] - { stock: 0, transit: 1, order: 2 }[b.status]));
+      : (a, b) => (b.hit ? 1 : 0) - (a.hit ? 1 : 0) || ({ stock: 0, transit: 1, order: 2 }[a.status] - { stock: 0, transit: 1, order: 2 }[b.status]));
     document.getElementById('info').textContent = `Найдено позиций: ${list.length}`;
     document.getElementById('grid').innerHTML = list.length
       ? list.map(productCard).join('')
