@@ -814,6 +814,24 @@
   ]
  },
  {
+  "out": "assets/og/tr-diamond-ag600-siemens.jpg",
+  "title": "DIAMOND SmartLine AG-600 (Siemens)",
+  "sub": "5-осевой фрезерный обрабатывающий центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/tr-diamond-ag600.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-diamond-ag600-syntec.jpg",
+  "title": "DIAMOND SmartLine AG-600 (Syntec)",
+  "sub": "5-осевой фрезерный обрабатывающий центр",
+  "label": "5-осевые центры",
+  "photos": [
+   "assets/catalog/tr-diamond-ag600.jpg"
+  ]
+ },
+ {
   "out": "assets/og/tr-dnm5705-conv.jpg",
   "title": "DNM 5705 (4th Gen.) с конвейером и подачей СОЖ через шпиндель",
   "sub": "Вертикальный фрезерный центр",
@@ -910,6 +928,15 @@
   "label": "Вертикальные фрезерные центры",
   "photos": [
    "assets/catalog/cn-mynx.jpg"
+  ]
+ },
+ {
+  "out": "assets/og/tr-spinex-sl206.jpg",
+  "title": "Spinex SL206",
+  "sub": "Автомат продольного точения с противошпинделем и осью Y2",
+  "label": "Автоматы продольного точения",
+  "photos": [
+   "assets/catalog/tr-spinex-sl206.jpg"
   ]
  },
  {
