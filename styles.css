@@ -1308,3 +1308,22 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .slide1__cap { justify-self: start; }
   .slide1__cta .ihb { width: 100%; min-width: 0; height: 58px; font-size: 17px; }
 }
+
+/* первый экран: кнопка-призрак (прозрачная, при наведении лаймовая), компактный заголовок на телефоне */
+.slide1__cap { display: none; }
+.slide1__cta { justify-items: start; }
+.slide1__btn { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px 0 22px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.75); background: rgba(255,255,255,.06); color: #fff; font-weight: 700; font-size: 15px; letter-spacing: .005em; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.slide1__btn svg { width: 18px; height: 18px; transition: transform .25s; }
+.slide1__btn:hover, .slide1__btn:focus-visible, .slide1__btn:active { background: #E8FF1F; border-color: #E8FF1F; color: #0A0D12; }
+.slide1__btn:hover svg, .slide1__btn:focus-visible svg { transform: translateX(3px); }
+@media (max-width: 700px) {
+  .slide1 { display: block; }
+  .slide1__in { position: absolute; top: 84px; left: var(--gutter); right: var(--gutter); transform: none; text-align: left; padding: 0; }
+  .slide1__title { font-size: 40px; letter-spacing: -.04em; text-shadow: 0 2px 20px rgba(0,0,0,.4); }
+  .slide1__brand { margin-top: 10px; gap: 9px; font-size: 11px; letter-spacing: .05em; }
+  .slide1__brand .logo__mark { width: 26px; height: 26px; border-radius: 8px; }
+  .slide1__brand small { font-size: 9px; }
+  .slide1__media::after { background: linear-gradient(180deg, rgba(0,30,120,.55) 0%, rgba(0,40,150,.15) 22%, rgba(10,13,18,.1) 55%, rgba(10,13,18,.55) 100%); }
+  .slide1__cta { left: var(--gutter); right: auto; bottom: 36px; justify-items: start; }
+  .slide1__down { display: none; }
+}
