@@ -1116,3 +1116,9 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .ya-wrap { padding: 20px 20px 16px; gap: 14px; }
 .ya-wrap h3 { font-size: 24px; padding: 4px 6px 0; }
 .ya-frame iframe { border-radius: 14px; }
+
+/* левая колонка контактов: блоки идут друг за другом сверху, без пустого провала посередине */
+@media (min-width: 1000px) {
+  .contacts > .wrap { grid-template-rows: auto 1fr; }
+  .contacts .contacts__row { align-self: start; }
+}
