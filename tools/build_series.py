@@ -35,8 +35,10 @@ def page(i, s):
     ask = '../index.html?m=' + __import__('urllib.parse').parse.quote(it['model']) + '#contacts'
     hdr = re.search(r'<header class="header[^"]*">.*?</header>', open('catalog.html', encoding='utf-8').read(), re.S).group(0)
     hdr = re.sub(r'href="(index|catalog)\.html', r'href="../\1.html', hdr)
+    hdr = hdr.replace('src="assets/', 'src="../assets/')
     ft = re.search(r'<footer class="footer">.*?</footer>', open('catalog.html', encoding='utf-8').read(), re.S).group(0)
     ft = re.sub(r'href="(index|catalog|privacy|consent)\.html', r'href="../\1.html', ft)
+    ft = ft.replace('src="assets/', 'src="../assets/')
     return f'''<!doctype html>
 <html lang="ru">
 <head>
@@ -46,7 +48,7 @@ def page(i, s):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
 <meta name="theme-color" content="#0A0D12">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Новый Свет"><meta property="og:locale" content="ru_RU">
