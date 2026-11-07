@@ -24,7 +24,7 @@ for m in re.finditer(r"\['([\w-]+)', (\w+), (\w+), '([^']*)', '([^']*)', '([^']*
 TRANSIT = set()
 for x in STOCK_ITEMS:
     items[x['id']] = dict(id=x['id'], type=x['type'], country=x['country'], model=x['model'], title=x['title'], variants='', specs=x['specs'],
-                          brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'])
+                          brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'], eta=x['eta'])
     if x['status'] == 'stock': STOCK.add(x['id'])
     else: TRANSIT.add(x['id'])
 def photo_of(i):
@@ -47,7 +47,7 @@ def js(v): return json.dumps(v, ensure_ascii=False)
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
-                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], specs=dict(x['specs']))))
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], specs=dict(x['specs']))))
 open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
 
 e = html.escape
@@ -66,7 +66,12 @@ def page(i, s):
     in_stock = i in STOCK
     facts = ''.join(f'<li><span>{e(k)}</span><b>{e(v)}</b></li>' for k, v in it['specs'])
     in_transit = i in TRANSIT
-    if in_transit: facts += '<li class="sp-term"><span>Статус</span><b>готов к поставке, в пути на склад</b></li>'
+    eta = items[i].get('eta') or []
+    if in_transit and eta:
+        tot = sum(q for _, q in eta if q)
+        facts += '<li class="sp-term"><span>Ближайшее прибытие</span><b>' + e(eta[0][0]) + '</b></li>'
+        if tot: facts += '<li><span>Всего ожидается</span><b>' + str(tot) + ' шт.</b></li>'
+    elif in_transit: facts += '<li class="sp-term"><span>Статус</span><b>готов к поставке, в пути на склад</b></li>'
     elif in_stock: facts += '<li class="sp-term"><span>Срок поставки из наличия</span><b>до 1 месяца</b></li>'
     else: facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>'
     used = items[i].get('cond') == 'used'

@@ -49,7 +49,7 @@ function productCard(p) {
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
-        <ul class="specs">${specs}<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в пути на склад' : 'до 1 месяца'}</span></li></ul>
+        <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? `<li><span>Ближайшее прибытие</span><span>${p.eta[0][0]}</span></li>${p.eta.some(e => e[1]) ? `<li><span>Всего ожидается</span><span>${p.eta.reduce((s, e) => s + (e[1] || 0), 0)} шт.</span></li>` : ''}` : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в пути на склад' : 'до 1 месяца'}</span></li>`}</ul>
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>${p.priceOld ? 'Цена по акции' : 'Цена'}${p.priceNote ? ` · ${p.priceNote}` : ''}</small>${p.priceOld ? `<s class="price__old">${p.priceOld}</s> ` : ''}${p.price}</div>
