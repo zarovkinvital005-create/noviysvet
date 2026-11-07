@@ -1199,3 +1199,5 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .card__foot .ihb .ihb__dot { background: #fff; }
 .card__foot .ihb:hover, .card__foot .ihb:focus-visible { border-color: var(--abyss); box-shadow: 0 14px 28px -12px rgba(10, 13, 18, .6); }
 .card__foot .ihb:hover .ihb__dot, .card__foot .ihb:focus-visible .ihb__dot { background: var(--abyss); }
+/* фото не на белом фоне — на всю карточку, без серых полей */
+.card__img--photo.card__img--fill img { object-fit: cover; padding: 0; mix-blend-mode: normal; }

@@ -59,3 +59,30 @@ function productCard(p) {
       </div>
     </article>`;
 }
+
+/* Фото не на белом фоне (цех, студия, градиент) — растягиваем на всю карточку */
+(function () {
+  function check(img) {
+    const box = img.closest && img.closest('.card__img--photo');
+    if (!box || box.dataset.fillChecked || !img.naturalWidth) return;
+    box.dataset.fillChecked = '1';
+    try {
+      const c = document.createElement('canvas'); c.width = c.height = 40;
+      const x = c.getContext('2d', { willReadFrequently: true });
+      x.drawImage(img, 0, 0, 40, 40);
+      const spots = [[0, 0], [32, 0], [0, 32], [32, 32]];
+      let dark = 0;
+      spots.forEach(([sx, sy]) => {
+        const d = x.getImageData(sx, sy, 8, 8).data; let s = 0, n = 0;
+        for (let i = 0; i < d.length; i += 4) { s += (d[i] + d[i + 1] + d[i + 2]) / 3; n++; }
+        if (s / n < 232) dark++;
+      });
+      if (dark >= 2) box.classList.add('card__img--fill');
+    } catch (e) {}
+  }
+  function scan(root) { (root || document).querySelectorAll('.card__img--photo img').forEach(i => { if (i.complete) check(i); else i.addEventListener('load', () => check(i), { once: true }); }); }
+  document.addEventListener('DOMContentLoaded', () => {
+    scan();
+    new MutationObserver(() => scan()).observe(document.body, { childList: true, subtree: true });
+  });
+})();
