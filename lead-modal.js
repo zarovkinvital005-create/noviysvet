@@ -104,12 +104,13 @@
     document.body.appendChild(bar);
     var first = document.getElementById('slide1');
     function upd() {
-      var show = !first || window.scrollY > window.innerHeight * 0.7;
+      var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      var show = !first || y > 160;
       var c = document.getElementById('contacts');
       if (c) { var r = c.getBoundingClientRect(); if (r.top < window.innerHeight * 0.5 && r.bottom > 0) show = false; }
       bar.classList.toggle('is-on', show);
     }
-    addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+    addEventListener('scroll', upd, { passive: true }); addEventListener('touchmove', upd, { passive: true }); addEventListener('resize', upd); addEventListener('pageshow', upd); setInterval(upd, 700); upd();
   })();
 
   window.NSLead = { open: open, close: close };
