@@ -1538,3 +1538,16 @@ html.nsl-open, html.nsl-open body { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .nsl-bar { transition: none; } }
 @media (max-width: 700px) { .cookie { bottom: 84px; } }
+
+/* Шапка (компьютер): иконки мессенджеров рядом с телефоном */
+.nsl-hm { display: none; }
+@media (min-width: 1100px) {
+  .nsl-hm { display: flex; align-items: center; gap: 8px; }
+  .nsl-hm__a i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-style: normal; transition: transform .2s; }
+  .nsl-hm__a:hover i { transform: translateY(-2px) scale(1.06); }
+  .nsl-hm__a i svg { width: 18px; height: 18px; }
+  .nsl-hm__a i b { font-size: 10px; font-weight: 800; letter-spacing: .02em; }
+  .nsl-hm .nsl-bar__a--wa i { background: #25D366; }
+  .nsl-hm .nsl-bar__a--tg i { background: #27A7E7; }
+  .nsl-hm .nsl-bar__a--max i { background: linear-gradient(135deg, #2F6BFF, #8A4DFF); }
+}
