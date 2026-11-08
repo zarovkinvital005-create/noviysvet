@@ -1381,3 +1381,12 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .about--one .eyebrow { display: inline-block; margin-bottom: 22px; }
 .about__statement { max-width: 1040px; font-weight: 300; font-size: clamp(22px, 2.5vw, 34px); line-height: 1.38; letter-spacing: -.015em; color: #4A5260; }
 .about__statement b { font-weight: 600; color: var(--abyss); }
+
+/* Кнопки блока «Поставка под ключ»: цветные + привлекающая анимация */
+.hero__btns .ihb--hot { background: #FF6A00; border-color: #FF6A00; --fill: var(--abyss); box-shadow: 0 16px 34px -14px rgba(255, 106, 0, .8); }
+@keyframes ihb-pulse { 0%, 62%, 100% { transform: scale(1); } 72% { transform: scale(1.06); } 82% { transform: scale(1); } 90% { transform: scale(1.04); } }
+@keyframes ihb-wiggle { 0%, 55%, 100% { transform: translateX(0) rotate(0); } 62% { transform: translateX(-4px) rotate(-1.5deg); } 69% { transform: translateX(4px) rotate(1.5deg); } 76% { transform: translateX(-3px) rotate(-1deg); } 83% { transform: translateX(3px) rotate(1deg); } 90% { transform: translateX(0) rotate(0); } }
+.hero__btns .ihb--pulse { animation: ihb-pulse 3.6s ease-in-out 1.2s infinite; }
+.hero__btns .ihb--wiggle { animation: ihb-wiggle 3.6s ease-in-out 2.4s infinite; }
+.hero__btns .ihb:hover, .hero__btns .ihb:focus-visible { animation: none; transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) { .hero__btns .ihb { animation: none !important; } }
