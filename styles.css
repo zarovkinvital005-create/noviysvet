@@ -1467,3 +1467,13 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .delivery__fade { display: none; }
 .delivery { padding-bottom: clamp(8px, 2vw, 24px); }
 .bento-sec { padding: clamp(48px, 6vw, 88px) 0; }
+
+/* Этапы поставки: на компьютере — компактнее, на телефоне скрыты */
+.dl-step span { font-size: clamp(12px, 1vw, 14px); }
+.dl-step b { font-size: 11px; padding: 3px 7px; }
+.dl-steps { bottom: clamp(8px, 1.4vw, 20px); }
+@media (max-width: 860px) { .dl-steps { display: none; } }
+@media (min-width: 861px) {
+  .delivery__stage { aspect-ratio: 16 / 7; }
+  .delivery__poster, .delivery__video { object-position: 50% 100%; }
+}
