@@ -1437,3 +1437,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .dir-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
 .dir-btns .ihb--dark { background: #fff; }
 @media (max-width: 520px) { .dir-btns .ihb { flex: 1 1 100%; min-width: 0; padding: 0 20px 0 40px; font-size: 16px; } }
+.preview-foot { flex-wrap: wrap; gap: 14px; }
+@media (max-width: 520px) { .preview-foot { flex-direction: column; } .preview-foot .ihb { width: 100%; }
+  .preview-foot .ihb--dark { padding: 0 16px 0 40px; font-size: 15px; } }
