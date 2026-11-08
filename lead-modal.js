@@ -131,8 +131,7 @@
     document.body.appendChild(fab);
     var first = document.getElementById('slide1');
     function upd() {
-      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var show = !first || y > 160;
+      var show = true;
       var c = document.getElementById('contacts');
       if (c) { var r = c.getBoundingClientRect(); if (r.top < window.innerHeight * 0.6 && r.bottom > 0) show = false; }
       fab.classList.toggle('is-on', show);
