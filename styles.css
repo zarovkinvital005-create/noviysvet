@@ -1390,3 +1390,6 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .hero__btns .ihb--wiggle { animation: ihb-wiggle 3.6s ease-in-out 2.4s infinite; }
 .hero__btns .ihb:hover, .hero__btns .ihb:focus-visible { animation: none; transform: scale(1.05); }
 @media (prefers-reduced-motion: reduce) { .hero__btns .ihb { animation: none !important; } }
+
+/* Заголовок «Поставка под ключ» — поменьше */
+.delivery__title { font-size: clamp(32px, 4.3vw, 66px); line-height: 1.06; }
