@@ -1440,3 +1440,4 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .preview-foot { flex-wrap: wrap; gap: 14px; }
 @media (max-width: 520px) { .preview-foot { flex-direction: column; } .preview-foot .ihb { width: 100%; }
   .preview-foot .ihb--dark { padding: 0 16px 0 40px; font-size: 15px; } }
+#directions { padding-top: clamp(40px, 5vw, 72px); }
