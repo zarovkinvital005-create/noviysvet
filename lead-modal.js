@@ -123,5 +123,22 @@
     addEventListener('scroll', upd, { passive: true }); addEventListener('touchmove', upd, { passive: true }); addEventListener('resize', upd); addEventListener('pageshow', upd); setInterval(upd, 700); upd();
   })();
 
+  /* Плавающая кнопка «Получить консультацию» (компьютер) */
+  (function () {
+    var fab = document.createElement('a');
+    fab.className = 'nsl-fab'; fab.href = '#contacts';
+    fab.innerHTML = '<i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></i><span>Получить консультацию</span>';
+    document.body.appendChild(fab);
+    var first = document.getElementById('slide1');
+    function upd() {
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var show = !first || y > 160;
+      var c = document.getElementById('contacts');
+      if (c) { var r = c.getBoundingClientRect(); if (r.top < window.innerHeight * 0.6 && r.bottom > 0) show = false; }
+      fab.classList.toggle('is-on', show);
+    }
+    addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); addEventListener('pageshow', upd); setInterval(upd, 700); upd();
+  })();
+
   window.NSLead = { open: open, close: close };
 })();

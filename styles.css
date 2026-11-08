@@ -1551,3 +1551,18 @@ html.nsl-open, html.nsl-open body { overflow: hidden; }
   .nsl-hm .nsl-bar__a--tg i { background: #27A7E7; }
   .nsl-hm .nsl-bar__a--max i { background: linear-gradient(135deg, #2F6BFF, #8A4DFF); }
 }
+
+/* ===== Плавающая кнопка «Получить консультацию» (компьютер) ===== */
+.nsl-fab { display: none; }
+@media (min-width: 861px) {
+  .nsl-fab { position: fixed; right: 28px; bottom: 28px; z-index: 9000; display: inline-flex; align-items: center; gap: 12px; height: 64px; padding: 0 28px 0 12px; border-radius: 999px;
+    background: linear-gradient(135deg, #0040C1, #2F6BFF); color: #fff; font-weight: 700; font-size: 17px; letter-spacing: -.005em; box-shadow: 0 18px 40px -14px rgba(0, 64, 193, .85);
+    opacity: 0; transform: translateY(24px) scale(.96); pointer-events: none; transition: opacity .3s, transform .3s, box-shadow .3s; }
+  .nsl-fab.is-on { opacity: 1; transform: none; pointer-events: auto; animation: nsl-ring 3s ease-out 1.5s infinite; }
+  .nsl-fab i { width: 40px; height: 40px; border-radius: 50%; background: #E8FF1F; color: #0A0D12; display: grid; place-items: center; }
+  .nsl-fab i svg { width: 20px; height: 20px; }
+  .nsl-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 22px 46px -12px rgba(0, 64, 193, .95); animation: none; }
+  html.nsl-open .nsl-fab { display: none; }
+}
+@keyframes nsl-ring { 0%, 55% { box-shadow: 0 18px 40px -14px rgba(0,64,193,.85), 0 0 0 0 rgba(47,107,255,.55); } 100% { box-shadow: 0 18px 40px -14px rgba(0,64,193,.85), 0 0 0 20px rgba(47,107,255,0); } }
+@media (prefers-reduced-motion: reduce) { .nsl-fab.is-on { animation: none; } }
