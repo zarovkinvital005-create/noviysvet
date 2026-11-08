@@ -1441,3 +1441,8 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 @media (max-width: 520px) { .preview-foot { flex-direction: column; } .preview-foot .ihb { width: 100%; }
   .preview-foot .ihb--dark { padding: 0 16px 0 40px; font-size: 15px; } }
 #directions { padding-top: clamp(40px, 5vw, 72px); }
+.preview-foot .ihb--hot { background: #FF6A00; border-color: #FF6A00; --fill: var(--abyss); color: #fff; box-shadow: 0 16px 34px -14px rgba(255, 106, 0, .8); }
+.preview-foot .ihb--hot .ihb__dot { background: #fff; }
+.preview-foot .ihb--wiggle { animation: ihb-wiggle 3.6s ease-in-out 2s infinite; }
+.preview-foot .ihb:hover, .preview-foot .ihb:focus-visible { animation: none; transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) { .preview-foot .ihb { animation: none !important; } }
