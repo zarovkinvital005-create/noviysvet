@@ -69,7 +69,7 @@
 </script>
 <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=20261108i">
+<link rel="stylesheet" href="styles.css?v=20261108j">
 </head>
 <body>
 
@@ -277,6 +277,39 @@
   <div class="btip" id="btip"></div>
 </section>
 
+<!-- ===== Превью каталога ===== -->
+<section class="section" id="catalog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Каталог</span>
+        <h2 class="h2"><b class="w8">Станки</b> <em class="ac">в наличии</em><br><span class="w2">и под заказ</span></h2>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="stock">В наличии</button>
+        <button class="tab" data-tab="order">Под заказ</button>
+      </div>
+    </div>
+    <div class="grid" id="preview-grid"></div>
+    <div class="preview-foot">
+      <a class="ihb ihb--cobalt ihb--solid" href="catalog.html?status=stock"><span class="ihb__text">Смотреть все станки в наличии</span><span class="ihb__hover" aria-hidden="true"><span>Смотреть все станки в наличии</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Фото-баннер ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="band band--solid reveal">
+      <div class="band__in">
+        <h2><span class="w2">Не нашли</span> <b class="w8">нужный станок?</b></h2>
+        <p>Привезём под заказ с завода-производителя. Расскажите о задаче — подберём решение.</p>
+        <a class="ihb ihb--dark" href="#contacts"><span class="ihb__text">Обсудить задачу</span><span class="ihb__hover" aria-hidden="true"><span>Обсудить задачу</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Страны ===== -->
 <section class="section section--dark" id="origins">
   <div class="wrap">
@@ -342,39 +375,6 @@
   </div>
 </section>
 
-<!-- ===== Превью каталога ===== -->
-<section class="section" id="catalog">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Каталог</span>
-        <h2 class="h2"><b class="w8">Станки</b> <em class="ac">в наличии</em><br><span class="w2">и под заказ</span></h2>
-      </div>
-      <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="stock">В наличии</button>
-        <button class="tab" data-tab="order">Под заказ</button>
-      </div>
-    </div>
-    <div class="grid" id="preview-grid"></div>
-    <div class="preview-foot">
-      <a class="ihb ihb--cobalt ihb--solid" href="catalog.html?status=stock"><span class="ihb__text">Смотреть все станки в наличии</span><span class="ihb__hover" aria-hidden="true"><span>Смотреть все станки в наличии</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Фото-баннер ===== -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="band band--solid reveal">
-      <div class="band__in">
-        <h2><span class="w2">Не нашли</span> <b class="w8">нужный станок?</b></h2>
-        <p>Привезём под заказ с завода-производителя. Расскажите о задаче — подберём решение.</p>
-        <a class="ihb ihb--dark" href="#contacts"><span class="ihb__text">Обсудить задачу</span><span class="ihb__hover" aria-hidden="true"><span>Обсудить задачу</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i class="ihb__dot" aria-hidden="true"></i></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== Контакты + заявка (компактно, всё видно сразу) ===== -->
 <section class="section section--dark contacts" id="contacts">
   <div class="wrap">
@@ -415,8 +415,8 @@
 <script src="catalog-data.js"></script>
 <script src="catalog-stock.js"></script>
 <script src="series-pages.js"></script>
-<script src="main.js?v=20261108i"></script>
-<script src="motion.js?v=20261108i"></script>
+<script src="main.js?v=20261108j"></script>
+<script src="motion.js?v=20261108j"></script>
 <script src="bento.js"></script>
 <script src="trail.js"></script>
 <script>
