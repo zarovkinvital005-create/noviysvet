@@ -20,6 +20,7 @@
         '<div class="nsl__chip" hidden></div>' +
         '<div class="nsl__frame"></div>' +
         '<p class="nsl__alt">Быстрее — позвоните: <a href="tel:' + PHONE + '">' + PHONE_TXT + '</a></p>' +
+        '<div class="nsl__msg"><a href="https://wa.me/79202533655" target="_blank" rel="noopener">WhatsApp</a><a href="https://t.me/+79202533655" target="_blank" rel="noopener">Telegram</a><a href="https://max.ru/u/f9LHodD0cOI8SsbL9I9vqXVjg8vl4qCBLKuvCouhfAgyILT3RL8zuoehD-c" target="_blank" rel="noopener">MAX</a></div>' +
       '</div>';
     document.body.appendChild(box);
     frameHost = box.querySelector('.nsl__frame');
@@ -105,33 +106,19 @@
       }).join('');
       hc.insertBefore(hm, ph);
     }
-    var bar = document.createElement('nav');
-    bar.className = 'nsl-bar'; bar.setAttribute('aria-label', 'Быстрая связь');
-    bar.innerHTML = BAR.map(function (b) {
-      var ext = b[0] === 'call' ? '' : ' target="_blank" rel="noopener"';
-      return '<a class="nsl-bar__a nsl-bar__a--' + b[0] + '" href="' + b[1] + '"' + ext + '><i>' + b[3] + '</i><span>' + b[2] + '</span></a>';
-    }).join('');
-    document.body.appendChild(bar);
-    var first = document.getElementById('slide1');
-    function upd() {
-      var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      var show = !first || y > 160;
-      var c = document.getElementById('contacts');
-      if (c) { var r = c.getBoundingClientRect(); if (r.top < window.innerHeight * 0.5 && r.bottom > 0) show = false; }
-      bar.classList.toggle('is-on', show);
-    }
-    addEventListener('scroll', upd, { passive: true }); addEventListener('touchmove', upd, { passive: true }); addEventListener('resize', upd); addEventListener('pageshow', upd); setInterval(upd, 700); upd();
   })();
 
   /* Плавающая кнопка «Получить консультацию» (компьютер) */
   (function () {
     var fab = document.createElement('a');
     fab.className = 'nsl-fab'; fab.href = '#contacts';
-    fab.innerHTML = '<i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></i><span>Получить консультацию</span>';
+    fab.innerHTML = '<i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></i><span>Получить консультацию</span><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></em>';
     document.body.appendChild(fab);
     var first = document.getElementById('slide1');
     function upd() {
-      var show = true;
+      var mob = window.matchMedia('(max-width: 860px)').matches;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var show = !(mob && first) || y > 160;
       var c = document.getElementById('contacts');
       if (c) { var r = c.getBoundingClientRect(); if (r.top < window.innerHeight * 0.6 && r.bottom > 0) show = false; }
       fab.classList.toggle('is-on', show);
