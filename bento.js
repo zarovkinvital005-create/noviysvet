@@ -10,7 +10,7 @@
       { k: 'Шлифовальные станки', v: 0.88 }
     ],
     // Сроки, месяцев. Шкала индикатора — от 0 до max
-    time: { max: 8, our: 3, market: [4, 7],
+    time: { max: 8, our: 5, market: [4, 7],
       rows: [
         { k: 'Из наличия', v: 'до 1 месяца', c: '#E8FF1F' },
         { k: 'Под заказ', v: '1–5 месяцев', c: '#C9D2FF' },
@@ -160,7 +160,7 @@
       const [x1, y1] = P(136, a), [x2, y2] = P(i % 7 === 0 ? 110 : 118, a);
       s += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${col}" stroke-width="3.2" stroke-linecap="round" style="--d:${i * 12}ms"/>`;
     }
-    s += `<text y="-26" text-anchor="middle" font-family="Urbanist" font-weight="200" font-size="58" fill="#fff" letter-spacing="-2" class="g-num">0</text>
+    s += `<text y="-26" text-anchor="middle" font-family="Urbanist" font-weight="200" font-size="58" fill="#fff" letter-spacing="-2" class="g-num">1–5</text>
           <text y="-2" text-anchor="middle" font-size="12.5" font-weight="500" fill="rgba(255,255,255,.45)" font-family="Urbanist">мес. · под заказ</text>`;
     svg.innerHTML = s;
     chart('glist').innerHTML = T.rows.map(r => `<div class="gr"><i style="background:${r.c}"></i><span>${r.k}</span><b>${r.v}</b></div>`).join('');
@@ -223,7 +223,7 @@
     root.classList.add('in');
     root.querySelectorAll('.bc').forEach((c, i) => c.style.transitionDelay = (i * 70) + 'ms');
     dn.count(avgCut);
-    countUp(root.querySelector('.g-num'), DATA.time.our);
+    root.querySelector('.g-num').textContent = '1–5';
     countUp(q('[data-count="partners"]'), DATA.partners);
     const catEl = q('[data-count="categories"]'); if (catEl) countUp(catEl, DATA.categories);
     countUp(q('[data-count="stock"]'), DATA.stock.total);
