@@ -1423,3 +1423,8 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .slide1__tag { font-size: 22px; letter-spacing: .16em; }
 @media (max-width: 700px) { .slide1__tag { font-size: 15px; letter-spacing: .14em; } }
 .delivery__side .hero__btns .ihb { flex: 0 0 auto; }
+
+/* Плашка услуг: акцент на второй строке */
+.svc-note { background: linear-gradient(135deg, #0A3FC4, #2F6BFF); border-left: 0; box-shadow: 0 20px 44px -22px rgba(0, 64, 193, .7); }
+.svc-note b { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.svc-note p { margin-top: 10px; font-size: clamp(22px, 2.1vw, 28px); font-weight: 700; line-height: 1.25; letter-spacing: -.02em; color: #fff; }
