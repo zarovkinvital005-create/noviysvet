@@ -1367,3 +1367,11 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .b-kpi { grid-column: span 6; }
 @media (max-width: 1199px) { .b-kpi, .b-kpi--last { grid-column: span 6; } }
 @media (max-width: 520px) { .b-kpi, .b-kpi--last { grid-column: span 12; } }
+
+/* Кнопка «Смотреть все станки…» на телефоне: текст не налезает на точку */
+@media (max-width: 520px) {
+  .preview-foot { padding: 0 4px; }
+  .preview-foot .ihb { width: 100%; min-width: 0; padding: 0 16px 0 40px; font-size: 15px; }
+  .preview-foot .ihb__dot { left: 18px; }
+  .preview-foot .ihb__text { transform: none; }
+}
