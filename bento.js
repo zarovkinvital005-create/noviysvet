@@ -133,8 +133,8 @@
 
   // ---------- 1. Цены ----------
   const avgCut = Math.round(DATA.price.reduce((a, p) => a + (1 - p.v), 0) / DATA.price.length * 100);
-  const dn = dotNumber(q('[data-dot="price"]'), innerWidth < 520 ? 5.6 : 8);
-  const pb = chart('price');
+  const dn = q('[data-dot="price"]') ? dotNumber(q('[data-dot="price"]'), innerWidth < 520 ? 5.6 : 8) : null;
+  const pb = chart('price') || document.createElement('div');
   pb.innerHTML = DATA.price.map((p, i) => `
     <div class="pb" data-i="${i}">
       <span class="pb__k">${p.k}</span>
@@ -181,6 +181,7 @@
   // ---------- 3. Выбор: колонки-капсулы ----------
   function drawCols(animate) {
     const C = DATA.choice, card = root.querySelector('.b-choice'), svg = chart('cols');
+    if (!card || !svg) return;
     const head = card.querySelector('.bc__row');
     const W = card.clientWidth - 36, H = card.clientHeight - head.offsetHeight - 62, pb = 22, n = C.cols.length;
     const max = Math.ceil(Math.max(...C.cols.map(c => c.v)) / 10) * 10 + 10;
@@ -220,7 +221,7 @@
     if (started) return; started = true;
     root.classList.add('in');
     root.querySelectorAll('.bc').forEach((c, i) => c.style.transitionDelay = (i * 70) + 'ms');
-    dn.count(avgCut);
+    if (dn) dn.count(avgCut);
     root.querySelector('.g-num').textContent = '1–5';
     countUp(q('[data-count="partners"]'), DATA.partners);
     const catEl = q('[data-count="categories"]'); if (catEl) countUp(catEl, DATA.categories);
