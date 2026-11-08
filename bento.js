@@ -43,7 +43,7 @@
     const SHORT = { 'Токарные центры': 'Ток.', 'Вертикальные фрезерные центры': 'Верт.', '5-осевые центры': '5 осей', 'Горизонтальные фрезерные центры': 'Гор.',
       'Портальные фрезерные центры': 'Порт.', 'Многозадачные центры': 'Мног.', 'Вертикальные токарные центры': 'В.ток.', 'Расточно-фрезерные центры': 'Расточ.',
       'Автоматы продольного точения': 'Швейц.', 'Шлифовальные станки': 'Шлиф.', 'Листообработка': 'Лист' };
-    const types = cnt(CAT, x => x.type);
+    const types = cnt(CAT.filter(x => x.status === 'order'), x => x.type);
     DATA.categories = types.length;
     DATA.choice = { avg: 0, cols: types.slice(0, 6).map(([t, n]) => ({ k: SHORT[t] || t.slice(0, 5), full: t, v: n })) };
     const inStock = CAT.filter(x => x.status === 'stock' || x.status === 'transit');
@@ -211,8 +211,8 @@
   function drawStock() {
     const S = DATA.stock, tones = ['rgba(255,255,255,.95)', 'rgba(255,255,255,.65)', 'rgba(255,255,255,.4)', 'rgba(255,255,255,.22)'];
     chart('segbar').innerHTML = `<div class="sb">${S.split.map((p, i) => `<div style="flex:0 0 calc(${p.v * 100}% - 2px);background:${tones[i]};transition-delay:${.1 + i * .1}s"></div>`).join('')}</div>
-      <div class="sl">${S.split.map(p => `<span style="flex:0 0 calc(${p.v * 100}% - 2px)">${p.k} ${Math.round(p.v * 100)}%</span>`).join('')}</div>`;
-    chart('slist').innerHTML = S.rows.map(r => `<div class="sr"><div><b>${r.k}</b><small>${Math.round(r.share * 100)}% наличия</small></div><span class="sbar" aria-hidden="true"><i style="width:${Math.max(6, Math.round(r.share * 100))}%"></i></span><span class="cnt">${r.v} поз.</span></div>`).join('');
+      <div class="sl">${S.split.map(p => `<span style="flex:0 0 calc(${p.v * 100}% - 2px)">${p.k} ${p.n}</span>`).join('')}</div>`;
+    chart('slist').innerHTML = S.rows.map(r => `<div class="sr"><div><b>${r.k}</b></div><span class="sbar" aria-hidden="true"><i style="width:${Math.max(6, Math.round(r.share * 100))}%"></i></span><span class="cnt">${r.v} поз.</span></div>`).join('');
   }
   drawStock();
 
@@ -225,15 +225,15 @@
     dn.count(avgCut);
     countUp(root.querySelector('.g-num'), DATA.time.our);
     countUp(q('[data-count="partners"]'), DATA.partners);
-    countUp(q('[data-count="categories"]'), DATA.categories);
+    const catEl = q('[data-count="categories"]'); if (catEl) countUp(catEl, DATA.categories);
     countUp(q('[data-count="stock"]'), DATA.stock.total);
-    drawTicks(chart('ticks-cat'), 1);
+    if (chart('ticks-cat')) drawTicks(chart('ticks-cat'), 1);
     drawCols(true);
   }
   new IntersectionObserver(([e], o) => { if (e.isIntersecting) { start(); o.disconnect(); } }, { threshold: 0.15 }).observe(root);
 
   let rz;
   new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => {
-    if (!started) return; drawCols(false); drawTicks(chart('ticks-cat'), 1);
+    if (!started) return; drawCols(false); if (chart('ticks-cat')) drawTicks(chart('ticks-cat'), 1);
   }, 120); }).observe(root);
 })();
