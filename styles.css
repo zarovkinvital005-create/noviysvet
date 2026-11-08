@@ -1446,3 +1446,5 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .preview-foot .ihb--wiggle { animation: ihb-wiggle 3.6s ease-in-out 2s infinite; }
 .preview-foot .ihb:hover, .preview-foot .ihb:focus-visible { animation: none; transform: scale(1.05); }
 @media (prefers-reduced-motion: reduce) { .preview-foot .ihb { animation: none !important; } }
+#catalog { padding-bottom: clamp(32px, 4vw, 56px); }
+#directions { padding-top: clamp(32px, 4vw, 56px); }
