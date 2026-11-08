@@ -1454,3 +1454,16 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .b-stock { grid-column: span 7; height: 400px; }
 .b-kpi { grid-column: span 12; }
 @media (max-width: 1199px) { .b-time, .b-stock { grid-column: span 12; height: auto; min-height: 380px; } }
+
+/* Анимация доставки: без подписей этапов, ниже по высоте */
+.delivery__stage { aspect-ratio: 16 / 6; }
+@media (max-width: 860px) { .delivery__stage { aspect-ratio: auto; padding-top: 240px; } .delivery__poster, .delivery__video { height: 240px; } }
+
+/* Плотнее: меньше воздуха между блоками */
+.section { padding: clamp(44px, 6vw, 84px) 0; }
+.services { padding-bottom: clamp(44px, 6vw, 84px); }
+.services__in { padding-top: clamp(170px, 14vw, 200px); }
+@media (max-width: 860px) { .services__in { padding-top: 170px; } }
+.delivery__fade { display: none; }
+.delivery { padding-bottom: clamp(8px, 2vw, 24px); }
+.bento-sec { padding: clamp(48px, 6vw, 88px) 0; }
