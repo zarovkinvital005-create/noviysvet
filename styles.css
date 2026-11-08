@@ -1400,3 +1400,7 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .slide1__btn--shake { animation: s1-shake 3.4s ease-in-out 1.5s infinite, s1-ring 3.4s ease-out 1.5s infinite; }
 .slide1__btn--shake:hover, .slide1__btn--shake:focus-visible { animation: none; transform: scale(1.05); }
 @media (prefers-reduced-motion: reduce) { .slide1__btn--shake { animation: none; } }
+
+/* Единственная кнопка первого слайда — цветная */
+.slide1__btn--accent { background: #E8FF1F; border-color: #E8FF1F; color: #0A0D12; box-shadow: 0 14px 34px -12px rgba(232,255,31,.55); }
+.slide1__btn--accent:hover, .slide1__btn--accent:focus-visible { background: #fff; border-color: #fff; color: #0A0D12; }
