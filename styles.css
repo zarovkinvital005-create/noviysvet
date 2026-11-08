@@ -1375,3 +1375,9 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
   .preview-foot .ihb__dot { left: 18px; }
   .preview-foot .ihb__text { transform: none; }
 }
+
+/* О компании: единый текст одного размера */
+.about--one { grid-template-columns: 1fr; gap: clamp(36px, 5vw, 64px); align-items: start; }
+.about--one .eyebrow { display: inline-block; margin-bottom: 22px; }
+.about__statement { max-width: 1040px; font-weight: 300; font-size: clamp(22px, 2.5vw, 34px); line-height: 1.38; letter-spacing: -.015em; color: #4A5260; }
+.about__statement b { font-weight: 600; color: var(--abyss); }
