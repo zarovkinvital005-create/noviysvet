@@ -1428,3 +1428,7 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 .svc-note { background: linear-gradient(135deg, #0A3FC4, #2F6BFF); border-left: 0; box-shadow: 0 20px 44px -22px rgba(0, 64, 193, .7); }
 .svc-note b { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); }
 .svc-note p { margin-top: 10px; font-size: clamp(22px, 2.1vw, 28px); font-weight: 700; line-height: 1.25; letter-spacing: -.02em; color: #fff; }
+
+/* «Заводы-партнёры» теперь одна на всю строку */
+.b-kpi, .b-kpi--last { grid-column: span 12; }
+@media (max-width: 1199px) { .b-kpi, .b-kpi--last { grid-column: span 12; } }
