@@ -210,8 +210,6 @@
   // ---------- 4. Наличие ----------
   function drawStock() {
     const S = DATA.stock, tones = ['rgba(255,255,255,.95)', 'rgba(255,255,255,.65)', 'rgba(255,255,255,.4)', 'rgba(255,255,255,.22)'];
-    chart('segbar').innerHTML = `<div class="sb">${S.split.map((p, i) => `<div style="flex:0 0 calc(${p.v * 100}% - 2px);background:${tones[i]};transition-delay:${.1 + i * .1}s"></div>`).join('')}</div>
-      <div class="sl">${S.split.map(p => `<span style="flex:0 0 calc(${p.v * 100}% - 2px)">${p.k} ${p.n}</span>`).join('')}</div>`;
     chart('slist').innerHTML = S.rows.map(r => `<div class="sr"><div><b>${r.k}</b></div><span class="sbar" aria-hidden="true"><i style="width:${Math.max(6, Math.round(r.share * 100))}%"></i></span><span class="cnt">${r.v} поз.</span></div>`).join('');
   }
   drawStock();
