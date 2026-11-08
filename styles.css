@@ -1393,3 +1393,10 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 
 /* Заголовок «Поставка под ключ» — поменьше */
 .delivery__title { font-size: clamp(32px, 4.3vw, 66px); line-height: 1.06; }
+
+/* Первый слайд: «Купить станок» привлекает внимание */
+@keyframes s1-shake { 0%, 58%, 100% { transform: translateX(0) rotate(0); } 63% { transform: translateX(-5px) rotate(-1.5deg); } 69% { transform: translateX(5px) rotate(1.5deg); } 75% { transform: translateX(-4px) rotate(-1deg); } 81% { transform: translateX(4px) rotate(1deg); } 87% { transform: translateX(0) rotate(0); } }
+@keyframes s1-ring { 0%, 58% { box-shadow: 0 0 0 0 rgba(232,255,31,.55); } 90%, 100% { box-shadow: 0 0 0 16px rgba(232,255,31,0); } }
+.slide1__btn--shake { animation: s1-shake 3.4s ease-in-out 1.5s infinite, s1-ring 3.4s ease-out 1.5s infinite; }
+.slide1__btn--shake:hover, .slide1__btn--shake:focus-visible { animation: none; transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) { .slide1__btn--shake { animation: none; } }
