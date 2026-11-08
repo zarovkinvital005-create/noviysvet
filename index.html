@@ -69,7 +69,7 @@
 </script>
 <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=20261109d">
+<link rel="stylesheet" href="styles.css?v=20261109e">
 </head>
 <body>
 
@@ -400,9 +400,9 @@
 <script src="catalog-data.js"></script>
 <script src="catalog-stock.js"></script>
 <script src="series-pages.js"></script>
-<script src="main.js?v=20261109d"></script>
-<script src="motion.js?v=20261109d"></script>
-<script src="bento.js?v=20261109d"></script>
+<script src="main.js?v=20261109e"></script>
+<script src="motion.js?v=20261109e"></script>
+<script src="bento.js?v=20261109e"></script>
 <script src="trail.js"></script>
 <script>
   // дублируем ленты для бесшовной прокрутки
@@ -452,8 +452,16 @@
     return [...list.filter(p => FEATURED.includes(p.id)), ...list.filter(p => !FEATURED.includes(p.id))].slice(0, 4);
   };
   const grid = document.getElementById('preview-grid');
+  const mobMQ = window.matchMedia('(max-width: 700px)');
+  let curTab = 'stock';
   const render = s => {
-    const list = pick(s);
+    curTab = s;
+    let list = pick(s);
+    // на телефоне — две карточки: DVF 5000 и один станок, который уже на складе
+    if (mobMQ.matches && list.length > 2) {
+      const real = s === 'stock' ? list.slice(1).find(p => p.status === 'stock') : null;
+      list = [list[0], real || list[1]];
+    }
     const all = document.querySelector('.preview-foot a');
     if (all) {
       const txt = s === 'order' ? 'Смотреть все станки под заказ' : 'Смотреть все станки в наличии';
@@ -471,6 +479,7 @@
   const firstTab = CATALOG.some(p => p.status === 'stock') ? 'stock' : 'order';
   document.querySelectorAll('#catalog .tab').forEach(x => x.classList.toggle('active', x.dataset.tab === firstTab));
   render(firstTab);
+  (mobMQ.addEventListener ? mobMQ.addEventListener('change', () => render(curTab)) : mobMQ.addListener(() => render(curTab)));
 
   // Заявка на подбор — форма «Яндекс Формы» (ответы хранятся в России). Если пришли из карточки каталога, модель подставляется в скрытое поле model.
   (function () {
