@@ -1422,3 +1422,4 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 /* Подпись справа сверху на первом слайде — крупнее */
 .slide1__tag { font-size: 22px; letter-spacing: .16em; }
 @media (max-width: 700px) { .slide1__tag { font-size: 15px; letter-spacing: .14em; } }
+.delivery__side .hero__btns .ihb { flex: 0 0 auto; }
