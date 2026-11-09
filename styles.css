@@ -1443,6 +1443,8 @@ h1 b, .h2 b, .band h2 b, .delivery__title b, .slide1__title b { font-weight: 800
 #directions { padding-top: clamp(40px, 5vw, 72px); }
 .preview-foot .ihb--hot { background: #FF6A00; border-color: #FF6A00; --fill: var(--abyss); color: #fff; box-shadow: 0 16px 34px -14px rgba(255, 106, 0, .8); }
 .preview-foot .ihb--hot .ihb__dot { background: #fff; }
+.preview-foot .ihb--hot:hover .ihb__dot, .preview-foot .ihb--hot:focus-visible .ihb__dot, .preview-foot .ihb--hot:active .ihb__dot { background: var(--abyss); }
+.preview-foot .ihb--hot:hover, .preview-foot .ihb--hot:focus-visible, .preview-foot .ihb--hot:active { border-color: var(--abyss); }
 .preview-foot .ihb--wiggle { animation: ihb-wiggle 3.6s ease-in-out 2s infinite; }
 .preview-foot .ihb:hover, .preview-foot .ihb:focus-visible { animation: none; transform: scale(1.05); }
 @media (prefers-reduced-motion: reduce) { .preview-foot .ihb { animation: none !important; } }
@@ -1610,3 +1612,7 @@ html.nsl-open, html.nsl-open body { overflow: hidden; }
 
 .cta-lime:hover, .cta-lime:focus-visible { background: #0040C1; color: #fff; box-shadow: 0 22px 46px -14px rgba(0, 64, 193, .85); }
 .cta-lime:hover i, .cta-lime:focus-visible i { background: #E8FF1F; color: #0A0D12; }
+
+/* Пометка о нейросетевом фото: мелко и бледно */
+.ai-note { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; font-size: 9px; line-height: 1.2; letter-spacing: .01em; color: rgba(113,118,128,.55); pointer-events: none; z-index: 2; padding: 0 10px; }
+.card__img .ai-note { font-size: 8px; padding: 0 6px; bottom: 4px; color: rgba(255,255,255,.62); text-shadow: 0 0 3px rgba(0,0,0,.55); white-space: nowrap; }

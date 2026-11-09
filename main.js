@@ -37,6 +37,9 @@ function whenEta(eta){if(!eta||!eta.length)return '';const m={январь:'ян
   if (y) y.textContent = new Date().getFullYear();
 })();
 
+// Фото, сгенерированные нейросетью (подписываются мелкой пометкой)
+const AI_PHOTOS = ['tr-spinex-sl206.jpg', 'tr-diamond-ag600.jpg', 'tr-diamond-ag300.jpg'];
+
 // Карточка станка
 function productCard(p) {
   const specs = Object.entries(p.specs || {}).map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('');
@@ -55,6 +58,7 @@ function productCard(p) {
       <div class="card__img ${p.img ? 'card__img--photo' : 'card__img--empty'}">
         ${img || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>`}
         <span class="badge ${p.status === 'stock' || (p.status === 'transit' && !(p.eta && p.eta.length)) ? '' : 'badge--order'}">${p.status === 'order' ? 'Под заказ' : p.status === 'transit' ? 'В наличии' + (whenEta(p.eta) ? ' ' + whenEta(p.eta) : '') : 'В наличии'}${p.cond === 'used' ? ' · б/у' : ''}</span>
+        ${AI_PHOTOS.some(a => (p.img || '').endsWith(a)) ? '<span class="ai-note">Фото сгенерировано нейросетью. Настоящие данные могут иметь отличия.</span>' : ''}
         ${p.hit ? '<span class="hit">★ Хит продаж</span>' : ''}
         ${p.country ? `<span class="flag">${codes[p.country] || p.country}</span>` : ''}
       </div>

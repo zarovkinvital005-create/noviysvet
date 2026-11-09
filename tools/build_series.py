@@ -37,6 +37,7 @@ for x in STOCK_ITEMS:
                           brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'], eta=x['eta'])
     if x['status'] == 'stock': STOCK.add(x['id'])
     else: TRANSIT.add(x['id'])
+AI_PHOTOS = ('tr-spinex-sl206.jpg', 'tr-diamond-ag600.jpg', 'tr-diamond-ag300.jpg')  # сгенерированы нейросетью
 def photo_of(i):
     p = items[i].get('img') or f'assets/catalog/{i}.jpg'
     return p if os.path.exists(p) else ''
@@ -147,7 +148,7 @@ def page(i, s):
 
 <main class="section sp-main">
   <div class="wrap sp-grid">
-    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">') if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
+    <figure class="sp-photo">{('<img src="../' + ph + '" alt="' + e(it['model']) + '">' + ('<span class="ai-note">Фото сгенерировано нейросетью. Настоящие данные могут иметь отличия.</span>' if ph.endswith(AI_PHOTOS) else '')) if has_photo else '<span class="sp-nophoto">Фото уточняйте у менеджера</span>'}<span class="badge{' badge--order' if ((in_transit and eta) or (not in_transit and not in_stock)) else ''}">{('В наличии' + (' ' + when(eta) if eta else '')) if in_transit else ('В наличии' if in_stock else 'Под заказ')}{' · б/у' if used else ''}</span></figure>
     <div class="sp-info">
       <ul class="specs sp-facts">{facts}</ul>
       {('<p class="sp-vars"><b>' + str(nv) + ' модификаци' + ('я' if nv == 1 else ('и' if nv in (2,3,4) else 'й')) + ':</b> ' + e(it['variants']) + '</p>') if it['variants'] else ''}
