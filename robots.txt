@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zarovkinvital005-create.github.io/noviysvet/sitemap.xml
+Sitemap: https://novsvet52.ru/sitemap.xml

@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from series_data import SERIES
 from stock_items import STOCK_ITEMS
 
-BASE = 'https://zarovkinvital005-create.github.io/noviysvet/'
+BASE = 'https://novsvet52.ru/'
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(root)
 
