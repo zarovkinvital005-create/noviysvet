@@ -47,7 +47,7 @@ function productCard(p) {
   const img = p.img
     ? `<img src="${p.img}" alt="${name}" loading="lazy">`
     : '';
-  const codes = { 'Тайвань': 'TW', 'Китай': 'CN', 'Европа': 'EU', 'Корея': 'KR' };
+  const codes = { 'Тайвань': 'TW', 'Китай': 'CN', 'Европа': 'EU', 'Корея': 'KR', 'Швейцария': 'CH' };
   const nVar = p.variants ? p.variants.split(',').length : 0;
   const book = p.status === 'transit';
   const ask = `index.html?m=${encodeURIComponent(name)}${book ? '&b=1' : ''}#contacts`;
