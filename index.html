@@ -69,7 +69,7 @@
 </script>
 <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=20261121e">
+<link rel="stylesheet" href="styles.css?v=20261121f">
 </head>
 <body>
 
@@ -209,48 +209,6 @@
   </div>
 </section>
 
-<!-- ===== Слайд 3: преимущества — бенто с живыми диаграммами ===== -->
-<section class="bento-sec" id="advantages">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <span class="eyebrow">Почему «Новый Свет»</span>
-        <h2 class="h2"><b class="w8">Выгоднее.</b> <em class="ac">Быстрее.</em><br><span class="w2">Больше выбор.</span></h2>
-      </div>
-    </div>
-
-    <div class="bento" id="bento">
-      <!-- Сроки -->
-      <article class="bc bc--graph b-time" aria-label="Сроки поставки">
-        <div class="bc__in">
-          <div class="bc__row"><h3 class="bc__ttl">Сроки поставки</h3><span class="bchip bchip--glass">Быстрее рынка</span></div>
-          <svg class="gauge" data-chart="gauge" viewBox="-150 -150 300 168" aria-hidden="true"></svg>
-          <div class="glist" data-chart="glist"></div>
-        </div>
-      </article>
-
-      <!-- KPI -->
-
-      <!-- Наличие -->
-      <article class="bc bc--green b-stock" aria-label="Широкий выбор из наличия">
-        <div class="bc__in">
-          <div class="bc__row"><h3 class="bc__ttl">Широкий выбор из наличия</h3><span class="bc__muted">в наличии</span></div>
-          <div class="kpi-row" style="margin-top:12px"><span class="kpi-num" data-count="stock">0</span><span><span class="bc__delta">отгрузка</span><span class="bc__muted"> до 1 месяца</span></span></div>
-          <div class="slist" data-chart="slist"></div>
-        </div>
-      </article>
-
-      <article class="bc bc--lime b-kpi" aria-label="Производители-партнёры">
-        <div class="bc__in">
-          <div class="bc__row"><span class="bc__cap">Заводы-партнёры</span><span class="bchip">напрямую</span></div>
-          <div class="kpi-big"><svg width="28" height="34" viewBox="0 0 34 40" aria-hidden="true"><path d="M17 37V5M5 17L17 5l12 12" fill="none" stroke="#0b0b0c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-count="partners">0</span></div>
-        </div>
-      </article>
-    </div>
-  </div>
-  <div class="btip" id="btip"></div>
-</section>
-
 <!-- ===== Превью каталога ===== -->
 <section class="section" id="catalog">
   <div class="wrap">
@@ -303,6 +261,48 @@
       </a>
     </div>
   </div>
+</section>
+
+<!-- ===== Слайд 3: преимущества — бенто с живыми диаграммами ===== -->
+<section class="bento-sec" id="advantages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Почему «Новый Свет»</span>
+        <h2 class="h2"><b class="w8">Выгоднее.</b> <em class="ac">Быстрее.</em><br><span class="w2">Больше выбор.</span></h2>
+      </div>
+    </div>
+
+    <div class="bento" id="bento">
+      <!-- Сроки -->
+      <article class="bc bc--graph b-time" aria-label="Сроки поставки">
+        <div class="bc__in">
+          <div class="bc__row"><h3 class="bc__ttl">Сроки поставки</h3><span class="bchip bchip--glass">Быстрее рынка</span></div>
+          <svg class="gauge" data-chart="gauge" viewBox="-150 -150 300 168" aria-hidden="true"></svg>
+          <div class="glist" data-chart="glist"></div>
+        </div>
+      </article>
+
+      <!-- KPI -->
+
+      <!-- Наличие -->
+      <article class="bc bc--green b-stock" aria-label="Широкий выбор из наличия">
+        <div class="bc__in">
+          <div class="bc__row"><h3 class="bc__ttl">Широкий выбор из наличия</h3><span class="bc__muted">в наличии</span></div>
+          <div class="kpi-row" style="margin-top:12px"><span class="kpi-num" data-count="stock">0</span><span><span class="bc__delta">отгрузка</span><span class="bc__muted"> до 1 месяца</span></span></div>
+          <div class="slist" data-chart="slist"></div>
+        </div>
+      </article>
+
+      <article class="bc bc--lime b-kpi" aria-label="Производители-партнёры">
+        <div class="bc__in">
+          <div class="bc__row"><span class="bc__cap">Заводы-партнёры</span><span class="bchip">напрямую</span></div>
+          <div class="kpi-big"><svg width="28" height="34" viewBox="0 0 34 40" aria-hidden="true"><path d="M17 37V5M5 17L17 5l12 12" fill="none" stroke="#0b0b0c" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-count="partners">0</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="btip" id="btip"></div>
 </section>
 
 <!-- ===== Фото-баннер ===== -->
@@ -383,9 +383,9 @@
 <script src="catalog-data.js"></script>
 <script src="catalog-stock.js"></script>
 <script src="series-pages.js"></script>
-<script src="main.js?v=20261121e"></script>
-<script src="motion.js?v=20261109a1"></script>
-<script src="bento.js?v=20261109a1"></script>
+<script src="main.js?v=20261121f"></script>
+<script src="motion.js?v=20261121f"></script>
+<script src="bento.js?v=20261121f"></script>
 <script src="trail.js"></script>
 <script>
   // дублируем ленты для бесшовной прокрутки
