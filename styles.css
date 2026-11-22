@@ -1646,3 +1646,5 @@ html.nsl-open, html.nsl-open body { overflow: hidden; }
 .logi__ph--big { aspect-ratio: 21 / 9; }
 @media (max-width: 1100px) { .services__text { padding-top: 0; } }
 @media (max-width: 860px) { .services__in { padding-top: 130px; } }
+
+.footer__legal { margin-top: 10px; padding-top: 0; border-top: 0; }
