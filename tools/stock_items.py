@@ -4,9 +4,9 @@
 # Цены из прайса хранятся в поле _price и на сайт НЕ выводятся (на сайте «По запросу»).
 DN = 'DN Solutions'
 
-def item(id, status, type, country, brand, model, title, specs, details, config=(), img='', see='', cond='new', used=None, price='', note='', eta=()):
+def item(id, status, type, country, brand, model, title, specs, details, config=(), img='', see='', cond='new', used=None, price='', note='', eta=(), term=''):
     return dict(eta=[list(e) for e in eta], id=id, status=status, type=type, country=country, brand=brand, model=model, title=title, specs=specs,
-                details=details, config=list(config), img=img, see=see, cond=cond, used=used, _price=price, note=note)
+                details=details, config=list(config), img=img, see=see, cond=cond, used=used, _price=price, note=note, term=term)
 
 SWISS = 'Автоматы продольного точения'
 TURN = 'Токарные центры'
@@ -73,6 +73,12 @@ STOCK_ITEMS = [
    [('Ходы X/Y/Z', '500/450/450 мм'), ('Стол', 'Ø500 мм'), ('Шпиндель', '20 000 об/мин'), ('ЧПУ', 'Siemens ONE')],
    [('Перемещения X/Y/Z', '500 / 450 / 450 мм'), ('Поворот по оси B', '−65 / +120°'), ('Вращение по оси C', '360°'), ('Размер стола', 'Ø500 мм'), ('Макс. нагрузка на стол', '300 кг'), ('Макс. скорость шпинделя', '20 000 об/мин'), ('Мощность шпинделя (S1/S6-40%)', '25 / 40 кВт'), ('Конус шпинделя', 'HSK-A63'), ('Инструментальный магазин', '40 мест {24, 60 — опционально}'), ('Точность позиционирования X/Y/Z', '0,006 мм (VDI/DGQ 3441)'), ('Система ЧПУ', 'Siemens ONE')],
    img='assets/catalog/tr-dnu500d.jpg'),
+
+ # ---- под заказ: цена и срок по ТКП поставщика ----
+ item('or-gf-mill-e-500-700u', 'order', AX5, 'Швейцария', 'GF Machining Solutions', 'Mikron MILL E 500 U / 700 U', '5-осевой фрезерный центр',
+   [('Ходы X/Y/Z, 500 U', '500/450/400 мм'), ('Ходы X/Y/Z, 700 U', '700/600/500 мм'), ('Ось B', '−65° / +120°'), ('Шпиндель', 'до 20 000 об/мин')],
+   [('Перемещения X/Y/Z (MILL E 500 U)', '500 × 450 × 400 мм'), ('Перемещения X/Y/Z (MILL E 700 U)', '700 × 600 × 500 мм'), ('Поворот по оси B', '−65° / +120°'), ('Вращение по оси C', '360°'), ('Макс. скорость шпинделя', '20 000 об/мин (HSK-A63) {12 000 об/мин}'), ('Инструментальный магазин', '30 / 60 мест {башня 120 / 170 / 215}')],
+   price='Самая низкая цена в РФ', term='2 месяца'),
 
  # ---------------- в пути на склад ----------------
  item('tr-diamond-ag600-siemens', 'transit', AX5, 'Китай', 'DIAMOND', 'DIAMOND SmartLine AG-600 (Siemens)', '5-осевой фрезерный обрабатывающий центр',

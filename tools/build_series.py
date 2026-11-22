@@ -34,9 +34,9 @@ for m in re.finditer(r"\['([\w-]+)', (\w+), (\w+), '([^']*)', '([^']*)', '([^']*
 TRANSIT = set()
 for x in STOCK_ITEMS:
     items[x['id']] = dict(id=x['id'], type=x['type'], country=x['country'], model=x['model'], title=x['title'], variants='', specs=x['specs'],
-                          brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'], eta=x['eta'])
+                          brand=x['brand'], img=x['img'], see=x['see'], cond=x['cond'], status=x['status'], eta=x['eta'], term=x.get('term', ''))
     if x['status'] == 'stock': STOCK.add(x['id'])
-    else: TRANSIT.add(x['id'])
+    elif x['status'] == 'transit': TRANSIT.add(x['id'])
 AI_PHOTOS = ('tr-spinex-sl206.jpg', 'tr-diamond-ag600.jpg', 'tr-diamond-ag300.jpg')  # сгенерированы нейросетью
 def photo_of(i):
     p = items[i].get('img') or f'assets/catalog/{i}.jpg'
@@ -45,7 +45,7 @@ def photo_of(i):
 def parse_price(s):
     """'133 580 USD, акция 119 000 USD' -> (текущая, старая, примечание)"""
     nums = re.findall(r'(\d[\d ]*\d)\s*(USD|руб\.)', s or '')
-    if not nums: return 'По запросу', '', ''
+    if not nums: return (s.strip() if s and not re.search(r'\d', s) else 'По запросу'), '', ''
     fmt = lambda n: f"{n[0].strip()} {n[1]}"
     cur, old = (fmt(nums[-1]), fmt(nums[0]) if len(nums) > 1 else '')
     return cur, old, ('с НДС 22%' if nums[-1][1] == 'USD' else '')
@@ -65,7 +65,7 @@ DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
-                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), etaCard=CARD_ETA.get(x['id'], []), doc=DOCS.get(x['id'], ('', '', ''))[0], docLabel=DOCS.get(x['id'], ('', '', ''))[1], specs=dict(x['specs']))))
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), term=x.get('term', ''), etaCard=CARD_ETA.get(x['id'], []), doc=DOCS.get(x['id'], ('', '', ''))[0], docLabel=DOCS.get(x['id'], ('', '', ''))[1], specs=dict(x['specs']))))
 open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
 
 e = html.escape
@@ -92,7 +92,7 @@ def page(i, s):
     if in_transit: facts += '<li><span>Пока оформляем договор</span><b>доставим станок на склад в России — к подписанию он уже будет на месте</b></li>'
     elif in_transit: facts += '<li class="sp-term"><span>Статус</span><b>в наличии</b></li>'
     elif in_stock: facts += '<li class="sp-term"><span>Срок поставки из наличия</span><b>до 1 месяца</b></li>'
-    else: facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>от 1 до 5 месяцев</b></li>'
+    else: facts += '<li class="sp-term"><span>Срок поставки под заказ</span><b>' + (e(items[i].get('term')) if items[i].get('term') else 'от 1 до 5 месяцев') + '</b></li>'
     used = items[i].get('cond') == 'used'
     pr = items[i].get('price', 'По запросу')
     if pr != 'По запросу':
@@ -175,7 +175,7 @@ def page(i, s):
 </main>
 
 {ft}
-<script src="../main.js?v=20261121a"></script>
+<script src="../main.js?v=20261121b"></script>
 <script src="../site-prefs.js" defer></script>
 <script src="../lead-modal.js?v=8" defer></script>
 </body>

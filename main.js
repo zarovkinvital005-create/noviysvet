@@ -68,7 +68,7 @@ function productCard(p) {
         ${p.doc ? `<a class="card__doc" href="${p.doc}" target="_blank" rel="noopener" download>📄 ${p.docLabel || 'Паспорт станка (PDF)'}</a>` : ''}
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
-        <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? '' : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в наличии' : 'до 1 месяца'}</span></li>`}</ul>
+        <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? '' : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? (p.term || 'от 1 до 5 мес.') : p.status === 'transit' ? 'в наличии' : 'до 1 месяца'}</span></li>`}</ul>
         ${page ? `<a class="card__more" href="${page}">Все характеристики <span aria-hidden="true">→</span></a>` : ''}
         <div class="card__foot">
           <div class="price"><small>${p.priceOld ? 'Цена по акции' : 'Цена'}${p.priceNote ? ` · ${p.priceNote}` : ''}</small>${p.priceOld ? `<s class="price__old">${p.priceOld}</s> ` : ''}${p.price}</div>
