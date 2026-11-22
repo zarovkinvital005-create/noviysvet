@@ -61,4 +61,5 @@ for x in STOCK_ITEMS:
     if x['config']:
         secs.append({'title': 'Комплектация', 'columns': ['№', 'Позиция'], 'rows': [[str(k + 1), c] for k, c in enumerate(x['config'])]})
     note = ('Станок едет на склад в России. ' if x['status'] == 'transit' else 'Станок поставляется под заказ. ' if x['status'] == 'order' else 'Станок на складе. ') + 'Технические характеристики, комплектацию и сроки уточняйте у менеджера.'
+    secs += x.get('extra') or []
     SERIES_STOCK[x['id']] = {'note': note, 'sections': secs}

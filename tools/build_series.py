@@ -43,6 +43,10 @@ def photo_of(i):
     return p if os.path.exists(p) else ''
 
 def parse_price(s):
+    if s and '|' in s:
+        _p, _n = s.split('|', 1)
+        _r = parse_price(_p)
+        return _r[0], _r[1], _n.strip()
     """'133 580 USD, акция 119 000 USD' -> (текущая, старая, примечание)"""
     nums = re.findall(r'(\d[\d ]*\d)\s*(USD|CNY|руб\.)', s or '')
     if not nums: return (s.strip() if s and not re.search(r'\d', s) else 'По запросу'), '', ''
@@ -60,9 +64,8 @@ HITS = {'kr-dvf5000'}
 DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF)', 'Спецификация производителя DN Solutions · 9 стр.')
 DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
 DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
-DOCS_EXTRA = {'st-dnm5705-12000': [('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ'),
-                                   ('assets/docs/dnm5705-packing-list.pdf', 'Упаковочный лист (PDF)', 'Комплектация и габариты поставки DNM 5705 · 39 стр. · 23 МБ')]}
-DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'st-dvf6500': ('assets/docs/dvf6500-test-record.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DVF 6500 · 6 стр. · на английском языке'), 'st-def5005': ('assets/docs/def5005-accuracy-table.pdf', 'Таблица точности (PDF)', 'Проверка точности DEF 5005 · 6 стр.'), 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
+DOCS_EXTRA = {'st-dnm5705-12000': [('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ')]}
+DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'st-dvf6500': ('assets/docs/dvf6500-test-record.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DVF 6500 · 6 стр. · на английском языке'), 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
