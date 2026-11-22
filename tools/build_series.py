@@ -44,11 +44,11 @@ def photo_of(i):
 
 def parse_price(s):
     """'133 580 USD, акция 119 000 USD' -> (текущая, старая, примечание)"""
-    nums = re.findall(r'(\d[\d ]*\d)\s*(USD|руб\.)', s or '')
+    nums = re.findall(r'(\d[\d ]*\d)\s*(USD|CNY|руб\.)', s or '')
     if not nums: return (s.strip() if s and not re.search(r'\d', s) else 'По запросу'), '', ''
     fmt = lambda n: f"{n[0].strip()} {n[1]}"
     cur, old = (fmt(nums[-1]), fmt(nums[0]) if len(nums) > 1 else '')
-    return cur, old, ('с НДС 22%' if nums[-1][1] == 'USD' else '')
+    return cur, old, ('MILL E 500 U, с НДС 22%, доставкой до склада, ПНР и обучением' if nums[-1][1] == 'CNY' else 'с НДС 22%' if nums[-1][1] == 'USD' else '')
 for x in STOCK_ITEMS:
     x['price'], x['price_old'], x['price_note'] = parse_price(x['_price'])
     items[x['id']]['price'], items[x['id']]['price_old'], items[x['id']]['price_note'] = x['price'], x['price_old'], x['price_note']
