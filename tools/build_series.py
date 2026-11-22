@@ -175,7 +175,7 @@ def page(i, s):
 </main>
 
 {ft}
-<script src="../main.js?v=20261121b"></script>
+<script src="../main.js?v=20261121c"></script>
 <script src="../site-prefs.js" defer></script>
 <script src="../lead-modal.js?v=8" defer></script>
 </body>
