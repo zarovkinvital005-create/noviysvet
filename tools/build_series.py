@@ -57,11 +57,14 @@ for x in STOCK_ITEMS:
 def js(v): return json.dumps(v, ensure_ascii=False)
 CARD_ETA = {'kr-dvf5000': [['январь', 2]]}
 HITS = {'kr-dvf5000'}
-DOCS = {'kr-dvf5000': 'assets/docs/dvf5000-passport.pdf'}
+DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF)', 'Спецификация производителя DN Solutions · 9 стр.')
+DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
+DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
+DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
-                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), etaCard=CARD_ETA.get(x['id'], []), doc=DOCS.get(x['id'], ''), specs=dict(x['specs']))))
+                                   variants='', img=x['img'] if (x['img'] and os.path.exists(x['img'])) else '', price=x['price'], priceOld=x['price_old'], priceNote=x['price_note'], used=x['used'], eta=x['eta'], hit=(x['id'] in HITS), etaCard=CARD_ETA.get(x['id'], []), doc=DOCS.get(x['id'], ('', '', ''))[0], docLabel=DOCS.get(x['id'], ('', '', ''))[1], specs=dict(x['specs']))))
 open('catalog-stock.js', 'w', encoding='utf-8').write('/* Станки на складе, в пути и с наработкой (генерируется tools/build_series.py из tools/stock_items.py). Цены на сайте не показываются. */\n(window.CATALOG = window.CATALOG || []).push(\n' + ',\n'.join(rows_js) + '\n);\n')
 
 e = html.escape
@@ -164,13 +167,13 @@ def page(i, s):
     <h2 class="sp-h2"><b class="w8">Технические</b> <span class="w2">характеристики</span></h2>
     {tables}
     <p class="sp-note">{e(s['note'])} Характеристики приведены по данным производителя; точную конфигурацию, цену и срок поставки уточняйте у менеджера.</p>
-    {('<a class="sp-doc" href="../' + DOCS[i] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>Паспорт станка (PDF)<small>Спецификация производителя DN Solutions · 9 стр.</small></span></a>') if i in DOCS else ''}
+    {('<a class="sp-doc" href="../' + DOCS[i][0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(DOCS[i][1]) + '<small>' + e(DOCS[i][2]) + '</small></span></a>') if i in DOCS else ''}
     <div class="sp-more">{ihb('../catalog.html', 'Весь каталог', 'ihb--dark')}</div>
   </div>
 </main>
 
 {ft}
-<script src="../main.js?v=20261109w"></script>
+<script src="../main.js?v=20261121a"></script>
 <script src="../site-prefs.js" defer></script>
 <script src="../lead-modal.js?v=8" defer></script>
 </body>

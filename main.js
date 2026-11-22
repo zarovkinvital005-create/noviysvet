@@ -65,7 +65,7 @@ function productCard(p) {
       <div class="card__body">
         <div class="card__type">${p.type}${p.brand ? ` · ${p.brand}` : ''}</div>
         <h3 class="card__title">${page ? `<a href="${page}">${name}</a>` : name}</h3>
-        ${p.doc ? `<a class="card__doc" href="${p.doc}" target="_blank" rel="noopener" download>📄 Паспорт станка (PDF)</a>` : ''}
+        ${p.doc ? `<a class="card__doc" href="${p.doc}" target="_blank" rel="noopener" download>📄 ${p.docLabel || 'Паспорт станка (PDF)'}</a>` : ''}
         <p class="card__sub">${p.model ? p.title : ''}</p>
         ${nVar > 1 ? `<p class="card__vars" title="${p.variants}">${nVar} модификаци${nVar % 10 >= 2 && nVar % 10 <= 4 && (nVar < 12 || nVar > 14) ? 'и' : 'й'}: ${p.variants}</p>` : ''}
         <ul class="specs">${specs}${p.status === 'transit' && p.eta && p.eta.length ? '' : `<li><span>${p.status === 'transit' ? 'Статус' : 'Срок поставки'}</span><span>${p.status === 'order' ? 'от 1 до 5 мес.' : p.status === 'transit' ? 'в наличии' : 'до 1 месяца'}</span></li>`}</ul>
