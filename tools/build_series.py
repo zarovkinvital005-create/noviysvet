@@ -60,6 +60,7 @@ HITS = {'kr-dvf5000'}
 DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF)', 'Спецификация производителя DN Solutions · 9 стр.')
 DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
 DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
+DOCS_EXTRA = {'st-dnm5705-12000': ('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ')}
 DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
@@ -168,6 +169,7 @@ def page(i, s):
     {tables}
     <p class="sp-note">{e(s['note'])} Характеристики приведены по данным производителя; точную конфигурацию, цену и срок поставки уточняйте у менеджера.</p>
     {('<a class="sp-doc" href="../' + DOCS[i][0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(DOCS[i][1]) + '<small>' + e(DOCS[i][2]) + '</small></span></a>') if i in DOCS else ''}
+    {('<a class="sp-doc" href="../' + DOCS_EXTRA[i][0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(DOCS_EXTRA[i][1]) + '<small>' + e(DOCS_EXTRA[i][2]) + '</small></span></a>') if i in DOCS_EXTRA else ''}
     <div class="sp-more">{ihb('../catalog.html', 'Весь каталог', 'ihb--dark')}</div>
   </div>
 </main>
