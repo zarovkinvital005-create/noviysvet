@@ -1617,11 +1617,17 @@ html.nsl-open, html.nsl-open body { overflow: hidden; }
 .ai-note { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; font-size: 9px; line-height: 1.2; letter-spacing: .01em; color: rgba(113,118,128,.55); pointer-events: none; z-index: 2; padding: 0 10px; }
 .card__img .ai-note { font-size: 8px; padding: 0 6px; bottom: 4px; color: rgba(255,255,255,.62); text-shadow: 0 0 3px rgba(0,0,0,.55); white-space: nowrap; }
 
-/* ===== Лента фото отгрузки в разделе «Чем мы занимаемся» ===== */
-.svc-photos { position: relative; z-index: 1; display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; margin-top: clamp(40px, 6vw, 72px); }
-.svc-ph { margin: 0; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: var(--chalk); min-height: 180px; }
-.svc-ph--big { grid-row: 1 / span 2; }
-.svc-ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
-.svc-ph:hover img { transform: scale(1.03); }
-.svc-ph figcaption { position: absolute; left: 16px; bottom: 16px; right: 16px; width: fit-content; max-width: calc(100% - 32px); padding: 9px 16px; border-radius: 999px; background: rgba(10,13,18,.72); color: #fff; font-size: 14px; font-weight: 600; }
-@media (max-width: 900px) { .svc-photos { grid-template-columns: 1fr 1fr; grid-template-rows: auto; } .svc-ph--big { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; } .svc-ph { aspect-ratio: 4 / 3; min-height: 0; } }
+/* ===== Логистика ===== */
+.logi { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: start; }
+.logi__steps { display: grid; gap: 16px; }
+.logi__steps .sp-doc { margin-top: 8px; }
+.logi__step { padding: 24px 26px; border-radius: var(--radius-sm); background: var(--chalk); }
+.logi__n { display: block; font-size: 13px; font-weight: 700; letter-spacing: .14em; color: var(--cobalt); margin-bottom: 10px; }
+.logi__step h3 { font-size: 21px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 8px; }
+.logi__step p { color: var(--graphite); font-size: 16px; line-height: 1.5; }
+.logi__photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.logi__ph { margin: 0; position: relative; overflow: hidden; border-radius: var(--radius-sm); background: var(--chalk); aspect-ratio: 4 / 3; }
+.logi__ph--big { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.logi__ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.logi__ph figcaption { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(10,13,18,.72); color: #fff; font-size: 14px; font-weight: 600; }
+@media (max-width: 900px) { .logi { grid-template-columns: 1fr; gap: 24px; } .logi__photos { order: -1; } }
