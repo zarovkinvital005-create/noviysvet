@@ -60,8 +60,9 @@ HITS = {'kr-dvf5000'}
 DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF)', 'Спецификация производителя DN Solutions · 9 стр.')
 DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
 DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
-DOCS_EXTRA = {'st-dnm5705-12000': ('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ')}
-DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
+DOCS_EXTRA = {'st-dnm5705-12000': [('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ'),
+                                   ('assets/docs/dnm5705-packing-list.pdf', 'Упаковочный лист (PDF)', 'Комплектация и габариты поставки DNM 5705 · 39 стр. · 23 МБ')]}
+DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'st-dvf6500': ('assets/docs/dvf6500-test-record.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DVF 6500 · 6 стр. · на английском языке'), 'st-def5005': ('assets/docs/def5005-accuracy-table.pdf', 'Таблица точности (PDF)', 'Проверка точности DEF 5005 · 6 стр.'), 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
@@ -135,7 +136,7 @@ def page(i, s):
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preload" href="../assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../fonts.css">
-<link rel="stylesheet" href="../styles.css?v=20261109w">
+<link rel="stylesheet" href="../styles.css?v=20261121d">
 </head>
 <body class="series-body">
 
@@ -169,13 +170,13 @@ def page(i, s):
     {tables}
     <p class="sp-note">{e(s['note'])} Характеристики приведены по данным производителя; точную конфигурацию, цену и срок поставки уточняйте у менеджера.</p>
     {('<a class="sp-doc" href="../' + DOCS[i][0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(DOCS[i][1]) + '<small>' + e(DOCS[i][2]) + '</small></span></a>') if i in DOCS else ''}
-    {('<a class="sp-doc" href="../' + DOCS_EXTRA[i][0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(DOCS_EXTRA[i][1]) + '<small>' + e(DOCS_EXTRA[i][2]) + '</small></span></a>') if i in DOCS_EXTRA else ''}
+    {''.join('<a class="sp-doc" href="../' + d[0] + '" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg><span>' + e(d[1]) + '<small>' + e(d[2]) + '</small></span></a>' for d in DOCS_EXTRA.get(i, []))}
     <div class="sp-more">{ihb('../catalog.html', 'Весь каталог', 'ihb--dark')}</div>
   </div>
 </main>
 
 {ft}
-<script src="../main.js?v=20261121c"></script>
+<script src="../main.js?v=20261121d"></script>
 <script src="../site-prefs.js" defer></script>
 <script src="../lead-modal.js?v=8" defer></script>
 </body>
