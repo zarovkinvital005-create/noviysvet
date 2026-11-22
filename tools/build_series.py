@@ -60,7 +60,7 @@ HITS = {'kr-dvf5000'}
 DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF)', 'Спецификация производителя DN Solutions · 9 стр.')
 DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
 DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
-DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
+DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf5000': DOC_DVF, 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
