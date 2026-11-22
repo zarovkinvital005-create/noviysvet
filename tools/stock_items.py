@@ -214,7 +214,7 @@ _ET = [
  ('EGI', 'Внутришлифовальный станок', ['EGI-150CNCA']),
  ('EGH', 'Станок для шлифования центровых отверстий', ['EGH-1215']),
 ]
-_ETIMG = {'EGI-150CNCA': 'et-egi', 'EGM-500CNC': 'et-egm', 'EGP-2050CNC': 'et-egp-cnc', 'EGP-2050NC': 'et-egp-nc', 'EGP-2550NC': 'et-egp-nc',
+_ETIMG = {'EGI-150CNCA': 'et-egi', 'Easy-1224NC': 'et-easy', 'Easy-24100NC': 'et-easy', 'Easy-1632CNC': 'et-easy', 'EGM-500CNC': 'et-egm', 'EGP-2050CNC': 'et-egp-cnc', 'EGP-2050NC': 'et-egp-nc', 'EGP-2550NC': 'et-egp-nc',
           'ECG-2410CNC': 'et-ecg-cnc', 'ECG-1206NC': 'et-ecg-nc', 'ECG-1206S': 'et-ecg-s', 'ECG-1808S': 'et-ecg-s'}
 for _ser, _type, _models in _ET:
     for _m in _models:
