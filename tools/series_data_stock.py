@@ -52,7 +52,7 @@ for x in STOCK_ITEMS:
         secs.append({'title': 'График прибытия', 'columns': ['Период', 'Количество'], 'rows': [[w, (f'{q} шт.' if q else 'оплачен, количество уточняйте')] for w, q in x['eta']]})
     if x['id'] in SERIES_STOCK:
         base = SERIES_STOCK[x['id']]
-        SERIES_STOCK[x['id']] = {'note': base['note'], 'sections': secs + base['sections']}
+        SERIES_STOCK[x['id']] = {'note': base['note'], 'sections': secs + base['sections'] + (x.get('extra') or [])}
         continue
     if x['details']:
         secs.append({'title': 'Характеристики', 'columns': ['Параметр', 'Значение'], 'rows': [list(r) for r in x['details']]})
