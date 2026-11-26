@@ -65,7 +65,8 @@ DOC_DVF = ('assets/docs/dvf5000-passport.pdf', 'Паспорт станка (PDF
 DOC_DNU = ('assets/docs/dnu500d-brochure.pdf', 'Технические характеристики (PDF)', 'Брошюра DN Solutions · 6 стр.')
 DOC_DNM = ('assets/docs/dnm5705-test-protocol.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DNM 5705 · 6 стр.')
 DOCS_EXTRA = {'st-dnm5705-12000': [('assets/docs/renishaw-omp60-installation-guide.pdf', 'Инструкция по установке щупа OMP60 (PDF)', 'Renishaw, installation guide · на английском языке · 2,6 МБ')]}
-DOCS = {'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf6500': ('assets/docs/dvf6500-test-record.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DVF 6500 · 6 стр. · на английском языке'), 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
+DOC_DVF4 = ('assets/docs/dvf4000-catalog.pdf', 'Каталог DVF 4000 на русском (PDF)', 'Перевод каталога DN Solutions · 20 стр.')
+DOCS = {'or-dvf4000': DOC_DVF4, 'kr-dvf5000': DOC_DVF, 'tr-dnu500d': DOC_DNU, 'st-dnu500d': DOC_DNU, 'st-dnm5705-12000': DOC_DNM, 'st-dvf6500': ('assets/docs/dvf6500-test-record.pdf', 'Протокол испытаний (PDF)', 'Проверка геометрической точности DVF 6500 · 6 стр. · на английском языке'), 'tr-dnm5705-conv': DOC_DNM, 'tr-dnm5705-8000': DOC_DNM}
 rows_js = []
 for x in STOCK_ITEMS:
     rows_js.append('  ' + js(dict(id=x['id'], status=x['status'], cond=x['cond'], type=x['type'], country=x['country'], brand=x['brand'], model=x['model'], title=x['title'],
