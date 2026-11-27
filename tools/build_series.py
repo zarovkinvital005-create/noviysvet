@@ -149,7 +149,7 @@ def page(i, s):
 <section class="page-head sp-head">
   <div class="wrap">
     <nav class="crumbs" aria-label="Навигация"><a href="../index.html">Главная</a><span>/</span><a href="../catalog.html">Каталог</a><span>/</span><span>{e(it['model'])}</span></nav>
-    <span class="eyebrow">{e(it['type'])} · DN Solutions</span>
+    <span class="eyebrow">{e(it['type'])} · {e(it.get('brand') or 'DN Solutions')}</span>
     <h1 class="sp-title">{e(it['model'])}</h1>
     <p class="sp-sub">{e(it['title'])}</p>
   </div>
